@@ -17,6 +17,8 @@
 		166F13F11D54D95A00150A14 /* Project_EwokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F13F01D54D95A00150A14 /* Project_EwokUITests.swift */; };
 		166F13FF1D54FD5200150A14 /* getData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F13FE1D54FD5200150A14 /* getData.swift */; };
 		166F14401D58CEE500150A14 /* LocationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F143F1D58CEE500150A14 /* LocationsModel.swift */; };
+		C546667F1D58F08600F4E014 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546667E1D58F08600F4E014 /* Authenticator.swift */; };
+		C54666811D59002800F4E014 /* RequestMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54666801D59002800F4E014 /* RequestMaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,9 @@
 		166F13F21D54D95A00150A14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		166F13FE1D54FD5200150A14 /* getData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getData.swift; sourceTree = "<group>"; };
 		166F143F1D58CEE500150A14 /* LocationsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsModel.swift; sourceTree = "<group>"; };
+		C546667E1D58F08600F4E014 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
+		C54666801D59002800F4E014 /* RequestMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMaker.swift; sourceTree = "<group>"; };
+		C54666821D5905BC00F4E014 /* Debug.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Debug.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +117,9 @@
 				166F13D41D54D95A00150A14 /* Project_Ewok.xcdatamodeld */,
 				166F13FE1D54FD5200150A14 /* getData.swift */,
 				166F143F1D58CEE500150A14 /* LocationsModel.swift */,
+				C546667E1D58F08600F4E014 /* Authenticator.swift */,
+				C54666801D59002800F4E014 /* RequestMaker.swift */,
+				C54666821D5905BC00F4E014 /* Debug.playground */,
 			);
 			path = "Project Ewok";
 			sourceTree = "<group>";
@@ -266,10 +274,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				166F14401D58CEE500150A14 /* LocationsModel.swift in Sources */,
+				C54666811D59002800F4E014 /* RequestMaker.swift in Sources */,
 				166F13D01D54D95A00150A14 /* ViewController.swift in Sources */,
 				166F13D61D54D95A00150A14 /* Project_Ewok.xcdatamodeld in Sources */,
 				166F13FF1D54FD5200150A14 /* getData.swift in Sources */,
 				166F13CE1D54D95A00150A14 /* AppDelegate.swift in Sources */,
+				C546667F1D58F08600F4E014 /* Authenticator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
