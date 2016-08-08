@@ -15,6 +15,8 @@
 		166F13DB1D54D95A00150A14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 166F13D91D54D95A00150A14 /* LaunchScreen.storyboard */; };
 		166F13E61D54D95A00150A14 /* Project_EwokTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F13E51D54D95A00150A14 /* Project_EwokTests.swift */; };
 		166F13F11D54D95A00150A14 /* Project_EwokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F13F01D54D95A00150A14 /* Project_EwokUITests.swift */; };
+		166F13FF1D54FD5200150A14 /* getData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F13FE1D54FD5200150A14 /* getData.swift */; };
+		166F14401D58CEE500150A14 /* LocationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F143F1D58CEE500150A14 /* LocationsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		166F13EC1D54D95A00150A14 /* Project EwokUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project EwokUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		166F13F01D54D95A00150A14 /* Project_EwokUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_EwokUITests.swift; sourceTree = "<group>"; };
 		166F13F21D54D95A00150A14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		166F13FE1D54FD5200150A14 /* getData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getData.swift; sourceTree = "<group>"; };
+		166F143F1D58CEE500150A14 /* LocationsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				166F13D91D54D95A00150A14 /* LaunchScreen.storyboard */,
 				166F13DC1D54D95A00150A14 /* Info.plist */,
 				166F13D41D54D95A00150A14 /* Project_Ewok.xcdatamodeld */,
+				166F13FE1D54FD5200150A14 /* getData.swift */,
+				166F143F1D58CEE500150A14 /* LocationsModel.swift */,
 			);
 			path = "Project Ewok";
 			sourceTree = "<group>";
@@ -259,8 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				166F14401D58CEE500150A14 /* LocationsModel.swift in Sources */,
 				166F13D01D54D95A00150A14 /* ViewController.swift in Sources */,
 				166F13D61D54D95A00150A14 /* Project_Ewok.xcdatamodeld in Sources */,
+				166F13FF1D54FD5200150A14 /* getData.swift in Sources */,
 				166F13CE1D54D95A00150A14 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +496,7 @@
 				166F13F71D54D95A00150A14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		166F13F81D54D95A00150A14 /* Build configuration list for PBXNativeTarget "Project EwokTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +505,7 @@
 				166F13FA1D54D95A00150A14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		166F13FB1D54D95A00150A14 /* Build configuration list for PBXNativeTarget "Project EwokUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +514,7 @@
 				166F13FD1D54D95A00150A14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
