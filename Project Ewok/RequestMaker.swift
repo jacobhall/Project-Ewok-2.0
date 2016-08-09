@@ -31,9 +31,10 @@ class RequestMaker{
     var requestURL: NSURL;              //The request's url
     var request: NSMutableURLRequest;   //The request itslef
     var JSONData = NSData();            //The data returned from the request
+    var decodedJSON: Payload?;          //Holds the decoded data
     var ready: Bool?;                   //Whether or not the data is ready to use
     var status: Int?;                   //Holds the status code of the response
-    var error: String?;
+    var error: String?;                 //Holds an error
     
     //Constants
     let Session = NSURLSession.sharedSession(); //The session
@@ -83,6 +84,7 @@ class RequestMaker{
             if let httpResponse = response as? NSHTTPURLResponse {
                 self.status = httpResponse.statusCode;
             }
+            self.decodeData();
             self.ready = true;
         });
         task.resume();
@@ -98,8 +100,8 @@ class RequestMaker{
             (data, response, error)->Void in
             
             self.JSONData = data!;
-            if(self.decodedData() != nil){
-                completion(self.decodedData()!);
+            if(self.decodeData() != nil){
+                completion(self.decodeData()!);
             }
             if let httpResponse = response as? NSHTTPURLResponse {
                 self.status = httpResponse.statusCode;
@@ -122,6 +124,7 @@ class RequestMaker{
                 self.status = httpResponse.statusCode;
             }
             completion();
+            self.decodeData();
             self.ready = true;
         });
         task.resume();
@@ -139,17 +142,20 @@ class RequestMaker{
             if let httpResponse = response as? NSHTTPURLResponse {
                 self.status = httpResponse.statusCode;
             }
+            self.decodeData();
         });
         task.resume();
     }
     
-    internal func decodedData()->Payload? {
+    internal func decodeData()->Payload? {
         //POST: decodes the JSON and returns it as a dictionary, also setting the error to prevent inefficiency
+        error = nil;
         do{
             let JSON = try NSJSONSerialization.JSONObjectWithData(self.JSONData, options: .AllowFragments) as? Payload;
             if let error = JSON!["error"] as? String {
                 self.error = error;
             }
+            self.decodedJSON = JSON;
             return JSON;
         }
         catch{

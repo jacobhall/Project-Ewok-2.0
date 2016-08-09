@@ -24,8 +24,8 @@ public class Authenticator{
      When logging in, use an authenticate method and
      check the requester for when it finishes. The 
      requester contains an "error" property that will be set
-     if there are any errors and a "ready" property that is
-     set to true when the task finishes.
+     if there are any errors. This also contains a "completed"
+     property that will tell you when all the tasks are completed.
      
      Note that a token expires after 60 minutes but may be refreshed
      within a 2 week window. If the token has merely expired, you
@@ -43,7 +43,9 @@ public class Authenticator{
     
     //Properties
     var token: String?;             //The token
+    var completed: Bool?;           //A boolean to tell when the token has been set
     var requester: RequestMaker!;   //The request
+    var user: [String: AnyObject]?; //Holds user data when it is present
     
     //Constructors
     init(_ token: String?){
@@ -78,12 +80,14 @@ public class Authenticator{
             self.token = token;
             defaults.setObject(token, forKey: TokenKey)
         }
+        self.completed = true;
     }
     
     //Functions
     internal func authenticate(email: String, _ password: String) {
         //PRE: email and password must be a matching pair in the DB
         //POST: runs an authenticate request and sets the token asychronously
+        self.completed = false;
         requester = RequestMaker(method: "POST", url: "authenticate", data: "email="+email+"&password="+password);
         requester.run(setToken);
     }
@@ -91,13 +95,19 @@ public class Authenticator{
     internal func register(email: String, _ password: String, _ confirmed: String){
         //PRE: email must be _@_._ and password must match confirmed
         //POST: runs the register request and places the user in the DB asynchronously
+        self.completed = false;
         requester = RequestMaker(method: "POST", url: "register", data: "email="+email+"&password="+password+"&password_confirmation="+confirmed);
         requester.run();
+        while(requester.ready == false){
+            sleep(1);
+        }
+        self.completed = true;
     }
     
     internal func registerAndAuthenticate(email: String, password: String, confirmed: String){
         //PRE: email must be _@_._ and password must match confirmed
         //POST: runs the register request and subsequently authenticates asychronously
+        self.completed = false;
         requester = RequestMaker(method: "POST", url: "register", data: "email="+email+"&password="+password+"&password_confirmation="+confirmed);
         func auth() -> Void {
             authenticate(email, password);
@@ -108,6 +118,7 @@ public class Authenticator{
     internal func refreshToken(){
         //PRE: the token property must be set and valid
         //POST: destroys the old token and sets the new token to the token property asynchronously
+        self.completed = false;
         requester = RequestMaker(method: "POST", url: "refreshToken");
         if(self.token != nil){
             requester.authorize(self.token!);
@@ -118,6 +129,7 @@ public class Authenticator{
     internal func authenticateAndRefresh(email: String, _ password: String){
         //PRE: email and password must be a matching pair in the DB
         //POST: authenticates the user and refreshes the token for added measure
+        self.completed = false;
         requester = RequestMaker(method: "POST", url: "authenticate", data: "email="+email+"&password="+password);
         requester.run(refreshToken);
     }
@@ -125,10 +137,34 @@ public class Authenticator{
     internal func destroyToken(){
         //PRE: the token property must be set and valid
         //POST: destroys the token so it can no longer be used
+        self.completed = false;
         requester = RequestMaker(method: "POST", url: "destroyToken");
         if(self.token != nil){
             requester.authorize(self.token!);
             requester.run();
         }
+        while(requester.ready == false){
+            sleep(1);
+        }
+        self.completed = true;
+    }
+    
+    internal func getUser(){
+        self.completed = false;
+        requester = RequestMaker(method: "GET", url: "user");
+        if(self.token != nil){
+            requester.authorize(self.token!);
+            requester.run();
+        }
+        while(requester.ready == false){
+            sleep(1);
+        }
+        if(requester.error == nil){
+            self.user = requester.decodedJSON;
+        }
+        else{
+            self.user = nil;
+        }
+        self.completed = true;
     }
 }
