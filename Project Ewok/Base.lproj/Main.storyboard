@@ -111,10 +111,11 @@
             </objects>
             <point key="canvasLocation" x="2701" y="-216"/>
         </scene>
-        <!--Account View Controller-->
+        <!--Account-->
         <scene sceneID="2CQ-4R-hsN">
             <objects>
                 <tableViewController id="8X0-94-zdi" customClass="AccountViewController" customModule="Project_Ewok" customModuleProvider="target" sceneMemberID="viewController">
+<<<<<<< Updated upstream
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Yrd-kB-VXt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,10 +135,38 @@
                             <outlet property="delegate" destination="8X0-94-zdi" id="u4C-BJ-bkU"/>
                         </connections>
                     </tableView>
+=======
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Account" id="f8t-1W-h94">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="iNI-jl-6Wy">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2bF-0C-D2w">
+                                <rect key="frame" x="20" y="7" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Map View"/>
+                                <connections>
+                                    <segue destination="nol-OV-qIT" kind="unwind" unwindAction="cancelToHome:" id="GFw-fo-6fh"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="3jh-uM-YYr">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qt7-v2-H75">
+                                <rect key="frame" x="447" y="7" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log Out"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+>>>>>>> Stashed changes
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I3o-K6-aCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="nol-OV-qIT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
+<<<<<<< Updated upstream
             <point key="canvasLocation" x="3374" y="-216"/>
+=======
+            <point key="canvasLocation" x="4296" y="342"/>
+>>>>>>> Stashed changes
         </scene>
         <!--View Controller-->
         <scene sceneID="pPU-mp-APo">
@@ -225,9 +254,9 @@
                             <constraint firstItem="4vt-7k-kwm" firstAttribute="centerX" secondItem="WEV-GG-txZ" secondAttribute="centerX" id="6bg-j2-7hK"/>
                             <constraint firstItem="hXQ-7H-3m4" firstAttribute="centerX" secondItem="WEV-GG-txZ" secondAttribute="centerX" id="CZk-1V-ycj"/>
                             <constraint firstItem="hXQ-7H-3m4" firstAttribute="top" secondItem="4vt-7k-kwm" secondAttribute="bottom" constant="8" id="F9v-WF-4Id"/>
+                            <constraint firstItem="e59-yj-cAj" firstAttribute="top" secondItem="Zd5-ER-E0u" secondAttribute="bottom" constant="28" id="OEk-VM-frA"/>
                             <constraint firstItem="JsW-rz-o0S" firstAttribute="top" secondItem="hXQ-7H-3m4" secondAttribute="bottom" constant="8" id="Tm0-yg-FeW"/>
                             <constraint firstItem="e59-yj-cAj" firstAttribute="centerX" secondItem="WEV-GG-txZ" secondAttribute="centerX" id="cIC-MY-g8l"/>
-                            <constraint firstItem="e59-yj-cAj" firstAttribute="top" secondItem="Zd5-ER-E0u" secondAttribute="bottom" constant="28" id="qfO-lm-Ffp"/>
                             <constraint firstItem="JsW-rz-o0S" firstAttribute="centerX" secondItem="WEV-GG-txZ" secondAttribute="centerX" id="tN0-0o-9Sc"/>
                             <constraint firstItem="4vt-7k-kwm" firstAttribute="top" secondItem="e59-yj-cAj" secondAttribute="bottom" constant="8" id="yNP-Za-rjO"/>
                         </constraints>
@@ -247,6 +276,7 @@
         <!--Project Ewok-->
         <scene sceneID="tne-QT-ifu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Project_Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -295,11 +325,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="me6-3n-UAs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="0o2-JX-PZg"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2q2-UA-3Ek" secondAttribute="bottom" id="1c5-L3-7c2"/>
+                            <constraint firstItem="me6-3n-UAs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="72C-Fk-IUA"/>
                             <constraint firstItem="2q2-UA-3Ek" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MIn-OY-7RG"/>
                             <constraint firstAttribute="trailing" secondItem="2q2-UA-3Ek" secondAttribute="trailing" id="O48-zp-0WN"/>
                             <constraint firstAttribute="trailing" secondItem="me6-3n-UAs" secondAttribute="trailing" id="TXP-KE-cYn"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2q2-UA-3Ek" secondAttribute="bottom" id="doj-vC-XwY"/>
                             <constraint firstItem="me6-3n-UAs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gsn-wq-4cL"/>
                             <constraint firstItem="2q2-UA-3Ek" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hAb-aw-JJa"/>
                         </constraints>
@@ -320,13 +350,18 @@
                     <connections>
                         <outlet property="mapView" destination="2q2-UA-3Ek" id="adr-CJ-thg"/>
                         <segue destination="y73-pl-NHJ" kind="presentation" id="qPN-3m-4uC"/>
+<<<<<<< Updated upstream
                         <segue destination="8X0-94-zdi" kind="presentation" identifier="loggedIn" id="cf4-Xf-mJW"/>
+=======
+                        <segue destination="kfe-rA-uay" kind="presentation" identifier="loggedIn" id="cf4-Xf-mJW"/>
+                        <segue destination="ita-Wi-RrN" kind="presentation" identifier="loginSegue" id="2l6-ul-urr"/>
+>>>>>>> Stashed changes
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1203" y="697"/>
         </scene>
+<<<<<<< Updated upstream
         <!--View Controller-->
         <scene sceneID="te9-AC-bkq">
             <objects>
@@ -345,6 +380,8 @@
             </objects>
             <point key="canvasLocation" x="1203" y="1147"/>
         </scene>
+=======
+>>>>>>> Stashed changes
         <!--Navigation Controller-->
         <scene sceneID="iGl-7E-Zb4">
             <objects>
@@ -380,6 +417,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pLf-bN-w7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1203" y="-216"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ur6-Gr-5Lf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kfe-rA-uay" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AL4-B1-TlW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8X0-94-zdi" kind="relationship" relationship="rootViewController" id="ydq-1J-Q07"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ecB-zT-yjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3484" y="342"/>
         </scene>
     </scenes>
 </document>

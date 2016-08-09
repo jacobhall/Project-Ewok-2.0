@@ -23,10 +23,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< Updated upstream
-=======
         
->>>>>>> Stashed changes
         self.locationManager.delegate = self
         
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -60,13 +57,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
     @IBAction func addButton(sender: AnyObject) {
         
-<<<<<<< Updated upstream
-        
         
         var data = retriveData(type: .Locations)
-=======
         removeIcons()
->>>>>>> Stashed changes
         
         var data = retriveData(type: .Locations)
         
@@ -82,24 +75,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     @IBAction func accountButton(sender: AnyObject) {
-<<<<<<< Updated upstream
+        print(auth.completed);
         while(auth.completed == false){
             sleep(1);
         }
-        if(auth.valid == true){
+        if(auth.valid != true){
             self.performSegueWithIdentifier("loginSegue", sender: self);
         }
         else{
             self.performSegueWithIdentifier("loggedIn", sender: self);
         }
-=======
         
         let authenticator = Authenticator();
         
         authenticator.authenticate("test@mail.com", "testing123")
         
         setPoints()
->>>>>>> Stashed changes
     }
     
     func setPoints() {
@@ -126,13 +117,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-<<<<<<< Updated upstream
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "loggedIn"){
             let destinationVC = segue.destinationViewController as! AccountViewController;
             destinationVC.auth = self.auth;
         }
-=======
     func removeIcons() {
             
         mapView.removeAnnotations(mapView.annotations)
@@ -160,7 +149,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("ran")
         
         return nil
->>>>>>> Stashed changes
     }
     
 }
