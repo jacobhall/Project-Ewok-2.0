@@ -26,6 +26,8 @@ public class retriveData {
     
     private var JSONData = NSData()
     
+    var isReady = Bool()
+    
     let baseUrl = "http://chitna.asap.um.maine.edu/projectcrowdsource/public/api/"
     
     
@@ -43,6 +45,8 @@ public class retriveData {
     }
     
     func getData() {
+        
+            isReady = false
         
             let url = getUrl()
         
@@ -62,6 +66,8 @@ public class retriveData {
         }
         
             task.resume()
+        
+            isReady = true
             
     }
     
@@ -96,11 +102,21 @@ public class retriveData {
     
     private func getGeolocation(){
         
+        
+        
         do {
             
             let json = try NSJSONSerialization.JSONObjectWithData(JSONData, options: .AllowFragments)
             
             let location = LocationsModel.location
+            
+            location.latPoint.removeAll()
+            
+            location.longPoint.removeAll()
+            
+            location.locationId.removeAll()
+            
+            location.locationType.removeAll()
             
             
             if let events = json as? [[String: AnyObject]] {

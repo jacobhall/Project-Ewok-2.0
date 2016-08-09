@@ -21,7 +21,7 @@
                                         <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f0p-Pf-3fV" id="CHv-X8-TDO">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7m8-SR-Uzf">
@@ -56,7 +56,7 @@
                                         <rect key="frame" x="0.0" y="108" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cEV-iN-khh" id="CmF-pG-Gjh">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBg-g4-zrJ">
@@ -124,7 +124,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tko-ck-6rl" id="oQT-6n-HpP">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -137,7 +137,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I3o-K6-aCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3484" y="342"/>
+            <point key="canvasLocation" x="3374" y="-216"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="pPU-mp-APo">
@@ -155,7 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BtO-cn-6XF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2371" y="1163"/>
+            <point key="canvasLocation" x="1889" y="455"/>
         </scene>
         <!--Sign In-->
         <scene sceneID="e35-bT-XDs">
@@ -199,7 +199,7 @@
                                     <segue destination="vSI-fK-IkC" kind="show" id="qSs-zX-L6g"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e59-yj-cAj" userLabel="Email Field">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e59-yj-cAj">
                                 <rect key="frame" x="146" y="92" width="308" height="44"/>
                                 <color key="backgroundColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -209,7 +209,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4vt-7k-kwm" userLabel="Password Field">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4vt-7k-kwm">
                                 <rect key="frame" x="146" y="144" width="308" height="44"/>
                                 <color key="backgroundColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -233,19 +233,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sign In" id="JOt-lj-iyG">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="t2s-zt-RLM">
-                            <connections>
-                                <segue destination="N5t-6f-Rb0" kind="unwind" unwindAction="cancelToHome:" id="98i-7l-ZQP"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="t2s-zt-RLM"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="emailField" destination="e59-yj-cAj" id="tRB-dS-AtR"/>
-                        <outlet property="passwordField" destination="4vt-7k-kwm" id="bbS-XX-HRl"/>
+                        <outlet property="emailFeild" destination="e59-yj-cAj" id="WS0-Pz-lod"/>
+                        <outlet property="passwordFeild" destination="4vt-7k-kwm" id="s3D-oX-Hqo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDR-yH-ETK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="N5t-6f-Rb0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2015" y="-216"/>
         </scene>
@@ -261,6 +256,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2q2-UA-3Ek">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="me6-3n-UAs">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <subviews>
@@ -294,9 +292,6 @@
                                     <constraint firstItem="7LR-rM-Ehw" firstAttribute="leading" secondItem="me6-3n-UAs" secondAttribute="leading" id="x6h-mc-k7I"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2q2-UA-3Ek">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -313,6 +308,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Account" id="BoR-kA-aiD">
                             <connections>
                                 <action selector="accountButton:" destination="BYZ-38-t0r" id="oaD-15-y4l"/>
+                                <segue destination="ita-Wi-RrN" kind="presentation" id="5ez-SG-tO2"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="9s7-Jc-NYI">
@@ -325,12 +321,11 @@
                         <outlet property="mapView" destination="2q2-UA-3Ek" id="adr-CJ-thg"/>
                         <segue destination="y73-pl-NHJ" kind="presentation" id="qPN-3m-4uC"/>
                         <segue destination="8X0-94-zdi" kind="presentation" identifier="loggedIn" id="cf4-Xf-mJW"/>
-                        <segue destination="ita-Wi-RrN" kind="presentation" identifier="loginSegue" id="2l6-ul-urr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1188" y="696"/>
+            <point key="canvasLocation" x="1203" y="697"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="te9-AC-bkq">
@@ -348,7 +343,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GNA-JW-mW7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3043" y="1187"/>
+            <point key="canvasLocation" x="1203" y="1147"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iGl-7E-Zb4">

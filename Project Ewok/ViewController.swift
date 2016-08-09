@@ -23,10 +23,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< Updated upstream
+=======
+        
+>>>>>>> Stashed changes
         self.locationManager.delegate = self
+        
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
         self.locationManager.requestWhenInUseAuthorization()
+        
         self.locationManager.startUpdatingLocation()
+        
         self.mapView.showsUserLocation = true
     
     }
@@ -47,36 +55,34 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.mapView.setRegion(region, animated: true)
         
         self.locationManager.stopUpdatingLocation()
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError){
-        
-        print("Errors: " + error.localizedDescription)
         
     }
-
-   
 
     @IBAction func addButton(sender: AnyObject) {
         
+<<<<<<< Updated upstream
         
         
         var data = retriveData(type: .Locations)
+=======
+        removeIcons()
+>>>>>>> Stashed changes
         
+        var data = retriveData(type: .Locations)
         
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             data.getData()
-            dispatch_async(dispatch_get_main_queue()) {
-                self.setPoints()
-            }
+            
+            while data.isReady == false {}
+            
+            self.setPoints()
+        
         }
-        
-        
-        
     }
     
     @IBAction func accountButton(sender: AnyObject) {
+<<<<<<< Updated upstream
         while(auth.completed == false){
             sleep(1);
         }
@@ -86,6 +92,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         else{
             self.performSegueWithIdentifier("loggedIn", sender: self);
         }
+=======
+        
+        let authenticator = Authenticator();
+        
+        authenticator.authenticate("test@mail.com", "testing123")
+        
+        setPoints()
+>>>>>>> Stashed changes
     }
     
     func setPoints() {
@@ -94,20 +108,60 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         print(location.numberOfPoints)
         
-        for var i = 0; i < location.numberOfPoints; i++ {
+        var i = 0
+        
+        for (i = 0; i < location.numberOfPoints; i++ ){
             
-            print("hello")
+            var location = CLLocationCoordinate2D(latitude: location.latPoint[i], longitude: location.latPoint[i])
+            
+            var annotation = mapAnnotation()
+            
+            annotation.name = ""
+            
+            annotation.coordinate = location
+            
+            self.mapView.addAnnotation(annotation)
             
         }
         
     }
     
+<<<<<<< Updated upstream
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "loggedIn"){
             let destinationVC = segue.destinationViewController as! AccountViewController;
             destinationVC.auth = self.auth;
         }
+=======
+    func removeIcons() {
+            
+        mapView.removeAnnotations(mapView.annotations)
+        
+    }
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        
+        
+        let capital = view.annotation as! mapAnnotation
+        
+        capital.name = ""
+        
+        capital.coordinate = CLLocationCoordinate2D(latitude: 1.0, longitude: 1.0)
+        
+        
+        
+        let ac = UIAlertController(title: "", message: "", preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(ac, animated: true, completion: nil)
+    }
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        
+        print("ran")
+        
+        return nil
+>>>>>>> Stashed changes
     }
     
 }
-
+ 
