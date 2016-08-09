@@ -39,6 +39,11 @@ public class Authenticator{
      from being logged out too soon.
      
      When the user logs out, destroy the token.
+     
+     To check if the user already has a valid token, you may call
+     getUser(). User will be nil if it isn't valid or a dictionary if it is
+     valid. Make sure to try to refresh the token when you do this or call the
+     refreshAndGetUser();
     */
     
     //Properties
@@ -150,6 +155,9 @@ public class Authenticator{
     }
     
     internal func getUser(){
+        //PRE: the token property of this must be set
+        //POST: obtains the user and sets the "user" property to it
+        //      The user property will be nil if no user is found
         self.completed = false;
         requester = RequestMaker(method: "GET", url: "user");
         if(self.token != nil){
@@ -166,5 +174,14 @@ public class Authenticator{
             self.user = nil;
         }
         self.completed = true;
+    }
+    
+    internal func refreshAndGetUser(){
+        self.completed = false;
+        requester = RequestMaker(method: "POST", url: "refreshToken");
+        if(self.token != nil){
+            requester.authorize(self.token!);
+            requester.run(getUser);
+        }
     }
 }
