@@ -21,7 +21,7 @@
                                         <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f0p-Pf-3fV" id="CHv-X8-TDO">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7m8-SR-Uzf">
@@ -56,7 +56,7 @@
                                         <rect key="frame" x="0.0" y="108" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cEV-iN-khh" id="CmF-pG-Gjh">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBg-g4-zrJ">
@@ -115,17 +115,16 @@
         <scene sceneID="2CQ-4R-hsN">
             <objects>
                 <tableViewController id="8X0-94-zdi" customClass="AccountViewController" customModule="Project_Ewok" customModuleProvider="target" sceneMemberID="viewController">
-<<<<<<< Updated upstream
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Yrd-kB-VXt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="tko-ck-6rl">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tko-ck-6rl" id="oQT-6n-HpP">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -135,7 +134,6 @@
                             <outlet property="delegate" destination="8X0-94-zdi" id="u4C-BJ-bkU"/>
                         </connections>
                     </tableView>
-=======
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Account" id="f8t-1W-h94">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="iNI-jl-6Wy">
@@ -157,16 +155,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
->>>>>>> Stashed changes
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I3o-K6-aCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="nol-OV-qIT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-<<<<<<< Updated upstream
             <point key="canvasLocation" x="3374" y="-216"/>
-=======
-            <point key="canvasLocation" x="4296" y="342"/>
->>>>>>> Stashed changes
         </scene>
         <!--View Controller-->
         <scene sceneID="pPU-mp-APo">
@@ -276,7 +269,6 @@
         <!--Project Ewok-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Project_Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -350,18 +342,14 @@
                     <connections>
                         <outlet property="mapView" destination="2q2-UA-3Ek" id="adr-CJ-thg"/>
                         <segue destination="y73-pl-NHJ" kind="presentation" id="qPN-3m-4uC"/>
-<<<<<<< Updated upstream
                         <segue destination="8X0-94-zdi" kind="presentation" identifier="loggedIn" id="cf4-Xf-mJW"/>
-=======
-                        <segue destination="kfe-rA-uay" kind="presentation" identifier="loggedIn" id="cf4-Xf-mJW"/>
                         <segue destination="ita-Wi-RrN" kind="presentation" identifier="loginSegue" id="2l6-ul-urr"/>
->>>>>>> Stashed changes
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1203" y="697"/>
         </scene>
-<<<<<<< Updated upstream
         <!--View Controller-->
         <scene sceneID="te9-AC-bkq">
             <objects>
@@ -380,8 +368,6 @@
             </objects>
             <point key="canvasLocation" x="1203" y="1147"/>
         </scene>
-=======
->>>>>>> Stashed changes
         <!--Navigation Controller-->
         <scene sceneID="iGl-7E-Zb4">
             <objects>
@@ -437,4 +423,8 @@
             <point key="canvasLocation" x="3484" y="342"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="5ez-SG-tO2"/>
+        <segue reference="ydq-1J-Q07"/>
+    </inferredMetricsTieBreakers>
 </document>
