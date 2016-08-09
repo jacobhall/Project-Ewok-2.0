@@ -13,8 +13,6 @@ let TokenKey = "token";
 
 public class Authenticator{
     /**
-     NEEDS TESTING!!!
-     
      Basic usage:
      create an authenticator with an init() call
      
@@ -28,8 +26,7 @@ public class Authenticator{
      property that will tell you when all the tasks are completed.
      
      Note that a token expires after 60 minutes but may be refreshed
-     within a 2 week window. If the token has merely expired, you
-     may wish to use the refresh token or the authenticateAndRefresh method
+     within a 2 week window.
      
      When registering, use the register method or
      the registerAndAuthenticate method (per your desire).
@@ -42,8 +39,12 @@ public class Authenticator{
      
      To check if the user already has a valid token, you may call
      getUser(). User will be nil if it isn't valid or a dictionary if it is
-     valid. Make sure to try to refresh the token when you do this or call the
-     refreshAndGetUser();
+     valid. Make sure to try to refresh the token when you do this.
+     You can always call refreshAndGetUser to avoid this.
+     
+     Note that user may already be set! If you are using an Authenticator already
+     instantiated from another place, it's quite possible that user is already calculated.
+     Bear this in mind when using it.
     */
     
     //Properties
@@ -51,6 +52,7 @@ public class Authenticator{
     var completed: Bool?;           //A boolean to tell when the token has been set
     var requester: RequestMaker!;   //The request
     var user: [String: AnyObject]?; //Holds user data when it is present
+    var valid: Bool?                //Determines whether the token is valid
     
     //Constructors
     init(_ token: String?){
@@ -60,6 +62,7 @@ public class Authenticator{
         }
         else{
             self.token = nil;
+            self.valid = false;
         }
     }
     
@@ -69,6 +72,7 @@ public class Authenticator{
         let storedToken: String! = defaults.objectForKey(TokenKey) as! String!;
         if(storedToken != nil){
             self.init(storedToken);
+            self.getUser();
         }
         else{
             self.init(nil);
@@ -114,10 +118,11 @@ public class Authenticator{
         //POST: runs the register request and subsequently authenticates asychronously
         self.completed = false;
         requester = RequestMaker(method: "POST", url: "register", data: "email="+email+"&password="+password+"&password_confirmation="+confirmed);
-        func auth() -> Void {
-            authenticate(email, password);
+        requester.run();
+        while(requester.ready == false){
+            sleep(1);
         }
-        requester.run(auth);
+        self.authenticate(email, password);
     }
     
     internal func refreshToken(){
@@ -129,14 +134,6 @@ public class Authenticator{
             requester.authorize(self.token!);
             requester.run(setToken);
         }
-    }
-    
-    internal func authenticateAndRefresh(email: String, _ password: String){
-        //PRE: email and password must be a matching pair in the DB
-        //POST: authenticates the user and refreshes the token for added measure
-        self.completed = false;
-        requester = RequestMaker(method: "POST", url: "authenticate", data: "email="+email+"&password="+password);
-        requester.run(refreshToken);
     }
     
     internal func destroyToken(){
@@ -157,7 +154,7 @@ public class Authenticator{
     internal func getUser(){
         //PRE: the token property of this must be set
         //POST: obtains the user and sets the "user" property to it
-        //      The user property will be nil if no user is found
+        //      The user property will be nil if no user is found        
         self.completed = false;
         requester = RequestMaker(method: "GET", url: "user");
         if(self.token != nil){
@@ -169,19 +166,26 @@ public class Authenticator{
         }
         if(requester.error == nil){
             self.user = requester.decodedJSON;
+            self.valid = true;
         }
         else{
             self.user = nil;
+            self.valid = false;
         }
         self.completed = true;
     }
     
     internal func refreshAndGetUser(){
-        self.completed = false;
-        requester = RequestMaker(method: "POST", url: "refreshToken");
+        //PRE: the token property of this must be set
+        //POST: Performs both a refresh and a get userself.completed = false;
+        requester = RequestMaker(method: "GET", url: "refreshToken");
         if(self.token != nil){
             requester.authorize(self.token!);
-            requester.run(getUser);
+            requester.run(setToken);
         }
+        while(requester.ready == false){
+            sleep(1);
+        }
+        self.getUser();
     }
 }

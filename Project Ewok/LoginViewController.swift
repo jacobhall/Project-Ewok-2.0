@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    
+    let auth = Authenticator();
     
     // text feilds
     @IBOutlet weak var emailField: UITextField!
@@ -22,25 +22,6 @@ class LoginViewController: UIViewController {
     
     // login in
     func login() {
-        let auth = Authenticator();
-        if(auth.token == nil){
-            if(emailField.text != nil && passwordField.text != nil){
-                auth.authenticateAndRefresh(emailField.text!, passwordField.text!);
-            }
-            while(auth.completed == false){
-                sleep(1);
-            }
-            if(auth.token != nil){
-                print(auth.token!);
-            }
-        }
-        else{
-            auth.getUser();
-            while(auth.completed == false){
-                sleep(1);
-            }
-            print(auth.user)
-            print(auth.requester.error);
-        }
+        auth.authenticate(emailField.text!, passwordField.text!)
     }
 }

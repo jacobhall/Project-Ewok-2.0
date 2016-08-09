@@ -12,14 +12,17 @@ import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
     
+    var auth = Authenticator();
+    
     let locationManager = CLLocationManager()
     
     @IBOutlet var mapView: MKMapView!
+    
+    @IBAction func cancelToHome(segue:UIStoryboardSegue) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
@@ -56,6 +59,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
     @IBAction func addButton(sender: AnyObject) {
         
+        
+        
         var data = retriveData(type: .Locations)
         
         
@@ -72,12 +77,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     @IBAction func accountButton(sender: AnyObject) {
-        
-        print(self.mapView.region)
-        
-        let authenticator = Authenticator();
-        
-        authenticator.authenticate("test@mail.com", "testing123");
+        while(auth.completed == false){
+            sleep(1);
+        }
+        if(auth.valid == true){
+            self.performSegueWithIdentifier("loginSegue", sender: self);
+        }
+        else{
+            self.performSegueWithIdentifier("loggedIn", sender: self);
+        }
     }
     
     func setPoints() {
@@ -92,6 +100,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
         }
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "loggedIn"){
+            let destinationVC = segue.destinationViewController as! AccountViewController;
+            destinationVC.auth = self.auth;
+        }
     }
     
 }

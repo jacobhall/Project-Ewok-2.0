@@ -23,6 +23,9 @@ class RequestMaker{
      
      If a function was used as an argument for run, that function
      will be called when the task is completed.
+     
+     To authorize a request, use the "authorize" function with a 
+     token as an argument
     */
     //Aliases
     typealias Payload = [String: AnyObject] //Just a dictionary
@@ -153,6 +156,9 @@ class RequestMaker{
         do{
             let JSON = try NSJSONSerialization.JSONObjectWithData(self.JSONData, options: .AllowFragments) as? Payload;
             if let error = JSON!["error"] as? String {
+                self.error = error;
+            }
+            else if let error = JSON!["message"] as? String {
                 self.error = error;
             }
             self.decodedJSON = JSON;

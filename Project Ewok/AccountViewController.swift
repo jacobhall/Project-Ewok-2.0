@@ -9,5 +9,11 @@
 import UIKit
 
 class AccountViewController: UITableViewController {
-
+    var auth: Authenticator?;
+    
+    override func viewDidLoad(){
+        super.viewDidLoad();
+        
+        print(auth!.user);
+    }
 }
