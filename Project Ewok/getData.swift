@@ -42,7 +42,7 @@ public class retriveData {
         
     }
     
-    func getData(){
+    func getData() {
         
             let url = getUrl()
         
@@ -58,13 +58,12 @@ public class retriveData {
                 self.JSONData = data!
                 
                 self.getGeolocation()
-                
+            
         }
         
             task.resume()
             
     }
-    
     
     func getUrl() -> String{
         

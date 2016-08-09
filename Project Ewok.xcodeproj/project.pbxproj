@@ -17,6 +17,12 @@
 		166F13F11D54D95A00150A14 /* Project_EwokUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F13F01D54D95A00150A14 /* Project_EwokUITests.swift */; };
 		166F13FF1D54FD5200150A14 /* getData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F13FE1D54FD5200150A14 /* getData.swift */; };
 		166F14401D58CEE500150A14 /* LocationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F143F1D58CEE500150A14 /* LocationsModel.swift */; };
+		166F14421D591ED800150A14 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F14411D591ED800150A14 /* RestaurantAnnotation.swift */; };
+		166F14441D591EFF00150A14 /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 166F14431D591EFF00150A14 /* bus.png */; };
+		166F14461D59222700150A14 /* MapViewPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F14451D59222700150A14 /* MapViewPopUp.swift */; };
+		166F14481D5A1C3F00150A14 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F14471D5A1C3F00150A14 /* RegisterViewController.swift */; };
+		166F144A1D5A1C7500150A14 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F14491D5A1C7500150A14 /* LoginViewController.swift */; };
+		166F144C1D5A1C8F00150A14 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F144B1D5A1C8F00150A14 /* AccountViewController.swift */; };
 		C546667F1D58F08600F4E014 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546667E1D58F08600F4E014 /* Authenticator.swift */; };
 		C54666811D59002800F4E014 /* RequestMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54666801D59002800F4E014 /* RequestMaker.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +61,12 @@
 		166F13F21D54D95A00150A14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		166F13FE1D54FD5200150A14 /* getData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getData.swift; sourceTree = "<group>"; };
 		166F143F1D58CEE500150A14 /* LocationsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsModel.swift; sourceTree = "<group>"; };
+		166F14411D591ED800150A14 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
+		166F14431D591EFF00150A14 /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
+		166F14451D59222700150A14 /* MapViewPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewPopUp.swift; sourceTree = "<group>"; };
+		166F14471D5A1C3F00150A14 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		166F14491D5A1C7500150A14 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		166F144B1D5A1C8F00150A14 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		C546667E1D58F08600F4E014 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		C54666801D59002800F4E014 /* RequestMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMaker.swift; sourceTree = "<group>"; };
 		C54666821D5905BC00F4E014 /* Debug.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Debug.playground; sourceTree = "<group>"; };
@@ -108,18 +120,21 @@
 		166F13CC1D54D95A00150A14 /* Project Ewok */ = {
 			isa = PBXGroup;
 			children = (
+				166F144E1D5A1CC600150A14 /* Models */,
+				166F144D1D5A1C9400150A14 /* ViewControllers */,
 				166F13CD1D54D95A00150A14 /* AppDelegate.swift */,
-				166F13CF1D54D95A00150A14 /* ViewController.swift */,
 				166F13D11D54D95A00150A14 /* Main.storyboard */,
+				166F14431D591EFF00150A14 /* bus.png */,
 				166F13D71D54D95A00150A14 /* Assets.xcassets */,
 				166F13D91D54D95A00150A14 /* LaunchScreen.storyboard */,
 				166F13DC1D54D95A00150A14 /* Info.plist */,
 				166F13D41D54D95A00150A14 /* Project_Ewok.xcdatamodeld */,
+				166F14411D591ED800150A14 /* RestaurantAnnotation.swift */,
 				166F13FE1D54FD5200150A14 /* getData.swift */,
-				166F143F1D58CEE500150A14 /* LocationsModel.swift */,
 				C546667E1D58F08600F4E014 /* Authenticator.swift */,
 				C54666801D59002800F4E014 /* RequestMaker.swift */,
 				C54666821D5905BC00F4E014 /* Debug.playground */,
+				166F14451D59222700150A14 /* MapViewPopUp.swift */,
 			);
 			path = "Project Ewok";
 			sourceTree = "<group>";
@@ -140,6 +155,25 @@
 				166F13F21D54D95A00150A14 /* Info.plist */,
 			);
 			path = "Project EwokUITests";
+			sourceTree = "<group>";
+		};
+		166F144D1D5A1C9400150A14 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				166F13CF1D54D95A00150A14 /* ViewController.swift */,
+				166F14471D5A1C3F00150A14 /* RegisterViewController.swift */,
+				166F14491D5A1C7500150A14 /* LoginViewController.swift */,
+				166F144B1D5A1C8F00150A14 /* AccountViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		166F144E1D5A1CC600150A14 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				166F143F1D58CEE500150A14 /* LocationsModel.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				166F14441D591EFF00150A14 /* bus.png in Resources */,
 				166F13DB1D54D95A00150A14 /* LaunchScreen.storyboard in Resources */,
 				166F13D81D54D95A00150A14 /* Assets.xcassets in Resources */,
 				166F13D31D54D95A00150A14 /* Main.storyboard in Resources */,
@@ -274,12 +309,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				166F14401D58CEE500150A14 /* LocationsModel.swift in Sources */,
+				166F14481D5A1C3F00150A14 /* RegisterViewController.swift in Sources */,
+				166F144C1D5A1C8F00150A14 /* AccountViewController.swift in Sources */,
+				166F14421D591ED800150A14 /* RestaurantAnnotation.swift in Sources */,
 				C54666811D59002800F4E014 /* RequestMaker.swift in Sources */,
 				166F13D01D54D95A00150A14 /* ViewController.swift in Sources */,
 				166F13D61D54D95A00150A14 /* Project_Ewok.xcdatamodeld in Sources */,
 				166F13FF1D54FD5200150A14 /* getData.swift in Sources */,
 				166F13CE1D54D95A00150A14 /* AppDelegate.swift in Sources */,
+				166F14461D59222700150A14 /* MapViewPopUp.swift in Sources */,
 				C546667F1D58F08600F4E014 /* Authenticator.swift in Sources */,
+				166F144A1D5A1C7500150A14 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
