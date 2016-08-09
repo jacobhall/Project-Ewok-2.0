@@ -75,6 +75,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         print(self.mapView.region)
         
+        let authenticator = Authenticator();
+        
+        authenticator.authenticate("test@mail.com", "testing123");
     }
     
     func setPoints() {
