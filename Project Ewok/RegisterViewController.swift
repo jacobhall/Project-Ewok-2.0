@@ -27,24 +27,26 @@ class RegisterViewController: UITableViewController {
     }
     
     //When the user clicks the register button
-    @IBAction func register(sender: UIButton) {
+    @IBAction func register(sender: UIBarButtonItem) {
         auth!.registerAndAuthenticate(emailField.text!, password: passwordField.text!, confirmed: passwordConfirmationField.text!, firstName: firstNameField.text!, lastName: lastNameField.text!)
         while(auth!.completed == false){
             sleep(1);
         }
+        
+        print("auth is valid = \(auth!.valid)")
+        
+        
         if(auth!.valid == true){
+            
+            print("true auth is valid = \(auth!.valid)")
+            
             self.performSegueWithIdentifier("registerSucessful", sender: self);
-        }
-        else{
+        }else{
             //TO DO: ERROR PROMPTS
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "backToLoginSegue"){
-            let navVC = segue.destinationViewController as! UINavigationController;
-            let destinationVC = navVC.viewControllers.first as! LoginViewController;
-            destinationVC.auth = self.auth;
+            
+            print("else auth is valid = \(auth!.valid)")
+            
+            print("auth error")
         }
     }
 }

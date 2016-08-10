@@ -71,14 +71,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="o8Y-Ow-glM">
-                            <rect key="frame" x="0.0" y="284" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Register"/>
-                            <connections>
-                                <action selector="register:" destination="vSI-fK-IkC" eventType="touchUpInside" id="45E-kH-Jew"/>
-                            </connections>
-                        </button>
                         <sections>
                             <tableViewSection id="UJz-JA-Eph">
                                 <cells>
@@ -227,19 +219,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Register" id="XA3-pF-SWJ">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="BpW-h3-0sL">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XCa-Cm-CzG">
-                                <rect key="frame" x="20" y="7" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <segue destination="ita-Wi-RrN" kind="presentation" identifier="backToLoginSegue" id="0tx-zU-4vz"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Map View" id="0eX-vu-2PR">
+                        <barButtonItem key="rightBarButtonItem" title="Register" id="ZN3-58-spl">
                             <connections>
-                                <segue destination="cKO-eV-yiz" kind="unwind" unwindAction="cancelToHome:" id="4h6-lG-lbx"/>
+                                <action selector="register:" destination="vSI-fK-IkC" id="0fk-aT-GVu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -249,13 +231,13 @@
                         <outlet property="lastNameField" destination="rUq-uC-lif" id="uqh-I1-dda"/>
                         <outlet property="passwordConfirmationField" destination="EfL-WX-b4J" id="y9T-u1-XZW"/>
                         <outlet property="passwordField" destination="jvX-TE-3zB" id="csm-wx-AuN"/>
-                        <segue destination="cKO-eV-yiz" kind="unwind" unwindAction="cancelToHome:" id="OUY-yo-MXH"/>
+                        <segue destination="cKO-eV-yiz" kind="unwind" identifier="registerSucessful" unwindAction="cancelToHome:" id="OUY-yo-MXH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jyg-ng-oxv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cKO-eV-yiz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4347" y="-60"/>
+            <point key="canvasLocation" x="2820" y="-351"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="pPU-mp-APo">
@@ -314,7 +296,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Sg4-ma-TSy" kind="presentation" identifier="registerSegue" id="Oms-I0-oau"/>
+                                    <segue destination="vSI-fK-IkC" kind="show" id="e1Y-yS-Ph2"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e59-yj-cAj">
@@ -367,22 +349,6 @@
                 <exit id="szn-0C-fGI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2017" y="-375"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="0nY-wZ-kA7">
-            <objects>
-                <navigationController id="Sg4-ma-TSy" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M95-bS-6zh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="vSI-fK-IkC" kind="relationship" relationship="rootViewController" id="fgW-ll-GPd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DCg-7T-SY7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2842" y="-428"/>
         </scene>
         <!--Project Ewok-->
         <scene sceneID="tne-QT-ifu">
@@ -647,7 +613,4 @@
             <point key="canvasLocation" x="1897" y="455"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="2l6-ul-urr"/>
-    </inferredMetricsTieBreakers>
 </document>
