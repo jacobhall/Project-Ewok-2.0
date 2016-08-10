@@ -102,7 +102,6 @@ public class Authenticator{
         //PRE: email and password must be a matching pair in the DB
         //POST: runs an authenticate request and sets the token asychronously
         self.completed = false;
-        self.valid = false;
         requester = RequestMaker(method: "POST", url: "authenticate", data: "email="+email+"&password="+password);
         requester.run(setToken);
     }
@@ -130,14 +129,15 @@ public class Authenticator{
         while(requester.ready == false){
             sleep(1);
         }
-        self.authenticate(email, password);
+        if(requester.error == nil){
+            self.authenticate(email, password);
+        }
     }
     
     internal func refreshToken(){
         //PRE: the token property must be set and valid
         //POST: destroys the old token and sets the new token to the token property asynchronously
         self.completed = false;
-        self.valid = false;
         requester = RequestMaker(method: "POST", url: "refreshToken");
         if(self.token != nil){
             requester.authorize(self.token!);
