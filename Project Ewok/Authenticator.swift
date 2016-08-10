@@ -87,7 +87,11 @@ public class Authenticator{
         let defaults = NSUserDefaults.standardUserDefaults();
         if let token = JSON[TokenKey] as? String {
             self.token = token;
+            self.valid = true;
             defaults.setObject(token, forKey: TokenKey)
+        }
+        else{
+            self.valid = false;
         }
         self.completed = true;
     }
@@ -101,11 +105,12 @@ public class Authenticator{
         requester.run(setToken);
     }
     
-    internal func register(email: String, _ password: String, _ confirmed: String){
+    internal func register(email: String, password: String, confirmed: String, firstName: String, lastName: String){
         //PRE: email must be _@_._ and password must match confirmed
         //POST: runs the register request and places the user in the DB asynchronously
         self.completed = false;
-        requester = RequestMaker(method: "POST", url: "register", data: "email="+email+"&password="+password+"&password_confirmation="+confirmed);
+        let data: String = "email="+email+"&password="+password+"&password_confirmation="+confirmed+"&firstName="+firstName+"&lastName="+lastName;
+        requester = RequestMaker(method: "POST", url: "register", data: data);
         requester.run();
         while(requester.ready == false){
             sleep(1);
@@ -113,11 +118,12 @@ public class Authenticator{
         self.completed = true;
     }
     
-    internal func registerAndAuthenticate(email: String, password: String, confirmed: String){
+    internal func registerAndAuthenticate(email: String, password: String, confirmed: String, firstName: String, lastName: String){
         //PRE: email must be _@_._ and password must match confirmed
         //POST: runs the register request and subsequently authenticates asychronously
         self.completed = false;
-        requester = RequestMaker(method: "POST", url: "register", data: "email="+email+"&password="+password+"&password_confirmation="+confirmed);
+        let data: String = "email="+email+"&password="+password+"&password_confirmation="+confirmed+"&firstName="+firstName+"&lastName="+lastName;
+        requester = RequestMaker(method: "POST", url: "register", data: data);
         requester.run();
         while(requester.ready == false){
             sleep(1);
