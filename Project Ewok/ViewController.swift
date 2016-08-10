@@ -61,7 +61,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         var data = retriveData(type: .Locations)
         removeIcons()
         
-        var data = retriveData(type: .Locations)
+        data = retriveData(type: .Locations)
         
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
@@ -122,9 +122,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             let destinationVC = segue.destinationViewController as! AccountViewController;
             destinationVC.auth = self.auth;
         }
+    }
+    
     func removeIcons() {
             
-        mapView.removeAnnotations(mapView.annotations)
+        self.mapView.removeAnnotations(self.mapView.annotations)
         
     }
     
