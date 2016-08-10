@@ -19,6 +19,7 @@ class AccountViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         auth = Authenticator();
+        auth!.getUser();
     }
     
     @IBAction func logout(sender: UIButton) {

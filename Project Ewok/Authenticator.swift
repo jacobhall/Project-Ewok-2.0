@@ -72,7 +72,6 @@ public class Authenticator{
         let storedToken: String! = defaults.objectForKey(TokenKey) as! String!;
         if(storedToken != nil){
             self.init(storedToken);
-            self.getUser();
         }
         else{
             self.init(nil);
@@ -131,6 +130,7 @@ public class Authenticator{
         }
         if(requester.error == nil){
             self.authenticate(email, password);
+            self.completed = true;
         }
     }
     
