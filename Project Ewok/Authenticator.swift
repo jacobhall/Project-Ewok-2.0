@@ -51,7 +51,7 @@ public class Authenticator{
     var token: String?;             //The token
     var completed: Bool?;           //A boolean to tell when the token has been set
     var requester: RequestMaker!;   //The request
-    var user: [String: AnyObject]?; //Holds user data when it is present
+    var user: UserModel?; //Holds user data when it is present
     var valid: Bool?                //Determines whether the token is valid
     
     //Constructors
@@ -161,7 +161,7 @@ public class Authenticator{
         self.completed = true;
     }
     
-    internal func getUser(){
+    internal func getUser() -> UserModel? {
         //PRE: the token property of this must be set
         //POST: obtains the user and sets the "user" property to it
         //      The user property will be nil if no user is found        
@@ -175,7 +175,17 @@ public class Authenticator{
             sleep(1);
         }
         if(requester.error == nil){
-            self.user = requester.decodedJSON;
+            let JSON = requester.decodedJSON!["user"]!;
+            let email = JSON["email"] as? String;
+            let firstName = JSON["firstName"] as! String?;
+            let lastName = JSON["lastName"] as! String?;
+            let userID = JSON["userID"] as? Int;
+            if(email != nil && userID != nil){
+                self.user = UserModel(userID: userID!, firstName: firstName, lastName: lastName, email: email!);
+            }
+            else{
+                self.user = nil;
+            }
             self.valid = true;
         }
         else{
@@ -183,6 +193,7 @@ public class Authenticator{
             self.valid = false;
         }
         self.completed = true;
+        return self.user;
     }
     
     internal func refreshAndGetUser(){

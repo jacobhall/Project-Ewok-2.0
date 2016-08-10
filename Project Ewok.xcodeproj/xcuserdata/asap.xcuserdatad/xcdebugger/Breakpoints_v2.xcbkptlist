@@ -223,8 +223,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
             endingLineNumber = "69"
-            landmarkName = "init()"
-            landmarkType = "5">
+            landmarkName = "Authenticator"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -271,8 +271,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
             endingLineNumber = "107"
-            landmarkName = "register(_:password:confirmed:firstName:lastName:)"
-            landmarkType = "5">
+            landmarkName = "Authenticator"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -314,13 +314,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492541700.53022"
+            timestampString = "492542364.393129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
-            landmarkName = "Authenticator"
-            landmarkType = "3">
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "refreshAndGetUser()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

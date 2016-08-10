@@ -13,8 +13,6 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad(){
         super.viewDidLoad();
-        
-        print(auth!.user);
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -25,6 +25,7 @@
 		16AA585E1D5B6BC10091CD7B /* submissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA585D1D5B6BC10091CD7B /* submissionViewController.swift */; };
 		C546667F1D58F08600F4E014 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546667E1D58F08600F4E014 /* Authenticator.swift */; };
 		C54666811D59002800F4E014 /* RequestMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54666801D59002800F4E014 /* RequestMaker.swift */; };
+		C5EF41291D5B981B00769E5C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EF41281D5B981B00769E5C /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		C546667E1D58F08600F4E014 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		C54666801D59002800F4E014 /* RequestMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMaker.swift; sourceTree = "<group>"; };
 		C54666821D5905BC00F4E014 /* Debug.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Debug.playground; sourceTree = "<group>"; };
+		C5EF41281D5B981B00769E5C /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				166F143F1D58CEE500150A14 /* LocationsModel.swift */,
+				C5EF41281D5B981B00769E5C /* UserModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				166F13D01D54D95A00150A14 /* ViewController.swift in Sources */,
 				166F13D61D54D95A00150A14 /* Project_Ewok.xcdatamodeld in Sources */,
 				166F13FF1D54FD5200150A14 /* getData.swift in Sources */,
+				C5EF41291D5B981B00769E5C /* UserModel.swift in Sources */,
 				166F13CE1D54D95A00150A14 /* AppDelegate.swift in Sources */,
 				166F14501D5A454E00150A14 /* createLocation.swift in Sources */,
 				C546667F1D58F08600F4E014 /* Authenticator.swift in Sources */,
