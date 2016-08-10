@@ -278,8 +278,8 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="t2s-zt-RLM"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="emailFeild" destination="e59-yj-cAj" id="WS0-Pz-lod"/>
-                        <outlet property="passwordFeild" destination="4vt-7k-kwm" id="s3D-oX-Hqo"/>
+                        <outlet property="emailField" destination="e59-yj-cAj" id="0uy-YK-GbU"/>
+                        <outlet property="passwordField" destination="4vt-7k-kwm" id="znI-MT-9GZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDR-yH-ETK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -427,7 +427,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Ur6-Gr-5Lf">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ecB-zT-yjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kfe-rA-uay" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AL4-B1-TlW">
@@ -439,6 +438,7 @@
                         <segue destination="8X0-94-zdi" kind="relationship" relationship="rootViewController" id="ydq-1J-Q07"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ecB-zT-yjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3260" y="549"/>
         </scene>
