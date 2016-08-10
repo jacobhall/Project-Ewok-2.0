@@ -58,7 +58,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBAction func addButton(sender: AnyObject) {
 
         
-        var data = retriveData(type: .Locations)
+        let data = retriveData(type: .Locations)
         
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
@@ -72,7 +72,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     @IBAction func accountButton(sender: AnyObject) {
-        print(auth.completed);
         while(auth.completed == false){
             sleep(1);
         }
@@ -82,12 +81,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         else{
             self.performSegueWithIdentifier("loggedIn", sender: self);
         }
-        
-        let authenticator = Authenticator();
-        
-        authenticator.authenticate("test@mail.com", "testing123")
-        
-        setPoints()
     }
     
     func setPoints() {
@@ -116,11 +109,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "loggedIn"){
-            let destinationVC = segue.destinationViewController as! AccountViewController;
+            let navVC = segue.destinationViewController as! UINavigationController;
+            let destinationVC = navVC.viewControllers.first as! AccountViewController;
             destinationVC.auth = self.auth;
         }
-        
     }
+    
     func removeIcons() {
             
         self.mapView.removeAnnotations(self.mapView.annotations)

@@ -9,11 +9,17 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    let auth = Authenticator();
+    var auth: Authenticator?;
     
     // text feilds
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    override func viewDidLoad(){
+        if(auth == nil){
+            auth = Authenticator();
+        }
+    }
     
     // login button
     @IBAction func loginButton(sender: AnyObject) {
@@ -22,6 +28,23 @@ class LoginViewController: UIViewController {
     
     // login in
     func login() {
-        auth.authenticate(emailField.text!, passwordField.text!)
+        auth!.authenticate(emailField.text!, passwordField.text!)
+        while(auth!.completed == false){
+            sleep(1);
+        }
+        if(auth!.valid == true){
+            self.performSegueWithIdentifier("loginSuccessful", sender: self);
+        }
+        else{
+            //TO DO: ADD ERROR PROMPTS
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "registerSegue"){
+            let navVC = segue.destinationViewController as! UINavigationController;
+            let destinationVC = navVC.viewControllers.first as! RegisterViewController;
+            destinationVC.auth = self.auth;
+        }
     }
 }
