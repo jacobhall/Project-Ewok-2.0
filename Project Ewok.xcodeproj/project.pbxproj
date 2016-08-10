@@ -18,7 +18,6 @@
 		166F13FF1D54FD5200150A14 /* getData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F13FE1D54FD5200150A14 /* getData.swift */; };
 		166F14401D58CEE500150A14 /* LocationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F143F1D58CEE500150A14 /* LocationsModel.swift */; };
 		166F14421D591ED800150A14 /* mapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F14411D591ED800150A14 /* mapAnnotation.swift */; };
-		166F14461D59222700150A14 /* MapViewPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F14451D59222700150A14 /* MapViewPopUp.swift */; };
 		166F14481D5A1C3F00150A14 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F14471D5A1C3F00150A14 /* RegisterViewController.swift */; };
 		166F144A1D5A1C7500150A14 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F14491D5A1C7500150A14 /* LoginViewController.swift */; };
 		166F144C1D5A1C8F00150A14 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F144B1D5A1C8F00150A14 /* AccountViewController.swift */; };
@@ -63,7 +62,6 @@
 		166F13FE1D54FD5200150A14 /* getData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getData.swift; sourceTree = "<group>"; };
 		166F143F1D58CEE500150A14 /* LocationsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsModel.swift; sourceTree = "<group>"; };
 		166F14411D591ED800150A14 /* mapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapAnnotation.swift; sourceTree = "<group>"; };
-		166F14451D59222700150A14 /* MapViewPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewPopUp.swift; sourceTree = "<group>"; };
 		166F14471D5A1C3F00150A14 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		166F14491D5A1C7500150A14 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		166F144B1D5A1C8F00150A14 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 				C546667E1D58F08600F4E014 /* Authenticator.swift */,
 				C54666801D59002800F4E014 /* RequestMaker.swift */,
 				C54666821D5905BC00F4E014 /* Debug.playground */,
-				166F14451D59222700150A14 /* MapViewPopUp.swift */,
 			);
 			path = "Project Ewok";
 			sourceTree = "<group>";
@@ -319,7 +316,6 @@
 				166F13D61D54D95A00150A14 /* Project_Ewok.xcdatamodeld in Sources */,
 				166F13FF1D54FD5200150A14 /* getData.swift in Sources */,
 				166F13CE1D54D95A00150A14 /* AppDelegate.swift in Sources */,
-				166F14461D59222700150A14 /* MapViewPopUp.swift in Sources */,
 				166F14501D5A454E00150A14 /* createLocation.swift in Sources */,
 				C546667F1D58F08600F4E014 /* Authenticator.swift in Sources */,
 				16AA585E1D5B6BC10091CD7B /* submissionViewController.swift in Sources */,
