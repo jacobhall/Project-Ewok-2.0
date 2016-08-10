@@ -13,13 +13,15 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad(){
         super.viewDidLoad();
-        
-        print(auth!.user);
     }
     
     override func viewWillAppear(animated: Bool) {
         auth = Authenticator();
         auth!.getUser();
+        while(auth!.completed == false){
+            sleep(1);
+        }
+        auth!.user!.getReviews();
     }
     
     @IBAction func logout(sender: UIButton) {

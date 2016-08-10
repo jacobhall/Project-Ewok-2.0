@@ -51,7 +51,7 @@ public class Authenticator{
     var token: String?;             //The token
     var completed: Bool?;           //A boolean to tell when the token has been set
     var requester: RequestMaker!;   //The request
-    var user: [String: AnyObject]?; //Holds user data when it is present
+    var user: UserModel?; //Holds user data when it is present
     var valid: Bool?                //Determines whether the token is valid
     
     //Constructors
@@ -96,6 +96,11 @@ public class Authenticator{
         self.completed = true;
     }
     
+    internal func setCompleted(){
+        //POST: Sets the completed variable to true upon completion
+        self.completed = true;
+    }
+    
     //Functions
     internal func authenticate(email: String, _ password: String) {
         //PRE: email and password must be a matching pair in the DB
@@ -111,16 +116,13 @@ public class Authenticator{
         self.completed = false;
         let data = "email="+email+"&password="+password+"&password_confirmation="+confirmed+"&firstName="+firstName+"&lastName="+lastName;
         requester = RequestMaker(method: "POST", url: "register", data: data);
-        requester.run();
-        while(requester.ready == false){
-            sleep(1);
-        }
-        self.completed = true;
+        requester.run(setCompleted());
     }
     
     internal func registerAndAuthenticate(email: String, password: String, confirmed: String, firstName: String, lastName: String){
         //PRE: email must be _@_._ and password must match confirmed
         //POST: runs the register request and subsequently authenticates asychronously
+        //NOTE: THIS WILL CAUSE WAIT
         self.completed = false;
         let data = "email="+email+"&password="+password+"&password_confirmation="+confirmed+"&firstName="+firstName+"&lastName="+lastName;
         requester = RequestMaker(method: "POST", url: "register", data: data);
@@ -150,18 +152,16 @@ public class Authenticator{
         //POST: destroys the token so itx can no longer be used
         self.completed = false;
         self.valid = false;
+        let defaults = NSUserDefaults.standardUserDefaults();
+        defaults.setValue(nil, forKey: TokenKey);
         requester = RequestMaker(method: "POST", url: "destroyToken");
         if(self.token != nil){
             requester.authorize(self.token!);
-            requester.run();
+            requester.run(setCompleted());
         }
-        while(requester.ready == false){
-            sleep(1);
-        }
-        self.completed = true;
     }
     
-    internal func getUser(){
+    internal func getUser() {
         //PRE: the token property of this must be set
         //POST: obtains the user and sets the "user" property to it
         //      The user property will be nil if no user is found        
@@ -169,13 +169,27 @@ public class Authenticator{
         requester = RequestMaker(method: "GET", url: "user");
         if(self.token != nil){
             requester.authorize(self.token!);
-            requester.run();
+            requester.run(setUser);
         }
-        while(requester.ready == false){
-            sleep(1);
+        else{
+            self.completed = true;
         }
+    }
+    
+    internal func setUser() {
+        //POST: Sets the user upon completion of getUser
         if(requester.error == nil){
-            self.user = requester.decodedJSON;
+            let JSON = requester.decodedJSON!["user"]!;
+            let email = JSON["email"] as? String;
+            let firstName = JSON["firstName"] as! String?;
+            let lastName = JSON["lastName"] as! String?;
+            let userID = JSON["userID"] as? Int;
+            if(email != nil && userID != nil){
+                self.user = UserModel(userID: userID!, firstName: firstName, lastName: lastName, email: email!);
+            }
+            else{
+                self.user = nil;
+            }
             self.valid = true;
         }
         else{
@@ -188,6 +202,7 @@ public class Authenticator{
     internal func refreshAndGetUser(){
         //PRE: the token property of this must be set
         //POST: Performs both a refresh and a get userself.completed = false;
+        //NOTE: THIS WILL CAUSE WAIT
         requester = RequestMaker(method: "GET", url: "refreshToken");
         if(self.token != nil){
             requester.authorize(self.token!);
