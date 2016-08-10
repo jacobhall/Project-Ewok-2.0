@@ -21,9 +21,11 @@ class RegisterViewController: UITableViewController {
     
     //On start
     override func viewDidLoad(){
-        if(auth == nil){
-            auth = Authenticator();
-        }
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        auth = Authenticator();
     }
     
     //When the user clicks the register button

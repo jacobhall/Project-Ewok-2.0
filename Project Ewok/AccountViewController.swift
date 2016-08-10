@@ -15,10 +15,10 @@ class AccountViewController: UIViewController {
         super.viewDidLoad();
         
         print(auth!.user);
-        
-        if(auth == nil){
-            auth = Authenticator();
-        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        auth = Authenticator();
     }
     
     @IBAction func logout(sender: UIButton) {

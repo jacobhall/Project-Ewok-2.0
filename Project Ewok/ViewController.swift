@@ -12,7 +12,7 @@ import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
     
-    var auth = Authenticator();
+    var auth: Authenticator!;
     
     let locationManager = CLLocationManager()
     
@@ -35,6 +35,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.mapView.showsUserLocation = true
     
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        auth = Authenticator();
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -56,7 +60,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
 
     @IBAction func addButton(sender: AnyObject) {
-
         while(auth.completed == false){
             sleep(1);
         }
@@ -126,14 +129,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
         }
         
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "loggedIn"){
-            let navVC = segue.destinationViewController as! UINavigationController;
-            let destinationVC = navVC.viewControllers.first as! AccountViewController;
-            destinationVC.auth = self.auth;
-        }
     }
     
     func removeIcons() {

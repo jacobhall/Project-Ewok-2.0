@@ -16,9 +16,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     
     override func viewDidLoad(){
-        if(auth == nil){
-            auth = Authenticator();
-        }
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        auth = Authenticator();
     }
     
     // login button
@@ -37,14 +39,6 @@ class LoginViewController: UIViewController {
         }
         else{
             //TO DO: ADD ERROR PROMPTS
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "registerSegue"){
-            let navVC = segue.destinationViewController as! UINavigationController;
-            let destinationVC = navVC.viewControllers.first as! RegisterViewController;
-            destinationVC.auth = self.auth;
         }
     }
 }
