@@ -28,4 +28,9 @@ class mapAnnotation: NSObject, MKAnnotation {
         let CLLoc = CLLocationCoordinate2D(latitude: latitude, longitude: longitude);
         self.init(name: name, title: title, subtitle: subtitle, coordinate: CLLoc);
     }
+    
+    convenience override init(){
+        let CLLoc = CLLocationCoordinate2D(latitude: 0, longitude: 0);
+        self.init(name: "", coordinate: CLLoc);
+    }
 }

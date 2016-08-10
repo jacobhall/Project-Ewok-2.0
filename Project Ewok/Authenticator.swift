@@ -59,6 +59,7 @@ public class Authenticator{
         //POST: sets the token (probably shouldn't use)
         if(token != nil){
             self.token = token!;
+            self.valid = true;
         }
         else{
             self.token = nil;
@@ -75,7 +76,6 @@ public class Authenticator{
         }
         else{
             self.init(nil);
-            self.valid = false;
         }
     }
     
