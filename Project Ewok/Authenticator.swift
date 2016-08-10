@@ -140,11 +140,14 @@ public class Authenticator{
         //PRE: the token property must be set and valid
         //POST: destroys the token so it can no longer be used
         self.completed = false;
+        self.user = nil;
+        self.valid = false;
         requester = RequestMaker(method: "POST", url: "destroyToken");
         if(self.token != nil){
             requester.authorize(self.token!);
             requester.run();
         }
+        self.token = nil;
         while(requester.ready == false){
             sleep(1);
         }
@@ -172,6 +175,8 @@ public class Authenticator{
             self.user = nil;
             self.valid = false;
         }
+        let defaults = NSUserDefaults.standardUserDefaults();
+        defaults.setObject(nil, forKey: TokenKey);
         self.completed = true;
     }
     

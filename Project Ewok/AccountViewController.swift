@@ -8,12 +8,23 @@
 
 import UIKit
 
-class AccountViewController: UITableViewController {
+class AccountViewController: UIViewController {
     var auth: Authenticator?;
     
     override func viewDidLoad(){
         super.viewDidLoad();
         
         print(auth!.user);
+        
+        if(auth == nil){
+            auth = Authenticator();
+        }
+    }
+    
+    @IBAction func logout(sender: UIButton) {
+        auth!.destroyToken();
+        while(auth!.completed == false){
+            sleep(1);
+        }
     }
 }

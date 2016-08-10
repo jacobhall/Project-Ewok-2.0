@@ -9,11 +9,17 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    let auth = Authenticator();
+    var auth: Authenticator?;
     
     // text feilds
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    override func viewDidLoad(){
+        if(auth == nil){
+            auth = Authenticator();
+        }
+    }
     
     // login button
     @IBAction func loginButton(sender: AnyObject) {
@@ -22,6 +28,6 @@ class LoginViewController: UIViewController {
     
     // login in
     func login() {
-        auth.authenticate(emailField.text!, passwordField.text!)
+        auth!.authenticate(emailField.text!, passwordField.text!)
     }
 }
