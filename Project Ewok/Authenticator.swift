@@ -76,6 +76,7 @@ public class Authenticator{
         }
         else{
             self.init(nil);
+            self.valid = false;
         }
     }
     
@@ -88,6 +89,10 @@ public class Authenticator{
         if let token = JSON[TokenKey] as? String {
             self.token = token;
             defaults.setObject(token, forKey: TokenKey)
+            self.valid = true;
+        }
+        else{
+            self.valid = false;
         }
         self.completed = true;
     }
@@ -97,6 +102,7 @@ public class Authenticator{
         //PRE: email and password must be a matching pair in the DB
         //POST: runs an authenticate request and sets the token asychronously
         self.completed = false;
+        self.valid = false;
         requester = RequestMaker(method: "POST", url: "authenticate", data: "email="+email+"&password="+password);
         requester.run(setToken);
     }
@@ -131,6 +137,7 @@ public class Authenticator{
         //PRE: the token property must be set and valid
         //POST: destroys the old token and sets the new token to the token property asynchronously
         self.completed = false;
+        self.valid = false;
         requester = RequestMaker(method: "POST", url: "refreshToken");
         if(self.token != nil){
             requester.authorize(self.token!);
@@ -142,6 +149,7 @@ public class Authenticator{
         //PRE: the token property must be set and valid
         //POST: destroys the token so it can no longer be used
         self.completed = false;
+        self.valid = false;
         requester = RequestMaker(method: "POST", url: "destroyToken");
         if(self.token != nil){
             requester.authorize(self.token!);
