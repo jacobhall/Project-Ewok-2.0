@@ -271,8 +271,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
             endingLineNumber = "99"
-            landmarkName = "Authenticator"
-            landmarkType = "3">
+            landmarkName = "authenticate(_:_:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -319,7 +319,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "185"
             endingLineNumber = "185"
-            landmarkName = "getUser()"
+            landmarkName = "refreshAndGetUser()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -335,7 +335,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
             endingLineNumber = "113"
-            landmarkName = "register(_:password:confirmed:firstName:lastName:)"
+            landmarkName = "register(_:_:_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
