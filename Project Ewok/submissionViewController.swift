@@ -12,11 +12,15 @@ import CoreLocation
 
 class submissionViewController: UIViewController{
     
-    var auth = Authenticator();
+    var auth: Authenticator!;
     
     var userCoordinates = CLLocationCoordinate2D()
     
     var locationCoordinates = CLLocationCoordinate2D()
+    
+    override func viewWillAppear(animated: Bool) {
+        auth = Authenticator();
+    }
     
     @IBOutlet var nameTextField: UITextField!
 

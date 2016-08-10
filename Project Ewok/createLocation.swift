@@ -12,6 +12,8 @@ import CoreLocation
 
 class createLocation: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
     
+    var auth: Authenticator!;
+    
     @IBOutlet var mapView: MKMapView!
     
     
