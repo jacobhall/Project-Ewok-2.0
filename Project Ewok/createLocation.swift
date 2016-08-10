@@ -21,6 +21,10 @@ class createLocation: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     var leftBarButton = UIBarButtonItem()
     
+    var userLocationWhenPinWasDropped = CLLocationCoordinate2D()
+    
+    var pinLocation = CLLocationCoordinate2D()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,14 +64,13 @@ class createLocation: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         annotation.coordinate = newCoordinate
         
-        annotation.title = "New Place"
-        
-        annotation.subtitle = "One day I'll go here..."
+        pinLocation = newCoordinate
         
         mapView.addAnnotation(annotation)
         
         self.navigationItem.rightBarButtonItem = leftBarButton
         
+        userLocationWhenPinWasDropped = mapView.userLocation.coordinate
         
         
     }
@@ -83,6 +86,18 @@ class createLocation: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("Errors: " + error.localizedDescription)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "nextSegue" {
+            
+            var dvc = segue.destinationViewController as! submissionViewController
+            
+            dvc.locationCoordinates = pinLocation
+            
+            dvc.userCoordinates = userLocationWhenPinWasDropped
+            
+        }
     }
     
     

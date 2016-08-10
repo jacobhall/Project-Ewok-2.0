@@ -57,6 +57,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
     @IBAction func addButton(sender: AnyObject) {
 
+        while(auth.completed == false){
+            sleep(1);
+        }
+        if(auth.valid != true){
+            self.performSegueWithIdentifier("loginSegue", sender: self);
+        }
+        else{
+            self.performSegueWithIdentifier("createLocation", sender: self);
+        }
+        
+        
+        
+        
+    }
+    
+    func LoadPoints() {
+        
         
         let data = retriveData(type: .Locations)
         
@@ -67,8 +84,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             while data.isReady == false {}
             
             self.setPoints()
-        
+            
         }
+        
+        
+        
+        
     }
     
     @IBAction func accountButton(sender: AnyObject) {

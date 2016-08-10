@@ -34,7 +34,12 @@ class submissionViewController: UIViewController{
         
         maker.run()
         
+        while maker.ready! == false {
+            
+            sleep(1)
+            
+        }
         
-        
+        self.performSegueWithIdentifier("exitToHomeSegue", sender: self)
     }
 }

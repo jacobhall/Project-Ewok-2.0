@@ -136,8 +136,6 @@
 				C54666801D59002800F4E014 /* RequestMaker.swift */,
 				C54666821D5905BC00F4E014 /* Debug.playground */,
 				166F14451D59222700150A14 /* MapViewPopUp.swift */,
-				166F144F1D5A454E00150A14 /* createLocation.swift */,
-				16AA585D1D5B6BC10091CD7B /* submissionViewController.swift */,
 			);
 			path = "Project Ewok";
 			sourceTree = "<group>";
@@ -163,6 +161,8 @@
 		166F144D1D5A1C9400150A14 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				166F144F1D5A454E00150A14 /* createLocation.swift */,
+				16AA585D1D5B6BC10091CD7B /* submissionViewController.swift */,
 				166F13CF1D54D95A00150A14 /* ViewController.swift */,
 				166F14471D5A1C3F00150A14 /* RegisterViewController.swift */,
 				166F14491D5A1C7500150A14 /* LoginViewController.swift */,

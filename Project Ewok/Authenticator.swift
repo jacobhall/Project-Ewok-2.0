@@ -147,7 +147,7 @@ public class Authenticator{
     
     internal func destroyToken(){
         //PRE: the token property must be set and valid
-        //POST: destroys the token so it can no longer be used
+        //POST: destroys the token so itx can no longer be used
         self.completed = false;
         self.valid = false;
         requester = RequestMaker(method: "POST", url: "destroyToken");
