@@ -53,11 +53,17 @@ class RequestMaker{
     }
     
     convenience init(method: String, url: String, data: String){
-        self.init(method: method, url: url, data: data.dataUsingEncoding(NSUTF8StringEncoding));
+        if(method == "GET"){
+            let getURL = url + "?" + data;
+            self.init(method: method, url: getURL);
+        }
+        else{
+            self.init(method: method, url: url, data: data.dataUsingEncoding(NSUTF8StringEncoding));
+        }
     }
     
     convenience init(url: String, data: String){
-        self.init(method: "GET", url: url, data: data.dataUsingEncoding(NSUTF8StringEncoding));
+        self.init(method: "GET", url: url + "?" + data);
     }
     
     convenience init(method: String, url: String){
@@ -82,12 +88,14 @@ class RequestMaker{
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
             
-            self.JSONData = data!;
+            if(data != nil){
+                self.JSONData = data!;
+                self.decodeData();
+            }
             completion(self.JSONData);
             if let httpResponse = response as? NSHTTPURLResponse {
                 self.status = httpResponse.statusCode;
             }
-            self.decodeData();
             self.ready = true;
         });
         task.resume();
@@ -101,10 +109,12 @@ class RequestMaker{
         ready = false;
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
-            
-            self.JSONData = data!;
-            if(self.decodeData() != nil){
-                completion(self.decodeData()!);
+            print(data);
+            if(data != nil){
+                self.JSONData = data!;
+                if(self.decodeData() != nil){
+                    completion(self.decodedJSON!);
+                }
             }
             if let httpResponse = response as? NSHTTPURLResponse {
                 self.status = httpResponse.statusCode;
@@ -126,8 +136,8 @@ class RequestMaker{
             if let httpResponse = response as? NSHTTPURLResponse {
                 self.status = httpResponse.statusCode;
             }
-            completion();
             self.decodeData();
+            completion();
             self.ready = true;
         });
         task.resume();
