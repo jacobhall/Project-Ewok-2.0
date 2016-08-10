@@ -56,10 +56,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
 
     @IBAction func addButton(sender: AnyObject) {
-        
-        
-        var data = retriveData(type: .Locations)
-        removeIcons()
+
         
         var data = retriveData(type: .Locations)
         
@@ -122,9 +119,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             let destinationVC = segue.destinationViewController as! AccountViewController;
             destinationVC.auth = self.auth;
         }
+        
+    }
     func removeIcons() {
             
-        mapView.removeAnnotations(mapView.annotations)
+        self.mapView.removeAnnotations(self.mapView.annotations)
         
     }
     
@@ -142,13 +141,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let ac = UIAlertController(title: "", message: "", preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         presentViewController(ac, animated: true, completion: nil)
-    }
-    
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-        
-        print("ran")
-        
-        return nil
     }
     
 }

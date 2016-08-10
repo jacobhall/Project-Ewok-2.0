@@ -14,7 +14,6 @@ class createLocation: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBOutlet var mapView: MKMapView!
     
-    @IBOutlet var nextButton: UIBarButtonItem!
     
     let locationManager = CLLocationManager()
     
