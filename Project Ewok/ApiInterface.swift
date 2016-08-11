@@ -20,9 +20,8 @@ public class ApiInterface{
      This will get data from the database and create what you need. When completed,
      returns will contain the data requested.
      
-     If you need to wait for the operation to complete, simply wait until returns 
-     is not nil. Anytime a get is called, returns will become nil until this class
-     completes its process.
+     If you need to wait for the operation to complete, completed will be set to
+     true upon process completion.
      
      Make sure that, when you are obtaining a returns, cast it to the right type.
      
@@ -32,6 +31,7 @@ public class ApiInterface{
      */
     //Properties
     var returns: AnyObject?;
+    var completed: Bool?;
     var requester: RequestMaker!;
     
     //Constructors
@@ -44,6 +44,7 @@ public class ApiInterface{
         //PRE: Any of the options above are optional but, if radius is set, so must latitude and longitude
         //POST: runs the request and sets the returns value above to an array of geolocations
         returns = nil;
+        completed = false;
         var dataString = "";
         if(radius != nil){
             dataString += "&radius=" + String(radius);
@@ -87,10 +88,12 @@ public class ApiInterface{
             returnValue.append(geolocation);
         }
         returns = returnValue;
+        completed = true;
     }
     
     internal func getGeolocation(geolocationID: Int){
         returns = nil;
+        completed = false;
         requester = RequestMaker(method: "GET", url: "geolocations/" + String(geolocationID), data: "GeoJSON=0");
         requester.run(setGeolocation);
     }
@@ -106,14 +109,14 @@ public class ApiInterface{
         let locationType = geolocationJSON["location_type"] as? String;
         let geolocation = GeolocationModel(geolocationID: geolocationID, latitude: latitude, longitude: longitude, name: name, description: description, locationID: locationID, locationType: locationType)
         returns = geolocation;
-        print(geolocation);
-        print(name);
+        completed = true;
     }
     
     internal func createNewGeolocation(latitude latitude: Double, longitude: Double, submitterLatitude: Double, submitterLongitude: Double, name: String, description: String? = nil, locationID: Int? = nil, locationType: String? = nil, token: String? = nil) {
         //PRE: latitude, submitterLatitude, longitude, and submitterLongitude must be doubles. Coordinates must be within half a mile of eachother. Name must be a string.
         //POST: creates the location in the DB
         returns = nil;
+        completed = false;
         var dataString = "latitude=" + String(latitude) + "&longitude=" + String(longitude) + "&name=" + name + "&submitterLatitude=" + String(submitterLatitude) + "&submitterLongitude=" + String(submitterLongitude);
         if (description != nil){
             dataString += "&description=" + description!;
