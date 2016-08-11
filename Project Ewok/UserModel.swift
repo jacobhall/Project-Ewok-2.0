@@ -15,9 +15,10 @@ public class UserModel{
     var lastName: String?;
     var email: String;
     var reviews: [ReviewModel]?;
+    var geolocations: [GeolocationModel]?;
     
     //Constructors
-    init(userID: Int, firstName: String? = nil, lastName: String? = nil, email: String){
+    init(userID: Int, firstName: String? = nil, lastName: String? = nil, email: String, reviews: [ReviewModel]? = nil, geolocations: [GeolocationModel]? = nil){
         self.userID = userID;
         self.firstName = firstName;
         self.lastName = lastName;
@@ -32,6 +33,8 @@ public class UserModel{
     }
     
     internal func setReviews(JSON: [String: AnyObject]){
+        //PRE: requires JSON from a request
+        //POST: creates an array of reviews and places them in self.reviews
         let reviewsJSON = JSON["reviews"] as! NSArray;
         reviews = [ReviewModel]();
         for reviewJSON in reviewsJSON{
@@ -44,4 +47,6 @@ public class UserModel{
             reviews!.append(review);
         }
     }
+    
+    //No function is included for getGeolocations because it is not possible with the current API
 }
