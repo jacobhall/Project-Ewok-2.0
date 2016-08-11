@@ -42,6 +42,13 @@ public class Authenticator{
      valid. Make sure to try to refresh the token when you do this.
      You can always call refreshAndGetUser to avoid this.
      
+     Valid, in most other cases, can tell you when the token is good, BUT! cannot always be
+     garunteed to be set unless you call get user. For this reason, always check if valid
+     is or is not true, instead of checking if it is or is not false.
+     
+     valid == false BAD
+     valid != true GOOD
+     
      Note that user may already be set! If you are using an Authenticator already
      instantiated from another place, it's quite possible that user is already calculated.
      Bear this in mind when using it.
@@ -59,7 +66,6 @@ public class Authenticator{
         //POST: sets the token (probably shouldn't use)
         if(token != nil){
             self.token = token!;
-            self.valid = true;
         }
         else{
             self.token = nil;
@@ -76,6 +82,7 @@ public class Authenticator{
         }
         else{
             self.init(nil);
+            self.valid = false;
         }
     }
     
@@ -207,7 +214,7 @@ public class Authenticator{
                     let geolocationID = geolocationJSON["geolocationID"] as! Int;
                     let latitude = (geolocationJSON["latitude"] as! NSString).doubleValue;
                     let longitude = (geolocationJSON["longitude"] as! NSString).doubleValue;
-                    let name = geolocationJSON["name"] as? String;
+                    let name = geolocationJSON["name"] as! String;
                     let description = geolocationJSON["description"] as? String;
                     let locationID = geolocationJSON["location_id"] as? Int;
                     let locationType = geolocationJSON["locationType"] as? String;

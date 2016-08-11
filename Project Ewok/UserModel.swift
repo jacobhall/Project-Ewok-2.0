@@ -10,12 +10,12 @@ import Foundation
 
 public class UserModel{
     //Properties
-    let userID: Int;
-    var firstName: String?;
-    var lastName: String?;
-    var email: String;
-    var reviews: [ReviewModel]?;
-    var geolocations: [GeolocationModel]?;
+    let userID: Int;                            //The user's ID in the DB
+    var firstName: String?;                     //The first name of the user (duh)
+    var lastName: String?;                      //The last name of the user (duh)
+    var email: String;                          //The email of the user
+    var reviews: [ReviewModel]?;                //The reviews for the user. CAN BE NULL. Set with the authenticator
+    var geolocations: [GeolocationModel]?;      //The geolocations the user has validated or created. Can only be set by the authenticator
     
     //Constructors
     init(userID: Int, firstName: String? = nil, lastName: String? = nil, email: String, reviews: [ReviewModel]? = nil, geolocations: [GeolocationModel]? = nil){
@@ -36,7 +36,7 @@ public class UserModel{
         //PRE: requires JSON from a request
         //POST: creates an array of reviews and places them in self.reviews
         let reviewsJSON = JSON["reviews"] as! NSArray;
-        reviews = [ReviewModel]();
+        var newReviews = [ReviewModel]();
         for reviewJSON in reviewsJSON{
             let reviewID = reviewJSON["reviewID"] as! Int;
             let reviewUserID = (reviewJSON["userID"] as! NSString).integerValue;
@@ -44,8 +44,9 @@ public class UserModel{
             let rating = (reviewJSON["rating"] as! NSString).integerValue;
             let geolocationID = (reviewJSON["geolocationID"] as! NSString).integerValue;
             let review = ReviewModel(reviewID: reviewID, userID: reviewUserID, geolocationID: geolocationID, rating: rating,  comment: comment);
-            reviews!.append(review);
+            newReviews.append(review);
         }
+        self.reviews = newReviews;
     }
     
     //No function is included for getGeolocations because it is not possible with the current API

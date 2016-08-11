@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492458249.709151"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "Authenticator"
             landmarkType = "3">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492541700.53022"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "setToken(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492541700.53022"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "setToken(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492458249.709151"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "Authenticator"
             landmarkType = "3">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492458249.709151"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "Authenticator"
             landmarkType = "3">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492543176.138875"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "destroyToken()"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492543176.138875"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "Authenticator"
             landmarkType = "3">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492543176.138875"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "destroyToken()"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492610845.566331"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "refreshAndGetUser()"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492543176.138875"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "registerAndAuthenticate(_:password:confirmed:firstName:lastName:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -376,11 +376,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/GeolocationModel.swift"
-            timestampString = "492609377.321941"
+            timestampString = "492613638.345699"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "init(geolocationID:latitude:longitude:name:description:locationID:locationType:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -392,11 +392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492610013.296943"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "setUser()"
             landmarkType = "5">
          </BreakpointContent>
@@ -408,12 +408,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project Ewok/Authenticator.swift"
-            timestampString = "492610047.529122"
+            timestampString = "492620904.926726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "setUser()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project Ewok/GeolocationModel.swift"
+            timestampString = "492613638.345699"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "getLocation()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project Ewok/UserModel.swift"
+            timestampString = "492613933.361133"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "setReviews(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project Ewok/ApiInterface.swift"
+            timestampString = "492619798.193305"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "getGeolocations(_:latitude:longitude:unit:locationType:name:operatingTime:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project Ewok/ApiInterface.swift"
+            timestampString = "492619798.193305"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "getGeolocations(_:latitude:longitude:unit:locationType:name:operatingTime:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project Ewok/ApiInterface.swift"
+            timestampString = "492620312.526085"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "createNewGeolocation(latitude:longitude:submitterLatitude:submitterLongitude:name:description:locationID:locationType:token:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

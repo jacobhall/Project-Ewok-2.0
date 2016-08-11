@@ -10,11 +10,11 @@ import Foundation
 
 public class ReviewModel{
     //Properties
-    let reviewID: Int;
-    let userID: Int;
-    let geolocationID: Int;
-    var rating: Int;
-    var comment: String?;
+    let reviewID: Int;              //The review's ID in the DB
+    let userID: Int;                //The owner of the review
+    let geolocationID: Int;         //The geolocation for the review
+    var rating: Int;                //The rating of the review
+    var comment: String?;           //The comment of the geolocation by the user
     
     //Constructors
     init(reviewID: Int, userID: Int, geolocationID: Int, rating: Int, comment: String? = nil){
@@ -26,4 +26,11 @@ public class ReviewModel{
     }
     
     //Functions
+    internal func getUser(){
+        
+    }
+    
+    internal func setUser(JSON: [String: AnyObject]){
+        
+    }
 }
