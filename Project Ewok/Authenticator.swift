@@ -42,6 +42,13 @@ public class Authenticator{
      valid. Make sure to try to refresh the token when you do this.
      You can always call refreshAndGetUser to avoid this.
      
+     Valid, in most other cases, can tell you when the token is good, BUT! cannot always be
+     garunteed to be set unless you call get user. For this reason, always check if valid
+     is or is not true, instead of checking if it is or is not false.
+     
+     valid == false BAD
+     valid != true GOOD
+     
      Note that user may already be set! If you are using an Authenticator already
      instantiated from another place, it's quite possible that user is already calculated.
      Bear this in mind when using it.
@@ -59,7 +66,6 @@ public class Authenticator{
         //POST: sets the token (probably shouldn't use)
         if(token != nil){
             self.token = token!;
-            self.valid = true;
         }
         else{
             self.token = nil;
@@ -76,6 +82,7 @@ public class Authenticator{
         }
         else{
             self.init(nil);
+            self.valid = false;
         }
     }
     
@@ -164,7 +171,8 @@ public class Authenticator{
     internal func getUser() {
         //PRE: the token property of this must be set
         //POST: obtains the user and sets the "user" property to it
-        //      The user property will be nil if no user is found        
+        //      The user property will be nil if no user is found  
+        //      Note that this also sets any reviews and geolocations the user has.
         self.completed = false;
         requester = RequestMaker(method: "GET", url: "user");
         if(self.token != nil){
@@ -181,11 +189,39 @@ public class Authenticator{
         if(requester.error == nil){
             let JSON = requester.decodedJSON!["user"]!;
             let email = JSON["email"] as? String;
-            let firstName = JSON["firstName"] as! String?;
-            let lastName = JSON["lastName"] as! String?;
+            let firstName = JSON["firstName"] as? String;
+            let lastName = JSON["lastName"] as? String;
             let userID = JSON["userID"] as? Int;
             if(email != nil && userID != nil){
                 self.user = UserModel(userID: userID!, firstName: firstName, lastName: lastName, email: email!);
+            }
+            if let reviewsJSON = JSON["reviews"] as! NSArray! {
+                var reviews = [ReviewModel]();
+                for reviewJSON in reviewsJSON{
+                    let reviewID = reviewJSON["reviewID"] as! Int;
+                    let userID = (reviewJSON["userID"] as! NSString).integerValue;
+                    let comment = reviewJSON["comment"] as? String;
+                    let rating = (reviewJSON["rating"] as! NSString).integerValue;
+                    let geolocationID = (reviewJSON["geolocationID"] as! NSString).integerValue;
+                    let review = ReviewModel(reviewID: reviewID, userID: userID, geolocationID: geolocationID, rating: rating, comment: comment);
+                    reviews.append(review);
+                }
+                self.user!.reviews = reviews;
+            }
+            if let geolocationsJSON = JSON["geolocations"] as! NSArray! {
+                var geolocations = [GeolocationModel]();
+                for geolocationJSON in geolocationsJSON {
+                    let geolocationID = geolocationJSON["geolocationID"] as! Int;
+                    let latitude = (geolocationJSON["latitude"] as! NSString).doubleValue;
+                    let longitude = (geolocationJSON["longitude"] as! NSString).doubleValue;
+                    let name = geolocationJSON["name"] as! String;
+                    let description = geolocationJSON["description"] as? String;
+                    let locationID = geolocationJSON["location_id"] as? Int;
+                    let locationType = geolocationJSON["locationType"] as? String;
+                    let geolocation = GeolocationModel(geolocationID: geolocationID, latitude: latitude, longitude: longitude, name: name, description: description, locationID: locationID, locationType: locationType);
+                    geolocations.append(geolocation);
+                }
+                self.user!.geolocations = geolocations;
             }
             else{
                 self.user = nil;
