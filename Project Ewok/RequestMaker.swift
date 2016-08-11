@@ -165,12 +165,17 @@ class RequestMaker{
         error = nil;
         do{
             let JSON = try NSJSONSerialization.JSONObjectWithData(self.JSONData, options: .AllowFragments) as? Payload;
+            if false {
+            
             if let error = JSON!["error"] as? String {
                 self.error = error;
             }
             else if let error = JSON!["message"] as? String {
                 self.error = error;
             }
+                
+            }
+                
             self.decodedJSON = JSON;
             return JSON;
         }
