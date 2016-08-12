@@ -18,15 +18,47 @@ class ResultsViewController: UITableViewController{
     
     var location: GeolocationModel?
     
+    var images = [PictureModel]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        
+       getImages()
        
         
     }
+    
+    func getImages() {
+        
+        
+        
+       api.getPictures(ID: <#T##Int?#>, model: <#T##String?#>)
+        
+        
+        
+        while api.completed == false {
+            
+           sleep(1)
+            
+            
+        }
+        
+        print("images = \(api.returns)")
+        
+        if let images = api.returns as? [PictureModel] {
+            
+            
+            self.images = images
+            
+            
+        }
+        
+        
+    }
+    
+    
     
     override func viewDidAppear(animated: Bool) {
         getLocationInfo()

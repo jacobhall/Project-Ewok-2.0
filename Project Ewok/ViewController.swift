@@ -145,12 +145,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-    func removeIcons() {
-            
-        self.mapView.removeAnnotations(self.mapView.annotations)
-        
-    }
-    
     
     @IBAction func ListViewButton(sender: AnyObject) {
         
@@ -177,10 +171,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         self.view.bringSubviewToFront(sender as! UIView)
         
-    }
-    
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        print("tapped")
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
