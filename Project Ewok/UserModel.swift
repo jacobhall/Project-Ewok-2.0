@@ -15,7 +15,7 @@ public class UserModel{
     var lastName: String?;                      //The last name of the user (duh)
     var email: String;                          //The email of the user
     var reviews: [ReviewModel]?;                //The reviews for the user. CAN BE NULL. Set with the authenticator
-    //var geolocations: [GeolocationModel]?;      //The geolocations the user has validated or created. Can only be set by the authenticator
+    var geolocations: [GeolocationModel]?;      //The geolocations the user has validated or created. Can only be set by the authenticator
     
     //Constructors
     init(userID: Int, firstName: String? = nil, lastName: String? = nil, email: String, reviews: [ReviewModel]? = nil, geolocations: [GeolocationModel]? = nil){
@@ -36,7 +36,7 @@ public class UserModel{
     internal func setReviews(JSON: [String: AnyObject]){
         //PRE: requires JSON from a request
         //POST: creates an array of reviews and places them in self.reviews. This may be empty.
-        if let reviewsJSON = JSON["reviews"] as! NSArray {
+        if let reviewsJSON = JSON["reviews"] as! NSArray! {
             var newReviews = [ReviewModel]();
             for reviewJSON in reviewsJSON{
                 let reviewID = reviewJSON["reviewID"] as! Int;

@@ -45,7 +45,7 @@ class createLocation: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     override func viewWillAppear(animated: Bool) {
-        auth = Authenticator();
+        auth = Authenticator.sharedInstance;
     }
     
     func barButton(sender: AnyObject) {

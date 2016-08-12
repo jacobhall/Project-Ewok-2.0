@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        auth = Authenticator();
+        auth = Authenticator.sharedInstance;
     }
     
     // login button

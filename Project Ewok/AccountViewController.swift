@@ -16,12 +16,10 @@ class AccountViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        auth = Authenticator();
+        auth = Authenticator.sharedInstance;
         auth!.getUser();
-        while(auth!.completed == false){
-            sleep(1);
-        }
-        auth!.user!.getReviews();
+        auth?.waitForCompletion();
+        print(auth!.user);
     }
     
     @IBAction func logout(sender: UIButton) {
