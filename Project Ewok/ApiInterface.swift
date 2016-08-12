@@ -304,12 +304,58 @@ public class ApiInterface{
     }
     
     internal func createNewReview(geolocationID: Int, rating: Int, comment: String? = nil){
+        //PRE: geolocationID must match a geolocation in the DB. rating must be between 0 and 5.
+        //POST: creates a geolocation in the database and sets returns to it
         returns = nil;
-        completed = nil;
+        completed = false;
         var dataString = "geolocationID=" + String(geolocationID) + "&rating=" + String(rating);
         if(comment != nil){
             dataString += "&comment=" + comment!;
         }
         requester = RequestMaker(method: "POST", url: "reviews", data: dataString);
+        if(auth.token != nil){
+            requester.authorize(auth.token!);
+        }
+        requester.run(getReviewAfterCreated);
+    }
+    
+    internal func getReviewAfterCreated(JSON: [String: AnyObject]){
+        //PRE: a JSON from a creation request
+        //POST: passes the ID to getReview
+        if let reviewID = JSON["ID"] as? Int {
+            getReview(reviewID);
+        }
+        else{
+            //TO DO: ERROR PROMPTS
+            print(requester.error);
+        }
+    }
+    
+    internal func updateReview(review: ReviewModel){
+        //PRE: a ReviewModel obtains from the DB
+        //POST: updates the review with the changed information in the DB
+        returns = nil;
+        completed = false;
+        var dataString = "rating=" + String(review.rating);
+        if(review.comment != nil){
+            dataString += "&comment=" + review.comment!;
+        }
+        requester = RequestMaker(method: "PUT", url: "reviews/" + String(review.reviewID), data: dataString);
+        if(auth.token != nil){
+            requester.authorize(auth.token!);
+        }
+        requester.run(setCompleted);
+    }
+    
+    internal func destroyReview(review: ReviewModel){
+        //PRE: a ReviewModel obtained from the DB
+        //POST: destroys the review in the DB
+        returns = nil;
+        completed = false;
+        requester = RequestMaker(method: "DELETE", url: "reviews/" + String(review.reviewID));
+        if(auth.token != nil){
+            requester.authorize(auth.token!);
+        }
+        requester.run(setCompleted);
     }
 }
