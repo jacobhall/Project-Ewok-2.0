@@ -120,11 +120,9 @@ public class ApiInterface{
             dataString += "&operatingTime=" + operatingTime!;
         }
         dataString += "&GeoJSON=" + String(0);
-        if(!dataString.isEmpty){
-            dataString = dataString.substringFromIndex(dataString.startIndex.advancedBy(1));
-            requester = RequestMaker(method: "GET", url: "geolocations", data: dataString);
-            requester.run(setGeolocations);
-        }
+        dataString = dataString.substringFromIndex(dataString.startIndex.advancedBy(1));
+        requester = RequestMaker(method: "GET", url: "geolocations", data: dataString);
+        requester.run(setGeolocations);
     }
     
     internal func setGeolocations(JSON: [String: AnyObject]){
