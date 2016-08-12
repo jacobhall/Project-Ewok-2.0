@@ -47,9 +47,9 @@ public class ApiInterface{
         completed = false;
         var dataString = "";
         if(radius != nil){
-            dataString += "&radius=" + String(radius);
-            dataString += "&latitude=" + String(latitude);
-            dataString += "&longitude=" + String(longitude);
+            dataString += "&radius=" + String(radius!);
+            dataString += "&latitude=" + String(latitude!);
+            dataString += "&longitude=" + String(longitude!);
             if(unit != nil){
                 dataString += "&unit=" + unit!;
             }
@@ -65,17 +65,23 @@ public class ApiInterface{
         }
         dataString += "&GeoJSON=" + String(0);
         if(!dataString.isEmpty){
+            
+            print("data string = \(dataString)")
+            
             dataString = dataString.substringFromIndex(dataString.startIndex.advancedBy(1));
             requester = RequestMaker(method: "GET", url: "geolocations", data: dataString);
             requester.run(setGeolocations);
         }
+        
     }
     
     internal func setGeolocations(JSON: [String: AnyObject]){
         //PRE: A JSON array with a "geolocations" component
         //POST: Creates a array of geolocations from the database and sets it to returns
-        let geolocationsJSON = JSON["geolocations"] as! NSArray;
-        var returnValue = [GeolocationModel]();
+        print("Json = \(JSON)")
+        
+        let geolocationsJSON = JSON["geolocations"] as! NSArray
+        var returnValue = [GeolocationModel]()
         for geolocationJSON in geolocationsJSON {
             let geolocationID = geolocationJSON["geolocationID"] as! Int;
             let latitude = (geolocationJSON["latitude"] as! NSString).doubleValue;

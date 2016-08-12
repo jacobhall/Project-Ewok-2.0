@@ -10,19 +10,35 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource{
     
     var auth: Authenticator!;
     
+    var selectedLocationId = Int()
+    
     let locationManager = CLLocationManager()
     
+    @IBOutlet var listButton: UIButton!
+    
     @IBOutlet var mapView: MKMapView!
+    
+    @IBOutlet var tableView: UITableView!
     
     @IBAction func cancelToHome(segue:UIStoryboardSegue) {
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        
+        listButton.layer.cornerRadius = 22
+        
+        var getLocation = ApiInterface()
+        
+        getLocation.getGeolocations(100000, latitude: 1.0, longitude: 1.0)
+
+        self.tableView.hidden = true
         
         self.locationManager.delegate = self
         
@@ -37,6 +53,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        
+        
         auth = Authenticator();
     }
 
@@ -152,6 +171,78 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         presentViewController(ac, animated: true, completion: nil)
     }
+    
+    @IBAction func ListViewButton(sender: AnyObject) {
+        
+        print(LocationsModel.location.latPoint)
+        
+        if tableView.hidden == true {
+            
+            tableView.hidden = false
+            
+            var table = self.tableView as! UIView
+            
+            table.SlideOut()
+            
+        }else {
+            
+            tableView.hidden = true
+            
+            var table = self.tableView as! UIView
+            
+            table.SlideIn()
+            
+            
+        }
+        
+        self.view.bringSubviewToFront(sender as! UIView)
+        
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 5
+        
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell: TableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! TableViewCell
+        
+        cell.titleLabel.text = "title"
+        
+        cell.decriptionLabel.text = "description"
+        
+        cell.ratingImage.image = UIImage(named: "hello")
+        
+        cell.coverImage.image = UIImage(named: "hello")
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        self.selectedLocationId = 1 //LocationsModel.location.locationId[indexPath.row]
+        
+        
+        performSegueWithIdentifier("locationSelected", sender: self)
+        
+        
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "locationSelected" {
+            
+            var destVC = segue.destinationViewController as! ResultsViewController
+            
+            destVC.LocationId = self.selectedLocationId
+            
+            
+        }
+    }
+    
+    
     
 }
  
