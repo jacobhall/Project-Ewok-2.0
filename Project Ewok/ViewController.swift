@@ -25,7 +25,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet var tableView: UITableView!
     
     @IBAction func cancelToHome(segue:UIStoryboardSegue) {
+        
     }
+    
+    var geoLocations = [GeolocationModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +36,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         tableView.delegate = self
         
         listButton.layer.cornerRadius = 22
-        
-        var getLocation = ApiInterface()
-        
-        getLocation.getGeolocations(100000, latitude: 1.0, longitude: 1.0)
 
         self.tableView.hidden = true
         
@@ -49,12 +48,38 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.locationManager.startUpdatingLocation()
         
         self.mapView.showsUserLocation = true
+
+        
+        getGeoLocations()
     
     }
     
+    func getGeoLocations() {
+        
+        let getLocation = ApiInterface()
+        
+        getLocation.getGeolocations(100000, latitude: 1.0, longitude: 1.0)
+        
+        while getLocation.completed == false {
+            
+            sleep(1)
+            
+        }
+        
+        if let results = getLocation.returns as? [GeolocationModel] {
+            
+            self.geoLocations = results
+            
+            setPoints()
+            
+            tableView.reloadData()
+            
+        }
+        
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
-        
-        
         
         auth = Authenticator.sharedInstance;
     }
@@ -89,30 +114,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             self.performSegueWithIdentifier("createLocation", sender: self);
         }
         
-        
-        
-        
     }
     
-    func LoadPoints() {
-        
-        
-        let data = retriveData(type: .Locations)
-        
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            data.getData()
-            
-            while data.isReady == false {}
-            
-            self.setPoints()
-            
-        }
-        
-        
-        
-        
-    }
+    
     
     @IBAction func accountButton(sender: AnyObject) {
         while(auth.completed == false){
@@ -128,24 +132,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func setPoints() {
         
-        let location = LocationsModel.location
-        
-        print(location.numberOfPoints)
-        
-        var i = 0
-        
-        for (i = 0; i < location.numberOfPoints; i++ ){
+        for location in geoLocations {
             
-            var location = CLLocationCoordinate2D(latitude: location.latPoint[i], longitude: location.latPoint[i])
+            let dropPin = MKPointAnnotation()
             
-            var annotation = mapAnnotation()
+            dropPin.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
             
-            annotation.name = ""
+            dropPin.title = location.name
             
-            annotation.coordinate = location
-            
-            self.mapView.addAnnotation(annotation)
-            
+            mapView.addAnnotation(dropPin)
         }
         
     }
@@ -156,21 +151,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        
-        
-        let capital = view.annotation as! mapAnnotation
-        
-        capital.name = ""
-        
-        capital.coordinate = CLLocationCoordinate2D(latitude: 1.0, longitude: 1.0)
-        
-        
-        
-        let ac = UIAlertController(title: "", message: "", preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        presentViewController(ac, animated: true, completion: nil)
-    }
     
     @IBAction func ListViewButton(sender: AnyObject) {
         
@@ -199,9 +179,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        print("tapped")
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 5
+        return geoLocations.count
         
     }
     
@@ -209,20 +193,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let cell: TableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! TableViewCell
         
-        cell.titleLabel.text = "title"
+        cell.titleLabel.text = geoLocations[indexPath.row].name
         
-        cell.decriptionLabel.text = "description"
+        cell.decriptionLabel.text = geoLocations[indexPath.row].description
         
-        cell.ratingImage.image = UIImage(named: "hello")
+        cell.ratingImage.image = imageHandle().getImageForRating(rating: 2.5)
         
-        cell.coverImage.image = UIImage(named: "hello")
+        //cell.coverImage.image =
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        self.selectedLocationId = 1 //LocationsModel.location.locationId[indexPath.row]
+        self.selectedLocationId = geoLocations[indexPath.row].geolocationID
         
         
         performSegueWithIdentifier("locationSelected", sender: self)
@@ -234,9 +218,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "locationSelected" {
             
-            //var destVC = segue.destinationViewController as! ResultsViewController
+            var destVC = segue.destinationViewController as! ResultsViewController
             
-            //destVC.LocationId = self.selectedLocationId
+            destVC.LocationId = self.selectedLocationId
             
             
         }

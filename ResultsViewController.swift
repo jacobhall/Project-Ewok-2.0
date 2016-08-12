@@ -10,7 +10,7 @@ import UIKit
 
 class ResultsViewController: UITableViewController{
     
-    var LocationId = 3
+    var LocationId = Int()
     
     var reviews = [ReviewModel]()
     
@@ -36,6 +36,8 @@ class ResultsViewController: UITableViewController{
     
     func getLocationInfo(){
         
+        print("location id = \(LocationId)")
+        
         api.getGeolocation(LocationId)
         
         while api.completed == false{
@@ -48,7 +50,7 @@ class ResultsViewController: UITableViewController{
             
             location = locationReturned
             
-            self.title = "some title"
+            self.title = location?.name
             
         }
         
@@ -69,10 +71,6 @@ class ResultsViewController: UITableViewController{
             
             reviews = retrieve
             
-            
-        }else {
-            
-            print("Not today")
             
         }
         
@@ -107,7 +105,7 @@ class ResultsViewController: UITableViewController{
             
             let cell: ReviewTableViewCell = tableView.dequeueReusableCellWithIdentifier("reviewCell") as! ReviewTableViewCell
             
-            let index = indexPath.row + 1
+            let index = indexPath.row - 1
             
             cell.reviewerName.text = "Jacob Hall"
             

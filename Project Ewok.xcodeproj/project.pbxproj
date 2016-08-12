@@ -144,7 +144,6 @@
 		166F13CC1D54D95A00150A14 /* Project Ewok */ = {
 			isa = PBXGroup;
 			children = (
-				16AA585F1D5CFEAE0091CD7B /* ViewExtention.swift */,
 				1687ED581D5E45DA0052200B /* tableViewCells */,
 				166F144E1D5A1CC600150A14 /* Models */,
 				166F144D1D5A1C9400150A14 /* ViewControllers */,
@@ -162,6 +161,7 @@
 				C50EFBE51D5CAE410069E49C /* ApiInterface.swift */,
 				C53041921D5E29BF00146208 /* UIImageExtension.swift */,
 				1687ED5D1D5E47840052200B /* imageHandle.swift */,
+				16AA585F1D5CFEAE0091CD7B /* ViewExtention.swift */,
 			);
 			path = "Project Ewok";
 			sourceTree = "<group>";
