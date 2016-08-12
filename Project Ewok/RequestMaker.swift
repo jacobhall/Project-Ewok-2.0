@@ -33,7 +33,7 @@ class RequestMaker{
     //Properties
     var requestURL: NSURL;              //The request's url
     var request: NSMutableURLRequest;   //The request itslef
-    var JSONData = NSData();            //The data returned from the request
+    var rawData = NSData();            //The data returned from the request
     var decodedJSON: Payload?;          //Holds the decoded data
     var ready: Bool?;                   //Whether or not the data is ready to use
     var status: Int?;                   //Holds the status code of the response
@@ -90,10 +90,10 @@ class RequestMaker{
             (data, response, error)->Void in
             
             if(data != nil){
-                self.JSONData = data!;
+                self.rawData = data!;
                 self.decodeData();
             }
-            completion(self.JSONData);
+            completion(self.rawData);
             if let httpResponse = response as? NSHTTPURLResponse {
                 self.status = httpResponse.statusCode;
             }
@@ -113,7 +113,7 @@ class RequestMaker{
             (data, response, error)->Void in
             
             if(data != nil){
-                self.JSONData = data!;
+                self.rawData = data!;
                 self.decodeData();
                 if(self.decodedJSON != nil){
                     completion(self.decodedJSON!);
@@ -135,7 +135,7 @@ class RequestMaker{
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
             
-            self.JSONData = data!;
+            self.rawData = data!;
             
             if let httpResponse = response as? NSHTTPURLResponse {
                 self.status = httpResponse.statusCode;
@@ -155,7 +155,7 @@ class RequestMaker{
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
             
-            self.JSONData = data!;
+            self.rawData = data!;
             self.ready = true;
             if let httpResponse = response as? NSHTTPURLResponse {
                 self.status = httpResponse.statusCode;
@@ -170,7 +170,7 @@ class RequestMaker{
         //NOTE: For some reason, error takes a second to set, so don't bank of it being nil or not nil when checking it
         //      directly after the call or in a completion handler.
         do{
-            let JSON = try NSJSONSerialization.JSONObjectWithData(self.JSONData, options: .AllowFragments) as? Payload;
+            let JSON = try NSJSONSerialization.JSONObjectWithData(self.rawData, options: .AllowFragments) as? Payload;
             if JSON != nil {
                 if let error = JSON!["error"] as? String {
                     self.error = error;
