@@ -24,6 +24,7 @@
 		166F14501D5A454E00150A14 /* createLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F144F1D5A454E00150A14 /* createLocation.swift */; };
 		1687ED531D5E29500052200B /* MainContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687ED521D5E29500052200B /* MainContentCell.swift */; };
 		1687ED551D5E29670052200B /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687ED541D5E29670052200B /* ReviewTableViewCell.swift */; };
+		1687ED571D5E3D490052200B /* imageHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687ED561D5E3D490052200B /* imageHandle.swift */; };
 		16AA585E1D5B6BC10091CD7B /* submissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA585D1D5B6BC10091CD7B /* submissionViewController.swift */; };
 		16AA58601D5CFEAE0091CD7B /* ViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA585F1D5CFEAE0091CD7B /* ViewExtention.swift */; };
 		16AA58621D5D01600091CD7B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA58611D5D01600091CD7B /* TableViewCell.swift */; };
@@ -77,6 +78,7 @@
 		166F144F1D5A454E00150A14 /* createLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createLocation.swift; sourceTree = "<group>"; };
 		1687ED521D5E29500052200B /* MainContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentCell.swift; sourceTree = "<group>"; };
 		1687ED541D5E29670052200B /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		1687ED561D5E3D490052200B /* imageHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageHandle.swift; sourceTree = "<group>"; };
 		16AA585D1D5B6BC10091CD7B /* submissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = submissionViewController.swift; sourceTree = "<group>"; };
 		16AA585F1D5CFEAE0091CD7B /* ViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewExtention.swift; path = ../ViewExtention.swift; sourceTree = "<group>"; };
 		16AA58611D5D01600091CD7B /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				C54666801D59002800F4E014 /* RequestMaker.swift */,
 				C54666821D5905BC00F4E014 /* Debug.playground */,
 				C50EFBE51D5CAE410069E49C /* ApiInterface.swift */,
+				1687ED561D5E3D490052200B /* imageHandle.swift */,
 			);
 			path = "Project Ewok";
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				166F144C1D5A1C8F00150A14 /* AccountViewController.swift in Sources */,
 				16AA58641D5D087A0091CD7B /* ResultsViewController.swift in Sources */,
 				166F14421D591ED800150A14 /* mapAnnotation.swift in Sources */,
+				1687ED571D5E3D490052200B /* imageHandle.swift in Sources */,
 				16AA58621D5D01600091CD7B /* TableViewCell.swift in Sources */,
 				C54666811D59002800F4E014 /* RequestMaker.swift in Sources */,
 				C5EF412B1D5B99FA00769E5C /* ReviewModel.swift in Sources */,

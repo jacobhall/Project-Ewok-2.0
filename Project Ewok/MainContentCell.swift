@@ -10,4 +10,15 @@ import UIKit
 
 class MainContentCell: UITableViewCell {
 
+    @IBOutlet var editButton: UIView!
+    
+    @IBOutlet var imageScrollView: UIScrollView!
+    
+    @IBOutlet var imagePageControl: UIPageControl!
+    
+    @IBOutlet var locationInfo: UITextView!
+    
+    @IBOutlet var distanceAwayLabel: UILabel!
+    
+    @IBOutlet var ratingImageView: UIImageView!
 }
