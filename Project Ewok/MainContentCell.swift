@@ -9,7 +9,7 @@
 import UIKit
 
 class MainContentCell: UITableViewCell {
-
+    
     @IBOutlet var editButton: UIView!
     
     @IBOutlet var imageScrollView: UIScrollView!
