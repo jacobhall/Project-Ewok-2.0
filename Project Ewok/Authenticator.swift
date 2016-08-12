@@ -170,6 +170,7 @@ public class Authenticator{
         //POST: destroys the token so itx can no longer be used
         self.completed = false;
         self.valid = false;
+        self.user = nil;
         let defaults = NSUserDefaults.standardUserDefaults();
         defaults.setValue(nil, forKey: TokenKey);
         requester = RequestMaker(method: "POST", url: "destroyToken");

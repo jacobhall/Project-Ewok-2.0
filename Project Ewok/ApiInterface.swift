@@ -28,6 +28,9 @@ public class ApiInterface{
      The return types are as follows;
      getGeolocations = [GeolocationModel]
      getGeolocation = GeolocationModel
+     createNewReview = GeolocationModel
+     updateGeolocation = NONE
+     validateGeolocation = NONE
      */
     //Properties
     var returns: AnyObject?;
@@ -47,7 +50,7 @@ public class ApiInterface{
     
     internal func getRawGeolocations(radius: Int? = nil, latitude: Double? = nil, longitude: Double? = nil, unit: String? = nil, locationType: String? = nil, name: String? = nil, operatingTime: String? = nil) {
         //PRE: Any of the options above are optional but, if radius is set, so must latitude and longitude
-        //POST: sets returns to the raw GeoJSON
+        //POST: sets returns to the raw GeoJSON. Useful when using a mapping application like Google Maps
         returns = nil;
         completed = false;
         var dataString = "";
@@ -122,7 +125,7 @@ public class ApiInterface{
         //PRE: A JSON array with a "geolocations" component
         //POST: Creates a array of geolocations from the database and sets it to returns
         let geolocationsJSON = JSON["geolocations"] as! NSArray
-        var returnValue = [GeolocationModel]()
+        var geolocations = [GeolocationModel]()
         for geolocationJSON in geolocationsJSON {
             let geolocationID = geolocationJSON["geolocationID"] as! Int;
             let latitude = (geolocationJSON["latitude"] as! NSString).doubleValue;
@@ -132,13 +135,15 @@ public class ApiInterface{
             let locationID = geolocationJSON["location_id"] as? Int;
             let locationType = geolocationJSON["location_type"] as? String;
             let geolocation = GeolocationModel(geolocationID: geolocationID, latitude: latitude, longitude: longitude, name: name, description: description, locationID: locationID, locationType: locationType)
-            returnValue.append(geolocation);
+            geolocations.append(geolocation);
         }
-        returns = returnValue;
+        returns = geolocations;
         completed = true;
     }
     
     internal func getGeolocation(geolocationID: Int){
+        //PRE: The geolocationID must match an geolocationID in the database
+        //POST: creates a request and sets the results to the geolocation as a model
         returns = nil;
         completed = false;
         requester = RequestMaker(method: "GET", url: "geolocations/" + String(geolocationID), data: "GeoJSON=0");
@@ -146,6 +151,8 @@ public class ApiInterface{
     }
     
     internal func setGeolocation(JSON: [String: AnyObject]){
+        //PRE: takes a JSON from a request maker
+        //POST: sets results to the geolocation object
         let geolocationJSON = JSON["geolocation"] as! [String: AnyObject];
         let geolocationID = geolocationJSON["geolocationID"] as! Int;
         let latitude = (geolocationJSON["latitude"] as! NSString).doubleValue;
@@ -223,5 +230,86 @@ public class ApiInterface{
             requester.authorize(auth.token!);
         }
         requester.run(setCompleted);
+    }
+    
+    internal func getReviews(geolocationID: Int? = nil, userID: Int? = nil){
+        //PRE: both geolocationID and userID can be used to narrow the search
+        //POST: makes a request based on the above and sets reviews to an array of review models
+        returns = nil;
+        completed = false;
+        var dataString = "";
+        if(geolocationID != nil){
+            dataString += "&geolocationID=" + String(geolocationID);
+        }
+        if(userID != nil){
+            dataString += "&userID=" + String(userID);
+        }
+        if(dataString.isEmpty){
+            requester = RequestMaker(method: "GET", url: "reviews");
+        }
+        else{
+            dataString = dataString.substringFromIndex(dataString.startIndex.advancedBy(2));
+            requester = RequestMaker(method: "GET", url: "reviews", data: dataString);
+        }
+        requester.run(setReviews);
+    }
+    
+    internal func setReviews(JSON: [String: AnyObject]){
+        //PRE: A JSON created by a request
+        //POST: sets returns to an array of reviews, created from the JSON
+        if let reviewsJSON = JSON["reviews"] as! NSArray! {
+            var reviews = [ReviewModel]();
+            for reviewJSON in reviewsJSON {
+                let reviewID = reviewJSON["reviewID"] as! Int;
+                let userID = (reviewJSON["userID"] as! NSString).integerValue;
+                let comment = reviewJSON["comment"] as? String;
+                let rating = (reviewJSON["rating"] as! NSString).integerValue;
+                let geolocationID = (reviewJSON["geolocationID"] as! NSString).integerValue;
+                let review = ReviewModel(reviewID: reviewID, userID: userID, geolocationID: geolocationID, rating: rating, comment: comment);
+                reviews.append(review);
+            }
+            returns = reviews;
+        }
+        else{
+            returns = [ReviewModel]();
+        }
+        completed = true;
+    }
+    
+    internal func getReview(reviewID: Int){
+        //PRE: reviewID must match a reviewID in the database
+        //POST: makes a request and sets returns to a specific review model
+        returns = nil;
+        completed = false;
+        requester = RequestMaker(method: "GET", url: "reviews/" + String(reviewID));
+        requester.run(setReview);
+    }
+    
+    internal func setReview(JSON: [String: AnyObject]){
+        //PRE: A JSON created by a request
+        //POST: sets the returns to a review model, created from the JSON
+        if let reviewJSON = JSON["review"] as! [String: AnyObject]! {
+            let reviewID = reviewJSON["reviewID"] as! Int;
+            let userID = (reviewJSON["userID"] as! NSString).integerValue;
+            let comment = reviewJSON["comment"] as? String;
+            let rating = (reviewJSON["rating"] as! NSString).integerValue;
+            let geolocationID = (reviewJSON["geolocationID"] as! NSString).integerValue;
+            let review = ReviewModel(reviewID: reviewID, userID: userID, geolocationID: geolocationID, rating: rating, comment: comment);
+            returns = review;
+        }
+        else{
+            returns = nil;
+        }
+        completed = true;
+    }
+    
+    internal func createNewReview(geolocationID: Int, rating: Int, comment: String? = nil){
+        returns = nil;
+        completed = nil;
+        var dataString = "geolocationID=" + String(geolocationID) + "&rating=" + String(rating);
+        if(comment != nil){
+            dataString += "&comment=" + comment!;
+        }
+        requester = RequestMaker(method: "POST", url: "reviews", data: dataString);
     }
 }
