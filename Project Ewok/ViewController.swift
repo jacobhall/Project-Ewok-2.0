@@ -234,14 +234,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "locationSelected" {
             
-            var destVC = segue.destinationViewController as! ResultsViewController
+            //var destVC = segue.destinationViewController as! ResultsViewController
             
-            destVC.LocationId = self.selectedLocationId
+            //destVC.LocationId = self.selectedLocationId
             
             
         }
     }
-    
+
     
     
 }

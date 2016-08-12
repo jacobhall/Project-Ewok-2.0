@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController {
+class AccountViewController: UITableViewController {
     var auth: Authenticator!;
     
     override func viewDidLoad(){
