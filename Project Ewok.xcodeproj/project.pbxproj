@@ -25,6 +25,7 @@
 		1687ED5A1D5E46D00052200B /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687ED591D5E46D00052200B /* ReviewTableViewCell.swift */; };
 		1687ED5C1D5E46F10052200B /* MainContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687ED5B1D5E46F10052200B /* MainContentCell.swift */; };
 		1687ED5E1D5E47840052200B /* imageHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687ED5D1D5E47840052200B /* imageHandle.swift */; };
+		1687ED601D5E71850052200B /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687ED5F1D5E71850052200B /* RestaurantAnnotation.swift */; };
 		16AA585E1D5B6BC10091CD7B /* submissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA585D1D5B6BC10091CD7B /* submissionViewController.swift */; };
 		16AA58601D5CFEAE0091CD7B /* ViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA585F1D5CFEAE0091CD7B /* ViewExtention.swift */; };
 		16AA58621D5D01600091CD7B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA58611D5D01600091CD7B /* TableViewCell.swift */; };
@@ -81,6 +82,7 @@
 		1687ED591D5E46D00052200B /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		1687ED5B1D5E46F10052200B /* MainContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentCell.swift; sourceTree = "<group>"; };
 		1687ED5D1D5E47840052200B /* imageHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageHandle.swift; sourceTree = "<group>"; };
+		1687ED5F1D5E71850052200B /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
 		16AA585D1D5B6BC10091CD7B /* submissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = submissionViewController.swift; sourceTree = "<group>"; };
 		16AA585F1D5CFEAE0091CD7B /* ViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewExtention.swift; path = ../ViewExtention.swift; sourceTree = "<group>"; };
 		16AA58611D5D01600091CD7B /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				166F144E1D5A1CC600150A14 /* Models */,
 				166F144D1D5A1C9400150A14 /* ViewControllers */,
 				166F13CD1D54D95A00150A14 /* AppDelegate.swift */,
+				1687ED5F1D5E71850052200B /* RestaurantAnnotation.swift */,
 				166F13D11D54D95A00150A14 /* Main.storyboard */,
 				166F13D71D54D95A00150A14 /* Assets.xcassets */,
 				166F13D91D54D95A00150A14 /* LaunchScreen.storyboard */,
@@ -370,6 +373,7 @@
 				166F13FF1D54FD5200150A14 /* getData.swift in Sources */,
 				C53041931D5E29BF00146208 /* UIImageExtension.swift in Sources */,
 				C5EF41291D5B981B00769E5C /* UserModel.swift in Sources */,
+				1687ED601D5E71850052200B /* RestaurantAnnotation.swift in Sources */,
 				166F13CE1D54D95A00150A14 /* AppDelegate.swift in Sources */,
 				166F14501D5A454E00150A14 /* createLocation.swift in Sources */,
 				C546667F1D58F08600F4E014 /* Authenticator.swift in Sources */,

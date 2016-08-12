@@ -141,7 +141,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             dropPin.title = location.name
             
             mapView.addAnnotation(dropPin)
-        }
         
     }
     
@@ -216,6 +215,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
 
+    
+    
     
     
 }

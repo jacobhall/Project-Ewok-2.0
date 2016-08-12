@@ -34,7 +34,7 @@ class ResultsViewController: UITableViewController{
         
         
         
-       api.getPictures(ID: <#T##Int?#>, model: <#T##String?#>)
+       //api.getPictures(ID: <#T##Int?#>, model: <#T##String?#>)
         
         
         
