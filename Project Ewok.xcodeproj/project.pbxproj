@@ -22,15 +22,14 @@
 		166F144A1D5A1C7500150A14 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F14491D5A1C7500150A14 /* LoginViewController.swift */; };
 		166F144C1D5A1C8F00150A14 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F144B1D5A1C8F00150A14 /* AccountViewController.swift */; };
 		166F14501D5A454E00150A14 /* createLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166F144F1D5A454E00150A14 /* createLocation.swift */; };
-		1687ED531D5E29500052200B /* MainContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687ED521D5E29500052200B /* MainContentCell.swift */; };
-		1687ED551D5E29670052200B /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687ED541D5E29670052200B /* ReviewTableViewCell.swift */; };
-		1687ED571D5E3D490052200B /* imageHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687ED561D5E3D490052200B /* imageHandle.swift */; };
 		16AA585E1D5B6BC10091CD7B /* submissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA585D1D5B6BC10091CD7B /* submissionViewController.swift */; };
 		16AA58601D5CFEAE0091CD7B /* ViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA585F1D5CFEAE0091CD7B /* ViewExtention.swift */; };
 		16AA58621D5D01600091CD7B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA58611D5D01600091CD7B /* TableViewCell.swift */; };
 		16AA58641D5D087A0091CD7B /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA58631D5D087A0091CD7B /* ResultsViewController.swift */; };
 		C50EFBE41D5C9D000069E49C /* GeolocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EFBE31D5C9D000069E49C /* GeolocationModel.swift */; };
 		C50EFBE61D5CAE410069E49C /* ApiInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EFBE51D5CAE410069E49C /* ApiInterface.swift */; };
+		C53041911D5E27B800146208 /* PictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53041901D5E27B800146208 /* PictureModel.swift */; };
+		C53041931D5E29BF00146208 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53041921D5E29BF00146208 /* UIImageExtension.swift */; };
 		C546667F1D58F08600F4E014 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C546667E1D58F08600F4E014 /* Authenticator.swift */; };
 		C54666811D59002800F4E014 /* RequestMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54666801D59002800F4E014 /* RequestMaker.swift */; };
 		C5EF41291D5B981B00769E5C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EF41281D5B981B00769E5C /* UserModel.swift */; };
@@ -76,15 +75,14 @@
 		166F14491D5A1C7500150A14 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		166F144B1D5A1C8F00150A14 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		166F144F1D5A454E00150A14 /* createLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createLocation.swift; sourceTree = "<group>"; };
-		1687ED521D5E29500052200B /* MainContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentCell.swift; sourceTree = "<group>"; };
-		1687ED541D5E29670052200B /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
-		1687ED561D5E3D490052200B /* imageHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageHandle.swift; sourceTree = "<group>"; };
 		16AA585D1D5B6BC10091CD7B /* submissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = submissionViewController.swift; sourceTree = "<group>"; };
 		16AA585F1D5CFEAE0091CD7B /* ViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewExtention.swift; path = ../ViewExtention.swift; sourceTree = "<group>"; };
 		16AA58611D5D01600091CD7B /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		16AA58631D5D087A0091CD7B /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultsViewController.swift; path = ../ResultsViewController.swift; sourceTree = "<group>"; };
 		C50EFBE31D5C9D000069E49C /* GeolocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeolocationModel.swift; sourceTree = "<group>"; };
 		C50EFBE51D5CAE410069E49C /* ApiInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiInterface.swift; sourceTree = "<group>"; };
+		C53041901D5E27B800146208 /* PictureModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureModel.swift; sourceTree = "<group>"; };
+		C53041921D5E29BF00146208 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		C546667E1D58F08600F4E014 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		C54666801D59002800F4E014 /* RequestMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestMaker.swift; sourceTree = "<group>"; };
 		C54666821D5905BC00F4E014 /* Debug.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Debug.playground; sourceTree = "<group>"; };
@@ -140,8 +138,9 @@
 		166F13CC1D54D95A00150A14 /* Project Ewok */ = {
 			isa = PBXGroup;
 			children = (
+				16AA58631D5D087A0091CD7B /* ResultsViewController.swift */,
 				16AA585F1D5CFEAE0091CD7B /* ViewExtention.swift */,
-				1687ED511D5E290E0052200B /* TableViewCells */,
+				16AA58611D5D01600091CD7B /* TableViewCell.swift */,
 				166F144E1D5A1CC600150A14 /* Models */,
 				166F144D1D5A1C9400150A14 /* ViewControllers */,
 				166F13CD1D54D95A00150A14 /* AppDelegate.swift */,
@@ -156,7 +155,7 @@
 				C54666801D59002800F4E014 /* RequestMaker.swift */,
 				C54666821D5905BC00F4E014 /* Debug.playground */,
 				C50EFBE51D5CAE410069E49C /* ApiInterface.swift */,
-				1687ED561D5E3D490052200B /* imageHandle.swift */,
+				C53041921D5E29BF00146208 /* UIImageExtension.swift */,
 			);
 			path = "Project Ewok";
 			sourceTree = "<group>";
@@ -182,7 +181,6 @@
 		166F144D1D5A1C9400150A14 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				16AA58631D5D087A0091CD7B /* ResultsViewController.swift */,
 				166F144F1D5A454E00150A14 /* createLocation.swift */,
 				16AA585D1D5B6BC10091CD7B /* submissionViewController.swift */,
 				166F13CF1D54D95A00150A14 /* ViewController.swift */,
@@ -200,18 +198,9 @@
 				C5EF41281D5B981B00769E5C /* UserModel.swift */,
 				C5EF412A1D5B99FA00769E5C /* ReviewModel.swift */,
 				C50EFBE31D5C9D000069E49C /* GeolocationModel.swift */,
+				C53041901D5E27B800146208 /* PictureModel.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		1687ED511D5E290E0052200B /* TableViewCells */ = {
-			isa = PBXGroup;
-			children = (
-				16AA58611D5D01600091CD7B /* TableViewCell.swift */,
-				1687ED521D5E29500052200B /* MainContentCell.swift */,
-				1687ED541D5E29670052200B /* ReviewTableViewCell.swift */,
-			);
-			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,22 +337,21 @@
 				166F14401D58CEE500150A14 /* LocationsModel.swift in Sources */,
 				166F14481D5A1C3F00150A14 /* RegisterViewController.swift in Sources */,
 				166F144C1D5A1C8F00150A14 /* AccountViewController.swift in Sources */,
+				C53041911D5E27B800146208 /* PictureModel.swift in Sources */,
 				16AA58641D5D087A0091CD7B /* ResultsViewController.swift in Sources */,
 				166F14421D591ED800150A14 /* mapAnnotation.swift in Sources */,
-				1687ED571D5E3D490052200B /* imageHandle.swift in Sources */,
 				16AA58621D5D01600091CD7B /* TableViewCell.swift in Sources */,
 				C54666811D59002800F4E014 /* RequestMaker.swift in Sources */,
 				C5EF412B1D5B99FA00769E5C /* ReviewModel.swift in Sources */,
-				1687ED531D5E29500052200B /* MainContentCell.swift in Sources */,
 				C50EFBE41D5C9D000069E49C /* GeolocationModel.swift in Sources */,
 				C50EFBE61D5CAE410069E49C /* ApiInterface.swift in Sources */,
 				166F13D01D54D95A00150A14 /* ViewController.swift in Sources */,
 				16AA58601D5CFEAE0091CD7B /* ViewExtention.swift in Sources */,
 				166F13D61D54D95A00150A14 /* Project_Ewok.xcdatamodeld in Sources */,
 				166F13FF1D54FD5200150A14 /* getData.swift in Sources */,
+				C53041931D5E29BF00146208 /* UIImageExtension.swift in Sources */,
 				C5EF41291D5B981B00769E5C /* UserModel.swift in Sources */,
 				166F13CE1D54D95A00150A14 /* AppDelegate.swift in Sources */,
-				1687ED551D5E29670052200B /* ReviewTableViewCell.swift in Sources */,
 				166F14501D5A454E00150A14 /* createLocation.swift in Sources */,
 				C546667F1D58F08600F4E014 /* Authenticator.swift in Sources */,
 				16AA585E1D5B6BC10091CD7B /* submissionViewController.swift in Sources */,

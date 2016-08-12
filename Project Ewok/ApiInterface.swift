@@ -31,6 +31,13 @@ public class ApiInterface{
      createNewReview = GeolocationModel
      updateGeolocation = NONE
      validateGeolocation = NONE
+     getReviews = [ReviewModel]
+     getReview = ReviewModel
+     createNewReview = ReviewModel
+     updateReview = NONE
+     destroyReview = NONE
+     getPictures = [PictureModel]
+     getPicture = PictureModel or NONE (See function comments)
      */
     //Properties
     var returns: AnyObject?;
@@ -48,6 +55,7 @@ public class ApiInterface{
         self.completed = true;
     }
     
+    ///GEOLOCATIONS
     internal func getRawGeolocations(radius: Int? = nil, latitude: Double? = nil, longitude: Double? = nil, unit: String? = nil, locationType: String? = nil, name: String? = nil, operatingTime: String? = nil) {
         //PRE: Any of the options above are optional but, if radius is set, so must latitude and longitude
         //POST: sets returns to the raw GeoJSON. Useful when using a mapping application like Google Maps
@@ -85,9 +93,6 @@ public class ApiInterface{
         if(requester.error == nil && JSON["message"] == nil && JSON["error"] == nil){
             returns = JSON;
         }
-        else{
-            returns = [];
-        }
     }
     
     internal func getGeolocations(radius: Int? = nil, latitude: Double? = nil, longitude: Double? = nil, unit: String? = nil, locationType: String? = nil, name: String? = nil, operatingTime: String? = nil){
@@ -124,20 +129,21 @@ public class ApiInterface{
     internal func setGeolocations(JSON: [String: AnyObject]){
         //PRE: A JSON array with a "geolocations" component
         //POST: Creates a array of geolocations from the database and sets it to returns
-        let geolocationsJSON = JSON["geolocations"] as! NSArray
-        var geolocations = [GeolocationModel]()
-        for geolocationJSON in geolocationsJSON {
-            let geolocationID = geolocationJSON["geolocationID"] as! Int;
-            let latitude = (geolocationJSON["latitude"] as! NSString).doubleValue;
-            let longitude = (geolocationJSON["longitude"] as! NSString).doubleValue;
-            let name = geolocationJSON["name"] as! String;
-            let description = geolocationJSON["description"] as? String;
-            let locationID = geolocationJSON["location_id"] as? Int;
-            let locationType = geolocationJSON["location_type"] as? String;
-            let geolocation = GeolocationModel(geolocationID: geolocationID, latitude: latitude, longitude: longitude, name: name, description: description, locationID: locationID, locationType: locationType)
-            geolocations.append(geolocation);
+        if let geolocationsJSON = JSON["geolocations"] as! NSArray! {
+            var geolocations = [GeolocationModel]()
+            for geolocationJSON in geolocationsJSON {
+                let geolocationID = geolocationJSON["geolocationID"] as! Int;
+                let latitude = (geolocationJSON["latitude"] as! NSString).doubleValue;
+                let longitude = (geolocationJSON["longitude"] as! NSString).doubleValue;
+                let name = geolocationJSON["name"] as! String;
+                let description = geolocationJSON["description"] as? String;
+                let locationID = geolocationJSON["location_id"] as? Int;
+                let locationType = geolocationJSON["location_type"] as? String;
+                let geolocation = GeolocationModel(geolocationID: geolocationID, latitude: latitude, longitude: longitude, name: name, description: description, locationID: locationID, locationType: locationType)
+                geolocations.append(geolocation);
+            }
+            returns = geolocations;
         }
-        returns = geolocations;
         completed = true;
     }
     
@@ -153,16 +159,17 @@ public class ApiInterface{
     internal func setGeolocation(JSON: [String: AnyObject]){
         //PRE: takes a JSON from a request maker
         //POST: sets results to the geolocation object
-        let geolocationJSON = JSON["geolocation"] as! [String: AnyObject];
-        let geolocationID = geolocationJSON["geolocationID"] as! Int;
-        let latitude = (geolocationJSON["latitude"] as! NSString).doubleValue;
-        let longitude = (geolocationJSON["longitude"] as! NSString).doubleValue;
-        let name = geolocationJSON["name"] as! String;
-        let description = geolocationJSON["description"] as? String;
-        let locationID = geolocationJSON["location_id"] as? Int;
-        let locationType = geolocationJSON["location_type"] as? String;
-        let geolocation = GeolocationModel(geolocationID: geolocationID, latitude: latitude, longitude: longitude, name: name, description: description, locationID: locationID, locationType: locationType)
-        returns = geolocation;
+        if let geolocationJSON = JSON["geolocation"] as! [String: AnyObject]! {
+            let geolocationID = geolocationJSON["geolocationID"] as! Int;
+            let latitude = (geolocationJSON["latitude"] as! NSString).doubleValue;
+            let longitude = (geolocationJSON["longitude"] as! NSString).doubleValue;
+            let name = geolocationJSON["name"] as! String;
+            let description = geolocationJSON["description"] as? String;
+            let locationID = geolocationJSON["location_id"] as? Int;
+            let locationType = geolocationJSON["location_type"] as? String;
+            let geolocation = GeolocationModel(geolocationID: geolocationID, latitude: latitude, longitude: longitude, name: name, description: description, locationID: locationID, locationType: locationType)
+            returns = geolocation;
+        }
         completed = true;
     }
     
@@ -232,6 +239,7 @@ public class ApiInterface{
         requester.run(setCompleted);
     }
     
+    ///REVIEWS
     internal func getReviews(geolocationID: Int? = nil, userID: Int? = nil){
         //PRE: both geolocationID and userID can be used to narrow the search
         //POST: makes a request based on the above and sets reviews to an array of review models
@@ -270,9 +278,6 @@ public class ApiInterface{
             }
             returns = reviews;
         }
-        else{
-            returns = [ReviewModel]();
-        }
         completed = true;
     }
     
@@ -297,19 +302,134 @@ public class ApiInterface{
             let review = ReviewModel(reviewID: reviewID, userID: userID, geolocationID: geolocationID, rating: rating, comment: comment);
             returns = review;
         }
-        else{
-            returns = nil;
-        }
         completed = true;
     }
     
     internal func createNewReview(geolocationID: Int, rating: Int, comment: String? = nil){
+        //PRE: geolocationID must match a geolocation in the DB. rating must be between 0 and 5.
+        //POST: creates a geolocation in the database and sets returns to it
         returns = nil;
-        completed = nil;
+        completed = false;
         var dataString = "geolocationID=" + String(geolocationID) + "&rating=" + String(rating);
         if(comment != nil){
             dataString += "&comment=" + comment!;
         }
         requester = RequestMaker(method: "POST", url: "reviews", data: dataString);
+        if(auth.token != nil){
+            requester.authorize(auth.token!);
+        }
+        requester.run(getReviewAfterCreated);
+    }
+    
+    internal func getReviewAfterCreated(JSON: [String: AnyObject]){
+        //PRE: a JSON from a creation request
+        //POST: passes the ID to getReview
+        if let reviewID = JSON["ID"] as? Int {
+            getReview(reviewID);
+        }
+        else{
+            //TO DO: ERROR PROMPTS
+            print(requester.error);
+        }
+    }
+    
+    internal func updateReview(review: ReviewModel){
+        //PRE: a ReviewModel obtains from the DB
+        //POST: updates the review with the changed information in the DB
+        returns = nil;
+        completed = false;
+        var dataString = "rating=" + String(review.rating);
+        if(review.comment != nil){
+            dataString += "&comment=" + review.comment!;
+        }
+        requester = RequestMaker(method: "PUT", url: "reviews/" + String(review.reviewID), data: dataString);
+        if(auth.token != nil){
+            requester.authorize(auth.token!);
+        }
+        requester.run(setCompleted);
+    }
+    
+    internal func destroyReview(review: ReviewModel){
+        //PRE: a ReviewModel obtained from the DB
+        //POST: destroys the review in the DB
+        returns = nil;
+        completed = false;
+        requester = RequestMaker(method: "DELETE", url: "reviews/" + String(review.reviewID));
+        if(auth.token != nil){
+            requester.authorize(auth.token!);
+        }
+        requester.run(setCompleted);
+    }
+    
+    ///PICTURES
+    internal func getPictures(ID ID: Int? = nil, model: String? = nil){
+        //PRE: ID and model can narrow your search
+        //POST: creates a request and sets returns to an array of pictures using setPictures
+        returns = nil;
+        completed = false;
+        var dataString = "";
+        if(ID != nil){
+            dataString += "&id=" + String(ID!);
+        }
+        if(model != nil){
+            dataString += "&model=" + String(model!);
+        }
+        if(dataString.isEmpty){
+            requester = RequestMaker(method: "GET", url: "pictures");
+        }
+        else{
+            requester = RequestMaker(method: "GET", url: "pictures", data: dataString.substringFromIndex(dataString.startIndex.advancedBy(2)));
+        }
+        requester.run(setPictures);
+    }
+    
+    internal func setPictures(JSON: [String: AnyObject]){
+        //PRE: A JSON returned from a picture index
+        //POST: creates an array of pictures and sets returns to it
+        if let picturesJSON = JSON["pictures"] as! NSArray! {
+            var pictures = [PictureModel]();
+            for pictureJSON in picturesJSON {
+                let pictureID = pictureJSON["pictureID"] as! Int;
+                var attachedType = pictureJSON["attached_type"] as! String;
+                attachedType = attachedType.substringFromIndex(attachedType.startIndex.advancedBy(5));
+                let attachedID = (pictureJSON["attached_id"] as! NSString).integerValue;
+                let filePath = pictureJSON["filePath"] as! String;
+                let picture = PictureModel(pictureID: pictureID, attachedModel: attachedType, attachedID: attachedID, filePath: filePath);
+                pictures.append(picture);
+            }
+            returns = pictures;
+        }
+        completed = true;
+    }
+    
+    internal func getPicture(pictureID: Int, model: Bool = false, completion: ((NSData) -> Void)? = nil){
+        //PRE: The pictureID must match a picture's ID in the DB. A completion may be provided to act upon the NSData of the picture provided. The model bool controls whether you will get the picture data or the model data. It is set to false by default.
+        //POST: creates a request and runs the request. If a completion handler is provided, it will use that completion handler. Otherwise, it will set the returns to a picture model.
+        returns = nil;
+        completed = false;
+        let dataString = "model=" + String(Int(model));
+        requester = RequestMaker(method: "GET", url: "pictures/" + String(pictureID), data: dataString);
+        if(completion == nil){
+            requester.run(setPicture);
+        }
+        else {
+            requester.run(completion!);
+            completed = true;
+        }
+    }
+    
+    internal func setPicture(JSON: [String: AnyObject]){
+        //PRE: A picture JSON from a request
+        //POST: creates a picture model from the JSON
+        if let pictureJSON = JSON["picture"] as! [String: AnyObject]! {
+            let pictureID = pictureJSON["pictureID"] as! Int;
+            var attachedType = pictureJSON["attached_type"] as! String;
+            attachedType = attachedType.substringFromIndex(attachedType.startIndex.advancedBy(5));
+            let attachedID = (pictureJSON["attached_id"] as! NSString).integerValue;
+            let filePath = pictureJSON["filePath"] as! String;
+            let picture = PictureModel(pictureID: pictureID, attachedModel: attachedType, attachedID: attachedID, filePath: filePath);
+            returns = picture;
+        }
+        completed = true;
     }
 }

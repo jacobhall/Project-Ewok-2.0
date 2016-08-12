@@ -31,14 +31,6 @@ public class GeolocationModel{
     }
     
     //Functions
-    internal func getLocation(){
-        //Not completed because it may be beyond the scope of a prototype
-//        if(locationID != nil && locationType != nil){
-//            let url = locationType!.substringFromIndex(locationType!.startIndex.advancedBy(4)).lowercaseString + "s/" + String(locationID);
-//            let requester = RequestMaker(method: "GET", url: url);
-//        }
-    }
-    
     internal func createAnnotation() -> mapAnnotation {
         //POST: Takes the data of the geolocation and creates an annotation from it
         return mapAnnotation(name: name, title: name, latitude: latitude, longitude: longitude)
