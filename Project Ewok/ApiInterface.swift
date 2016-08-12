@@ -82,7 +82,7 @@ public class ApiInterface{
         }
         dataString += "&GeoJSON=" + String(1);
         if(!dataString.isEmpty){
-            dataString = dataString.substringFromIndex(dataString.startIndex.advancedBy(2));
+            dataString = dataString.substringFromIndex(dataString.startIndex.advancedBy(1));
             requester = RequestMaker(method: "GET", url: "geolocations", data: dataString);
             requester.run(setRawGeolocations);
         }
@@ -121,7 +121,7 @@ public class ApiInterface{
         }
         dataString += "&GeoJSON=" + String(0);
         if(!dataString.isEmpty){
-            dataString = dataString.substringFromIndex(dataString.startIndex.advancedBy(2));
+            dataString = dataString.substringFromIndex(dataString.startIndex.advancedBy(1));
             requester = RequestMaker(method: "GET", url: "geolocations", data: dataString);
             requester.run(setGeolocations);
         }
@@ -379,7 +379,7 @@ public class ApiInterface{
             requester = RequestMaker(method: "GET", url: "pictures");
         }
         else{
-            requester = RequestMaker(method: "GET", url: "pictures", data: dataString.substringFromIndex(dataString.startIndex.advancedBy(2)));
+            requester = RequestMaker(method: "GET", url: "pictures", data: dataString.substringFromIndex(dataString.startIndex.advancedBy(1)));
         }
         requester.run(setPictures);
     }
@@ -392,7 +392,7 @@ public class ApiInterface{
             for pictureJSON in picturesJSON {
                 let pictureID = pictureJSON["pictureID"] as! Int;
                 var attachedType = pictureJSON["attached_type"] as! String;
-                attachedType = attachedType.substringFromIndex(attachedType.startIndex.advancedBy(5));
+                attachedType = attachedType.substringFromIndex(attachedType.startIndex.advancedBy(4));
                 let attachedID = (pictureJSON["attached_id"] as! NSString).integerValue;
                 let filePath = pictureJSON["filePath"] as! String;
                 let picture = PictureModel(pictureID: pictureID, attachedModel: attachedType, attachedID: attachedID, filePath: filePath);
@@ -425,7 +425,7 @@ public class ApiInterface{
         if let pictureJSON = JSON["picture"] as! [String: AnyObject]! {
             let pictureID = pictureJSON["pictureID"] as! Int;
             var attachedType = pictureJSON["attached_type"] as! String;
-            attachedType = attachedType.substringFromIndex(attachedType.startIndex.advancedBy(5));
+            attachedType = attachedType.substringFromIndex(attachedType.startIndex.advancedBy(4));
             let attachedID = (pictureJSON["attached_id"] as! NSString).integerValue;
             let filePath = pictureJSON["filePath"] as! String;
             let picture = PictureModel(pictureID: pictureID, attachedModel: attachedType, attachedID: attachedID, filePath: filePath);
