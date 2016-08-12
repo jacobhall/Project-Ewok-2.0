@@ -56,7 +56,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
         
-        auth = Authenticator();
+        auth = Authenticator.sharedInstance;
     }
 
     override func didReceiveMemoryWarning() {

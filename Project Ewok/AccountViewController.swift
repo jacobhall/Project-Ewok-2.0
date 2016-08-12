@@ -9,19 +9,18 @@
 import UIKit
 
 class AccountViewController: UIViewController {
-    var auth: Authenticator?;
+    var auth: Authenticator!;
     
     override func viewDidLoad(){
         super.viewDidLoad();
     }
     
     override func viewWillAppear(animated: Bool) {
-        auth = Authenticator();
-        auth!.getUser();
-        while(auth!.completed == false){
-            sleep(1);
+        auth = Authenticator.sharedInstance;
+        if(auth.user == nil){
+            auth.getUser();
         }
-        auth!.user!.getReviews();
+        print(auth.user);
     }
     
     @IBAction func logout(sender: UIButton) {

@@ -14,7 +14,7 @@ let TokenKey = "token";
 public class Authenticator{
     /**
      Basic usage:
-     create an authenticator with an init() call
+     get the authenticator using the shared instance
      
      check if the token is set from the user defaults. If not,
      act accordingly (ask the user to log in, maybe)
@@ -54,26 +54,31 @@ public class Authenticator{
      Bear this in mind when using it.
     */
     
+    //Shared static
+    static let sharedInstance = Authenticator();    //A shared instance across the entire app
+    
     //Properties
     var token: String?;             //The token
     var completed: Bool?;           //A boolean to tell when the token has been set
     var requester: RequestMaker!;   //The request
-    var user: UserModel?; //Holds user data when it is present
+    var user: UserModel?;           //Holds user data when it is present
     var valid: Bool?                //Determines whether the token is valid
     
     //Constructors
-    init(_ token: String?){
-        //POST: sets the token (probably shouldn't use)
+    private init(_ token: String?){
+        //POST: sets the token (probably shouldn't use) and ALSO refreshes the token
         if(token != nil){
             self.token = token!;
+            self.refreshAndGetUser();
         }
         else{
             self.token = nil;
             self.valid = false;
+            self.completed = true;
         }
     }
     
-    convenience init(){
+    private convenience init(){
         //POST: Looks in the user's defaults to find a token. If none exists, token is null
         let defaults = NSUserDefaults.standardUserDefaults();
         let storedToken: String! = defaults.objectForKey(TokenKey) as! String!;
@@ -82,11 +87,17 @@ public class Authenticator{
         }
         else{
             self.init(nil);
-            self.valid = false;
         }
     }
     
     //Mutators
+    internal func waitForCompletion(){
+        //Just waits until the authenticator completes its current task.
+        while(self.completed == false){
+            sleep(1);
+        }
+    }
+    
     internal func setToken(JSON: [String: AnyObject]) -> Void {
         //PRE: a JSON dictionary
         //POST: sets the token if one is found in the JSON
@@ -159,6 +170,7 @@ public class Authenticator{
         //POST: destroys the token so itx can no longer be used
         self.completed = false;
         self.valid = false;
+        self.user = nil;
         let defaults = NSUserDefaults.standardUserDefaults();
         defaults.setValue(nil, forKey: TokenKey);
         requester = RequestMaker(method: "POST", url: "destroyToken");
@@ -184,14 +196,15 @@ public class Authenticator{
         }
     }
     
-    internal func setUser() {
+    internal func setUser(JSON: [String: AnyObject]) {
         //POST: Sets the user upon completion of getUser
-        if(requester.error == nil){
-            let JSON = requester.decodedJSON!["user"]!;
-            let email = JSON["email"] as? String;
-            let firstName = JSON["firstName"] as? String;
-            let lastName = JSON["lastName"] as? String;
-            let userID = JSON["userID"] as? Int;
+        if(requester.error == nil && JSON["message"] == nil && JSON["error"] == nil){
+            //let JSON = requester.decodedJSON!["user"]!;
+            let userJSON = JSON["user"] as! [String: AnyObject];
+            let email = userJSON["email"] as? String;
+            let firstName = userJSON["firstName"] as? String;
+            let lastName = userJSON["lastName"] as? String;
+            let userID = userJSON["userID"] as? Int;
             if(email != nil && userID != nil){
                 self.user = UserModel(userID: userID!, firstName: firstName, lastName: lastName, email: email!);
             }
@@ -222,9 +235,6 @@ public class Authenticator{
                     geolocations.append(geolocation);
                 }
                 self.user!.geolocations = geolocations;
-            }
-            else{
-                self.user = nil;
             }
             self.valid = true;
         }

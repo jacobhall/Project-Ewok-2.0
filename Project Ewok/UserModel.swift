@@ -28,25 +28,30 @@ public class UserModel{
     //Functions
     internal func getReviews(){
         //POST: pulls all the reviews that is associated with the user
+        reviews = nil;
         let requester = RequestMaker(method: "GET", url: "reviews", data: "userID="+String(userID));
         requester.run(setReviews);
     }
     
     internal func setReviews(JSON: [String: AnyObject]){
         //PRE: requires JSON from a request
-        //POST: creates an array of reviews and places them in self.reviews
-        let reviewsJSON = JSON["reviews"] as! NSArray;
-        var newReviews = [ReviewModel]();
-        for reviewJSON in reviewsJSON{
-            let reviewID = reviewJSON["reviewID"] as! Int;
-            let reviewUserID = (reviewJSON["userID"] as! NSString).integerValue;
-            let comment = reviewJSON["comment"] as! String?;
-            let rating = (reviewJSON["rating"] as! NSString).integerValue;
-            let geolocationID = (reviewJSON["geolocationID"] as! NSString).integerValue;
-            let review = ReviewModel(reviewID: reviewID, userID: reviewUserID, geolocationID: geolocationID, rating: rating,  comment: comment);
-            newReviews.append(review);
+        //POST: creates an array of reviews and places them in self.reviews. This may be empty.
+        if let reviewsJSON = JSON["reviews"] as! NSArray! {
+            var newReviews = [ReviewModel]();
+            for reviewJSON in reviewsJSON{
+                let reviewID = reviewJSON["reviewID"] as! Int;
+                let reviewUserID = (reviewJSON["userID"] as! NSString).integerValue;
+                let comment = reviewJSON["comment"] as! String?;
+                let rating = (reviewJSON["rating"] as! NSString).integerValue;
+                let geolocationID = (reviewJSON["geolocationID"] as! NSString).integerValue;
+                let review = ReviewModel(reviewID: reviewID, userID: reviewUserID, geolocationID: geolocationID, rating: rating,  comment: comment);
+                newReviews.append(review);
+            }
+            self.reviews = newReviews;
         }
-        self.reviews = newReviews;
+        else{
+            reviews = [ReviewModel]();
+        }
     }
     
     //No function is included for getGeolocations because it is not possible with the current API

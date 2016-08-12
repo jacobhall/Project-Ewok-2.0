@@ -85,6 +85,7 @@ class RequestMaker{
         //POST: runs the request and updates JSONData. Sets ready to true when completed. Runs the
         //      completion argument once the request completes
         ready = false;
+        error = nil;
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
             
@@ -107,12 +108,14 @@ class RequestMaker{
         //POST: runs the request and updates JSONData. Sets ready to true when completed. Runs the
         //      completion argument once the request completes
         ready = false;
+        error = nil;
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
-            print(data);
+            
             if(data != nil){
                 self.JSONData = data!;
-                if(self.decodeData() != nil){
+                self.decodeData();
+                if(self.decodedJSON != nil){
                     completion(self.decodedJSON!);
                 }
             }
@@ -128,6 +131,7 @@ class RequestMaker{
         //POST: runs the request and updates JSONData. Sets ready to true when completed.
         //      Runs the completion when completed.
         ready = false;
+        error = nil;
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
             
@@ -147,6 +151,7 @@ class RequestMaker{
         //POST: runs the request and updates JSONData. Sets ready to true when completed.
         //      Use this when you do not need to handle the completion.
         ready = false;
+        error = nil;
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
             
@@ -162,20 +167,18 @@ class RequestMaker{
     
     internal func decodeData()->Payload? {
         //POST: decodes the JSON and returns it as a dictionary, also setting the error to prevent inefficiency
-        error = nil;
+        //NOTE: For some reason, error takes a second to set, so don't bank of it being nil or not nil when checking it
+        //      directly after the call or in a completion handler.
         do{
             let JSON = try NSJSONSerialization.JSONObjectWithData(self.JSONData, options: .AllowFragments) as? Payload;
-            if false {
-            
-            if let error = JSON!["error"] as? String {
-                self.error = error;
+            if JSON != nil {
+                if let error = JSON!["error"] as? String {
+                    self.error = error;
+                }
+                else if let error = JSON!["message"] as? String {
+                    self.error = error;
+                }
             }
-            else if let error = JSON!["message"] as? String {
-                self.error = error;
-            }
-                
-            }
-                
             self.decodedJSON = JSON;
             return JSON;
         }

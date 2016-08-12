@@ -19,7 +19,7 @@ class submissionViewController: UIViewController{
     var locationCoordinates = CLLocationCoordinate2D()
     
     override func viewWillAppear(animated: Bool) {
-        auth = Authenticator();
+        auth = Authenticator.sharedInstance;
     }
     
     @IBOutlet var nameTextField: UITextField!

@@ -15,6 +15,7 @@ public class ReviewModel{
     let geolocationID: Int;         //The geolocation for the review
     var rating: Int;                //The rating of the review
     var comment: String?;           //The comment of the geolocation by the user
+    var user: UserModel?;           //The user of the review
     
     //Constructors
     init(reviewID: Int, userID: Int, geolocationID: Int, rating: Int, comment: String? = nil){
@@ -27,10 +28,18 @@ public class ReviewModel{
     
     //Functions
     internal func getUser(){
-        
+        //POST: Gets the user of the review and stores it in the user variable
+        user = nil;
+        let requester = RequestMaker(method: "GET", url: "users/" + String(userID));
+        requester.run(setUser);
     }
     
     internal func setUser(JSON: [String: AnyObject]){
-        
+        let userJSON = JSON["user"] as! [String: AnyObject];
+        let returnedUserID = userJSON["userID"] as! Int;
+        let firstName = userJSON["firstName"] as! String;
+        let lastName = userJSON["lastName"] as! String;
+        let email = userJSON["email"] as! String;
+        user = UserModel(userID: returnedUserID, firstName: firstName, lastName: lastName, email: email, reviews: nil, geolocations: nil);
     }
 }

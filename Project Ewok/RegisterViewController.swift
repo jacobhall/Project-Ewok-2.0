@@ -25,7 +25,7 @@ class RegisterViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        auth = Authenticator();
+        auth = Authenticator.sharedInstance;
     }
     
     //When the user clicks the register button
