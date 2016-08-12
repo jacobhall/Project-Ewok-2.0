@@ -35,3 +35,10 @@ extension UIImageView {
         self.image = UIImage(data: data);
     }
 }
+
+extension UIImage {
+    internal func upload(attachedModel: String, attachedID: Int){
+        let interface = ApiInterface();
+        interface.createNewPicture(self, attachedModel: attachedModel, attachedID: attachedID);
+    }
+}

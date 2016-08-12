@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class ApiInterface{
     /**
@@ -247,16 +248,16 @@ public class ApiInterface{
         completed = false;
         var dataString = "";
         if(geolocationID != nil){
-            dataString += "&geolocationID=" + String(geolocationID);
+            dataString += "&geolocationID=" + String(geolocationID!);
         }
         if(userID != nil){
-            dataString += "&userID=" + String(userID);
+            dataString += "&userID=" + String(userID!);
         }
         if(dataString.isEmpty){
             requester = RequestMaker(method: "GET", url: "reviews");
         }
         else{
-            dataString = dataString.substringFromIndex(dataString.startIndex.advancedBy(2));
+            dataString = dataString.substringFromIndex(dataString.startIndex.advancedBy(1));
             requester = RequestMaker(method: "GET", url: "reviews", data: dataString);
         }
         requester.run(setReviews);
@@ -431,5 +432,50 @@ public class ApiInterface{
             returns = picture;
         }
         completed = true;
+    }
+    
+    internal func createNewPicture(image: UIImage, attachedModel: String, attachedID: Int){
+        requester = RequestMaker(method: "POST", url: "pictures");
+        if(auth.token != nil){
+            requester.authorize(auth.token!);
+        }
+        let boundary = "--BOUNDARY--BOUNDARY--BOUNDARY--";
+        requester.request.setValue("multipart/form-data; boundary =\(boundary)", forHTTPHeaderField: "Content-Type");
+        if let imageData = UIImagePNGRepresentation(image) {
+            let body = NSMutableData();
+            let fileName = "iOSPicture.png";
+            let mimetype = "image/png";
+            
+            //Creating body of request
+            //Image body
+            body.appendData("--\(boundary)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData("Content-Disposition:form-data; name=\"image\"; filename=\"\(fileName)\"\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData("Content-Type: \(mimetype)\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData(imageData)
+            body.appendData("\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            
+            //Model body
+            body.appendData("--\(boundary)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData("Content-Disposition:form-data; name=\"attachedModel\"\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
+            body.appendData(attachedModel.dataUsingEncoding(NSUTF8StringEncoding)!);
+            body.appendData("\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            
+            //ID body
+            body.appendData("--\(boundary)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData("Content-Disposition:form-data; name=\"attachedID\"\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!);
+            body.appendData(String(attachedID).dataUsingEncoding(NSUTF8StringEncoding)!);
+            body.appendData("\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData("--\(boundary)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            
+            //Adding it to the requester
+            requester.request.HTTPBody = body;
+        }
+        requester.run();
+    }
+    
+    internal func updatePictre(picture: PictureModel){
+        returns = nil;
+        completed = false;
+        
     }
 }
