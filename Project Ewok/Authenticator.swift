@@ -69,7 +69,7 @@ public class Authenticator{
         //POST: sets the token (probably shouldn't use) and ALSO refreshes the token
         if(token != nil){
             self.token = token!;
-            refreshToken();
+            self.refreshAndGetUser();
         }
         else{
             self.token = nil;

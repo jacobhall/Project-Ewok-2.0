@@ -33,6 +33,7 @@ public class ApiInterface{
     var returns: AnyObject?;
     var completed: Bool?;
     var requester: RequestMaker!;
+    let auth = Authenticator.sharedInstance;
     
     //Constructors
     init(){
@@ -40,6 +41,10 @@ public class ApiInterface{
     }
     
     //Functions
+    internal func setCompleted(){
+        self.completed = true;
+    }
+    
     internal func getRawGeolocations(radius: Int? = nil, latitude: Double? = nil, longitude: Double? = nil, unit: String? = nil, locationType: String? = nil, name: String? = nil, operatingTime: String? = nil) {
         //PRE: Any of the options above are optional but, if radius is set, so must latitude and longitude
         //POST: sets returns to the raw GeoJSON
@@ -171,7 +176,6 @@ public class ApiInterface{
         }
         requester = RequestMaker(method: "POST", url: "geolocations", data: dataString);
         if (token == nil){
-            let auth = Authenticator.sharedInstance;
             if(auth.token != nil){
                 requester.authorize(auth.token!);
             }
@@ -190,5 +194,34 @@ public class ApiInterface{
             //TO DO: ERROR PROMPTS
             print(requester.error);
         }
+    }
+    
+    internal func updateGeolocation(geolocation: GeolocationModel, submitterLatitude: Double, submitterLongitude: Double){
+        //PRE: A geolocation model to update must be provided. This model must already exist in the database. The submitter's location cannot be more than half a mile away.
+        //POST: Updates the geolocation in the database with the model. Any errors will be contained in the requester.
+        returns = nil;
+        completed = false;
+        var dataString = "latitude=" + String(geolocation.latitude) + "&longitude=" + String(geolocation.longitude) + "&name=" + geolocation.name + "submitterLatitude=" + String(submitterLatitude) + "submitterLongitude" + String(submitterLongitude);
+        if(geolocation.description != nil){
+            dataString += "&description=" + geolocation.description!;
+        }
+        requester = RequestMaker(method: "PUT", url: "geolocations/" + String(geolocation.geolocationID), data: dataString);
+        if(auth.token != nil){
+            requester.authorize(auth.token!);
+        }
+        requester.run(setCompleted);
+    }
+    
+    internal func validateLocation(geolocation: GeolocationModel, submitterLatitude: Double, submitterLongitude: Double, valid: Bool){
+        //PRE: A geolocation model to update must be provided. This model must already exist in the database. The submitter's location cannot be more than half a mile away.
+        //POST: Validates the location on behalf of the user. If more than 50% of validations report invalid, destroys the geolocation.
+        returns = nil;
+        completed = false;
+        let dataString = "valid=" + String(Int(valid)) + "&submitterLatitude=" + String(submitterLatitude) + "&submitterLongitude=" + String(submitterLongitude);
+        requester = RequestMaker(method: "POST", url: "geolocations/" + String(geolocation.geolocationID), data: dataString);
+        if(auth.token != nil){
+            requester.authorize(auth.token!);
+        }
+        requester.run(setCompleted);
     }
 }
