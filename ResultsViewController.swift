@@ -25,16 +25,13 @@ class ResultsViewController: UITableViewController{
         super.viewDidLoad()
         
         
-       getImages()
+       //getImages()
        
         
     }
     
     func getImages() {
-        
-        
-        
-       //api.getPictures(ID: <#T##Int?#>, model: <#T##String?#>)
+
         
         
         
@@ -74,13 +71,22 @@ class ResultsViewController: UITableViewController{
         
         while api.completed == false{
             
+            print(api.completed)
+            
             sleep(1)
             
         }
         
+        print("done get geo")
+        
+        
         if let locationReturned = api.returns as? GeolocationModel {
             
+            print("if let passed")
+            
             location = locationReturned
+            
+            print(locationReturned)
             
             self.title = location?.name
             
@@ -90,21 +96,34 @@ class ResultsViewController: UITableViewController{
     
     func getReviews() {
         
+        print("getting reviews")
         
+        print(LocationId)
         
         api.getReviews(LocationId)
         
-        while api.returns == nil {
+        while api.completed == false {
+            
+            print("in loop")
             
             sleep(1)
         }
         
+        print("got done wait")
+        
         if let retrieve = api.returns as? [ReviewModel]{
+            
+            
+            print("if let passed")
+            
+            print(retrieve)
             
             reviews = retrieve
             
             
         }
+        
+        print("done")
         
         tableView.reloadData()
         

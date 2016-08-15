@@ -58,7 +58,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let getLocation = ApiInterface()
         
-        getLocation.getGeolocations(100000, latitude: 1.0, longitude: 1.0)
+        getLocation.getGeolocations(100, latitude: 1.0, longitude: 1.0)
         
         while getLocation.completed == false {
             
