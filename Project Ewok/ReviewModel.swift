@@ -31,41 +31,31 @@ public class ReviewModel{
     internal func getUser(){
         //POST: Gets the user of the review and stores it in the user variable
         user = nil;
-        let requester = RequestMaker(method: "GET", url: "users/" + String(userID));
-        requester.run(setUser);
+        let interface = ApiInterface();
+        interface.onComplete = setUser;
+        interface.getUser(userID);
     }
     
-    internal func setUser(JSON: [String: AnyObject]){
+    internal func setUser(returns: AnyObject){
         //PRE: A user JSON from the API
         //POST: Creates a user model and sets it to user
-        if let userJSON = JSON["user"] as! [String: AnyObject]!{
-            let returnedUserID = userJSON["userID"] as! Int;
-            let firstName = userJSON["firstName"] as! String;
-            let lastName = userJSON["lastName"] as! String;
-            let email = userJSON["email"] as! String;
-            user = UserModel(userID: returnedUserID, firstName: firstName, lastName: lastName, email: email, reviews: nil, geolocations: nil);
+        if let userModel = returns as? UserModel {
+            user = userModel;
         }
     }
     
     internal func getGeolocation(){
         //POST: Gets the geolocation and stores it in the geolocation variable
-        geolocation = nil;
-        let requester = RequestMaker(method: "GET", url: "geolocations/" + String(geolocationID), data: "GeoJSON=0");
-        requester.run(setGeolocation);
+        let interface = ApiInterface();
+        interface.onComplete = setGeolocation;
+        interface.getGeolocation(geolocationID);
     }
     
-    internal func setGeolocation(JSON: [String: AnyObject]){
+    internal func setGeolocation(returns: AnyObject){
         //PRE: A geolocation JSON from the API
         //POST: Creates a geolocation model and sets it to geolocation 
-        if let geolocationJSON = JSON["geolocation"] as! [String: AnyObject]! {
-            let geolocationID = geolocationJSON["geolocationID"] as! Int;
-            let latitude = (geolocationJSON["latitude"] as! NSString).doubleValue;
-            let longitude = (geolocationJSON["longitude"] as! NSString).doubleValue;
-            let name = geolocationJSON["name"] as! String;
-            let description = geolocationJSON["description"] as? String;
-            let locationID = geolocationJSON["location_id"] as? Int;
-            let locationType = geolocationJSON["location_type"] as? String;
-            geolocation = GeolocationModel(geolocationID: geolocationID, latitude: latitude, longitude: longitude, name: name, description: description, locationID: locationID, locationType: locationType);
+        if let geolocationModel = returns as? GeolocationModel {
+            geolocation = geolocationModel;
         }
     }
 }

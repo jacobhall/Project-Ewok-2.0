@@ -41,10 +41,11 @@ public class ApiInterface{
      getPicture = PictureModel or NONE (See function comments)
     */
     //Properties
-    var returns: AnyObject?;
-    var completed: Bool?;
-    var requester: RequestMaker!;
-    let auth = Authenticator.sharedInstance;
+    var returns: AnyObject?;                    //The return value of the function
+    var completed: Bool?;                       //Whether or not the function is completed
+    var requester: RequestMaker!;               //The requester for this interface
+    var onComplete: ((AnyObject) -> Void)?;     //The completion handler for returns, if need be
+    let auth = Authenticator.sharedInstance;    //The authenticator to authorize requests
     
     //Constructors
     init(){
@@ -53,7 +54,32 @@ public class ApiInterface{
     
     //Functions
     internal func setCompleted(){
-        self.completed = true;
+        if(onComplete != nil && returns != nil){
+            onComplete!(returns!);
+        }
+        completed = true;
+    }
+    
+    ///USERS
+    internal func getUser(userID: Int){
+        //POST: Gets the user of the review and stores it in the user variable
+        returns = nil;
+        completed = false;
+        requester = RequestMaker(method: "GET", url: "users/" + String(userID));
+        requester.run(setUser);
+    }
+    
+    internal func setUser(JSON: [String: AnyObject]){
+        //PRE: A user JSON from the API
+        //POST: Creates a user model and sets it to user
+        if let userJSON = JSON["user"] as! [String: AnyObject]!{
+            let returnedUserID = userJSON["userID"] as! Int;
+            let firstName = userJSON["firstName"] as! String;
+            let lastName = userJSON["lastName"] as! String;
+            let email = userJSON["email"] as! String;
+            returns = UserModel(userID: returnedUserID, firstName: firstName, lastName: lastName, email: email, reviews: nil, geolocations: nil);
+        }
+        setCompleted();
     }
     
     ///GEOLOCATIONS
@@ -93,6 +119,7 @@ public class ApiInterface{
         //      if there is an error, returns is set to an empty array
         if(requester.error == nil && JSON["message"] == nil && JSON["error"] == nil){
             returns = JSON;
+            setCompleted();
         }
     }
     
@@ -143,7 +170,7 @@ public class ApiInterface{
             }
             returns = geolocations;
         }
-        completed = true;
+        setCompleted();
     }
     
     internal func getGeolocation(geolocationID: Int){
@@ -169,7 +196,7 @@ public class ApiInterface{
             let geolocation = GeolocationModel(geolocationID: geolocationID, latitude: latitude, longitude: longitude, name: name, description: description, locationID: locationID, locationType: locationType)
             returns = geolocation;
         }
-        completed = true;
+        setCompleted();
     }
     
     internal func createNewGeolocation(latitude latitude: Double, longitude: Double, submitterLatitude: Double, submitterLongitude: Double, name: String, description: String? = nil, locationID: Int? = nil, locationType: String? = nil, token: String? = nil) {
@@ -277,7 +304,7 @@ public class ApiInterface{
             }
             returns = reviews;
         }
-        completed = true;
+        setCompleted();
     }
     
     internal func getReview(reviewID: Int){
@@ -301,7 +328,7 @@ public class ApiInterface{
             let review = ReviewModel(reviewID: reviewID, userID: userID, geolocationID: geolocationID, rating: rating, comment: comment);
             returns = review;
         }
-        completed = true;
+        setCompleted();
     }
     
     internal func createNewReview(geolocationID geolocationID: Int, rating: Int, comment: String? = nil){
@@ -398,7 +425,7 @@ public class ApiInterface{
             }
             returns = pictures;
         }
-        completed = true;
+        setCompleted();
     }
     
     internal func getPicture(pictureID: Int, model: Bool = false, completion: ((NSData) -> Void)? = nil){
@@ -413,7 +440,7 @@ public class ApiInterface{
         }
         else {
             requester.run(completion!);
-            completed = true;
+            setCompleted();
         }
     }
     
@@ -427,7 +454,7 @@ public class ApiInterface{
         }
         else {
             requester.run(completion!);
-            completed = true;
+            setCompleted();
         }
     }
     
@@ -443,7 +470,7 @@ public class ApiInterface{
             let picture = PictureModel(pictureID: pictureID, attachedModel: attachedType, attachedID: attachedID, filePath: filePath);
             returns = picture;
         }
-        completed = true;
+        setCompleted();
     }
     
     internal func createNewPicture(image image: UIImage, attachedModel: String, attachedID: Int, getModel: Bool = false){

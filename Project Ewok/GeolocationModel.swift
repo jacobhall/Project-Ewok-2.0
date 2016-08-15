@@ -36,53 +36,29 @@ public class GeolocationModel{
     internal func getReviews(){
         //POST: sets the reviews to an array of corresponding review models
         reviews = nil;
-        let requester = RequestMaker(method: "GET", url: "reviews", data: "geolocationID=" + String(geolocationID));
-        requester.run(setReviews);
+        let interface = ApiInterface();
+        interface.onComplete = setReviews;
+        interface.getReviews(geolocationID);
     }
     
-    internal func setReviews(JSON: [String: AnyObject]){
+    internal func setReviews(returns: AnyObject){
         //PRE: A JSON created by a request
         //POST: sets reviews to an array of review models, created from the JSON
-        if let reviewsJSON = JSON["reviews"] as! NSArray! {
-            var reviewArray = [ReviewModel]();
-            for reviewJSON in reviewsJSON {
-                let reviewID = reviewJSON["reviewID"] as! Int;
-                let userID = (reviewJSON["userID"] as! NSString).integerValue;
-                let comment = reviewJSON["comment"] as? String;
-                let rating = (reviewJSON["rating"] as! NSString).integerValue;
-                let geolocationID = (reviewJSON["geolocationID"] as! NSString).integerValue;
-                let review = ReviewModel(reviewID: reviewID, userID: userID, geolocationID: geolocationID, rating: rating, comment: comment);
-                reviewArray.append(review);
-            }
-            reviews = reviewArray;
-        }
-        else{
-            reviews = [ReviewModel]();
+        if let reviewModels = returns as? [ReviewModel]{
+            reviews = reviewModels;
         }
     }
     
     internal func getPictures(){
         pictures = nil;
-        let requester = RequestMaker(method: "GET", url: "pictures", data: "ID=" + String(geolocationID) + "&model=geolocation");
-        requester.run(setPictures);
+        let interface = ApiInterface();
+        interface.onComplete = setPictures;
+        interface.getPictures(geolocationID, model: "geolocation");
     }
     
-    internal func setPictures(JSON: [String: AnyObject]){
-        if let picturesJSON = JSON["pictures"] as! NSArray! {
-            var pictureArray = [PictureModel]();
-            for pictureJSON in picturesJSON {
-                let pictureID = pictureJSON["pictureID"] as! Int;
-                var attachedType = pictureJSON["attached_type"] as! String;
-                attachedType = attachedType.substringFromIndex(attachedType.startIndex.advancedBy(4));
-                let attachedID = (pictureJSON["attached_id"] as! NSString).integerValue;
-                let filePath = pictureJSON["filePath"] as! String;
-                let picture = PictureModel(pictureID: pictureID, attachedModel: attachedType, attachedID: attachedID, filePath: filePath);
-                pictureArray.append(picture);
-            }
-            pictures = pictureArray;
-        }
-        else{
-            pictures = [PictureModel]();
+    internal func setPictures(returns: AnyObject){
+        if let pictureModels = returns as? [PictureModel] {
+            pictures = pictureModels;
         }
     }
     
