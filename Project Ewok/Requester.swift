@@ -15,10 +15,10 @@ public class Requester {
      It also has an optional onComplete function that is called when setComplete is done.
      setComplete should be called at the end of any request.
      */
-    var requester: RequestMaker!;
-    var completed: Bool!;
-    var onComplete: (()->Void)?;
-    internal func setCompleted() {
+    var requester: RequestMaker!;       //The request maker
+    var completed: Bool!;               //A variable to tell when the function is completed
+    var onComplete: (()->Void)?;        //A function that is called when the request is completed
+    internal func setCompleted() {      //Sets the complete variable and calls onComplete
         if(onComplete != nil){
             onComplete!();
         }

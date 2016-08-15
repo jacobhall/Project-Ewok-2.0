@@ -42,7 +42,7 @@ class RequestMaker{
     //Constants
     let Session = NSURLSession.sharedSession(); //The session
     let BaseURL = "http://chitna.asap.um.maine.edu/projectcrowdsource/public/api/"; //The base URL for the API
-//    let BaseURL = "http://localhost:8888/Project-Ewok/public/api/";
+//    let BaseURL = "http://localhost:8888/Project-Ewok/public/api/";   //The local host URL
     
     //Constructor
     init(method: String, url: String, data: NSData?){
