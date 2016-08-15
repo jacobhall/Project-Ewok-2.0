@@ -13,11 +13,12 @@ public class GeolocationModel{
     let geolocationID: Int;         //The geolocation's ID
     var latitude: Double;           //The latitude of the geolocation
     var longitude: Double;          //The longitude of the geolocation
-    var name: String;              //The name of the geolocation
+    var name: String;               //The name of the geolocation
     var description: String?;       //The description of the geolocation
     var locationID: Int?;           //The id of the location attached to the geolocation
     var locationType: String?;      //The type of the location, which is the FILEPATH!!! NOT THE ACTUAL THING!!!
-    var reviews: [ReviewModel]?;
+    var reviews: [ReviewModel]?;    //The reviews of the geolocation
+    var pictures: [PictureModel]?;  //The pictures of the geolocation
     //var location: [Location]?;    //Need to be implementated
     
     //Constructors
@@ -54,6 +55,34 @@ public class GeolocationModel{
                 reviewArray.append(review);
             }
             reviews = reviewArray;
+        }
+        else{
+            reviews = [ReviewModel]();
+        }
+    }
+    
+    internal func getPictures(){
+        pictures = nil;
+        let requester = RequestMaker(method: "GET", url: "pictures", data: "ID=" + String(geolocationID) + "&model=geolocation");
+        requester.run(setPictures);
+    }
+    
+    internal func setPictures(JSON: [String: AnyObject]){
+        if let picturesJSON = JSON["pictures"] as! NSArray! {
+            var pictureArray = [PictureModel]();
+            for pictureJSON in picturesJSON {
+                let pictureID = pictureJSON["pictureID"] as! Int;
+                var attachedType = pictureJSON["attached_type"] as! String;
+                attachedType = attachedType.substringFromIndex(attachedType.startIndex.advancedBy(4));
+                let attachedID = (pictureJSON["attached_id"] as! NSString).integerValue;
+                let filePath = pictureJSON["filePath"] as! String;
+                let picture = PictureModel(pictureID: pictureID, attachedModel: attachedType, attachedID: attachedID, filePath: filePath);
+                pictureArray.append(picture);
+            }
+            pictures = pictureArray;
+        }
+        else{
+            pictures = [PictureModel]();
         }
     }
     

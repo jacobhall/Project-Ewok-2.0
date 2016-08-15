@@ -11,7 +11,7 @@ import UIKit
 
 extension UIImageView {
     /**
-     This extension allows you to simply call setImageFromID(pictureID) to set the image to that picture in the DB asynchronously
+     This extension allows you to simply call setImageFromPictureID(pictureID) to set the image to that picture in the DB asynchronously
      
      Example:
      var image = UIImageView
