@@ -201,13 +201,11 @@ public class Authenticator{
         if(requester.error == nil && JSON["message"] == nil && JSON["error"] == nil){
             //let JSON = requester.decodedJSON!["user"]!;
             let userJSON = JSON["user"] as! [String: AnyObject];
-            let email = userJSON["email"] as? String;
+            let email = userJSON["email"] as! String;
             let firstName = userJSON["firstName"] as? String;
             let lastName = userJSON["lastName"] as? String;
-            let userID = userJSON["userID"] as? Int;
-            if(email != nil && userID != nil){
-                self.user = UserModel(userID: userID!, firstName: firstName, lastName: lastName, email: email!);
-            }
+            let userID = userJSON["userID"] as! Int;
+            self.user = UserModel(userID: userID, firstName: firstName, lastName: lastName, email: email);
             if let reviewsJSON = JSON["reviews"] as! NSArray! {
                 var reviews = [ReviewModel]();
                 for reviewJSON in reviewsJSON{

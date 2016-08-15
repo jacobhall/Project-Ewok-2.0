@@ -209,7 +209,7 @@ public class ApiInterface{
         }
     }
     
-    internal func updateGeolocation(geolocation: GeolocationModel, submitterLatitude: Double, submitterLongitude: Double){
+    internal func updateGeolocation(geolocationModel geolocation: GeolocationModel, submitterLatitude: Double, submitterLongitude: Double){
         //PRE: A geolocation model to update must be provided. This model must already exist in the database. The submitter's location cannot be more than half a mile away.
         //POST: Updates the geolocation in the database with the model. Any errors will be contained in the requester.
         returns = nil;
@@ -304,7 +304,7 @@ public class ApiInterface{
         completed = true;
     }
     
-    internal func createNewReview(geolocationID: Int, rating: Int, comment: String? = nil){
+    internal func createNewReview(geolocationID geolocationID: Int, rating: Int, comment: String? = nil){
         //PRE: geolocationID must match a geolocation in the DB. rating must be between 0 and 5.
         //POST: creates a geolocation in the database and sets returns to it
         returns = nil;
@@ -361,7 +361,7 @@ public class ApiInterface{
     }
     
     ///PICTURES
-    internal func getPictures(ID ID: Int? = nil, model: String? = nil){
+    internal func getPictures(ID: Int? = nil, model: String? = nil){
         //PRE: ID and model can narrow your search
         //POST: creates a request and sets returns to an array of pictures using setPictures
         returns = nil;
@@ -417,6 +417,15 @@ public class ApiInterface{
         }
     }
     
+    internal func getPicture(itemID itemID: Int, model: String, completion: ((NSData) -> Void)){
+        returns = nil;
+        completed = false;
+        let dataString = "id=" + String(itemID) + "&model=" + model;
+        requester = RequestMaker(method: "GET", url: "firstPicture", data: dataString);
+        requester.run(completion);
+        completed = true;
+    }
+    
     internal func setPicture(JSON: [String: AnyObject]){
         //PRE: A picture JSON from a request
         //POST: creates a picture model from the JSON
@@ -432,14 +441,15 @@ public class ApiInterface{
         completed = true;
     }
     
-    internal func createNewPicture(image: UIImage, attachedModel: String, attachedID: Int){
+    internal func createNewPicture(image image: UIImage, attachedModel: String, attachedID: Int, getModel: Bool = false){
+        returns = nil;
+        completed = false;
         requester = RequestMaker(method: "POST", url: "pictures");
         if(auth.token != nil){
             requester.authorize(auth.token!);
         }
-        let boundary = "--BOUNDARY--BOUNDARY--BOUNDARY--";
-        requester.request.setValue("multipart/form-data; boundary =\(boundary)", forHTTPHeaderField: "Content-Type");
         if let imageData = UIImagePNGRepresentation(image) {
+            let boundary = "--BOUNDARY--BOUNDARY--BOUNDARY--";
             let body = NSMutableData();
             let fileName = "iOSPicture.png";
             let mimetype = "image/png";
@@ -466,14 +476,52 @@ public class ApiInterface{
             body.appendData("--\(boundary)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
             
             //Adding it to the requester
+            requester.request.setValue("multipart/form-data; boundary =\(boundary)", forHTTPHeaderField: "Content-Type");
             requester.request.HTTPBody = body;
         }
-        requester.run();
+        if(getModel == false){
+            requester.run(setCompleted);
+        }
+        else{
+            requester.run(getPictureAfterCreated);
+        }
     }
     
-    internal func updatePictre(picture: PictureModel){
+    internal func getPictureAfterCreated(JSON: [String: AnyObject]){
+        //PRE: a JSON from a creation request
+        //POST: passes the ID to getPicture
+        if let pictureID = JSON["ID"] as? Int {
+            getPicture(pictureID);
+        }
+        else{
+            //TO DO: ERROR PROMPTS
+            print(requester.error);
+        }
+    }
+    
+    internal func updatePictre(picture: PictureModel, image: UIImage){
+        //PRE: A pictureModel obtained from the DB and an image
+        //POST: updates the picture model in the DB with the new image. DOES NOT CHANGE ANYTHING ELSE.
         returns = nil;
         completed = false;
-        
+        requester = RequestMaker(method: "POST", url: "pictures/" + String(picture.pictureID));
+        if let imageData = UIImagePNGRepresentation(image) {
+            let boundary = "--BOUNDARY--BOUNDARY--BOUNDARY--";
+            let body = NSMutableData();
+            let fileName = "iOSPicture.png";
+            let mimetype = "image/png";
+            
+            //Image body
+            body.appendData("--\(boundary)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData("Content-Disposition:form-data; name=\"image\"; filename=\"\(fileName)\"\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData("Content-Type: \(mimetype)\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            body.appendData(imageData)
+            body.appendData("\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+            
+            //Adding it to the requster
+            requester.request.setValue("multipart/form-data; boundary =\(boundary)", forHTTPHeaderField: "Content-Type");
+            requester.request.HTTPBody = body;
+        }
+        requester.run(setCompleted);
     }
 }

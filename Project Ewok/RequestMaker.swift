@@ -33,7 +33,7 @@ class RequestMaker{
     //Properties
     var requestURL: NSURL;              //The request's url
     var request: NSMutableURLRequest;   //The request itslef
-    var rawData = NSData();            //The data returned from the request
+    var rawData = NSData();             //The data returned from the request
     var decodedJSON: Payload?;          //Holds the decoded data
     var ready: Bool?;                   //Whether or not the data is ready to use
     var status: Int?;                   //Holds the status code of the response

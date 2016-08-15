@@ -18,17 +18,24 @@ extension UIImageView {
      image.setImageFromID(3);
      */
     
-    public func setImageFromID(pictureID: Int){
+    public func setImageFromAttachedID(ID: Int, model: String){
+        //PRE: the ID of the attached model and the name of the attached model (farm, geolocation, etc.)
+        //POST: sets the image of the UIImageView to the first image found from that model
+        let interface = ApiInterface();
+        interface.getPicture(itemID: ID, model: model, completion: setImageFromData);
+    }
+    
+    public func setImageFromPictureID(pictureID: Int){
         //PRE: the picture ID must match a picture in the DB
         //POST: sets the image to the image of the picture with the ID specified
         let interface = ApiInterface();
         interface.getPicture(pictureID, completion: setImageFromData);
     }
     
-    public func setImageFromModel(picture: PictureModel){
+    public func setImageFromPictureModel(picture: PictureModel){
         //PRE: the picture model must have been grabbed from the DB
         //POST: sets the image to the image of the picture model specified
-        setImageFromID(picture.pictureID);
+        setImageFromPictureID(picture.pictureID);
     }
     
     public func setImageFromData(data: NSData){
@@ -39,6 +46,6 @@ extension UIImageView {
 extension UIImage {
     internal func upload(attachedModel: String, attachedID: Int){
         let interface = ApiInterface();
-        interface.createNewPicture(self, attachedModel: attachedModel, attachedID: attachedID);
+        interface.createNewPicture(image: self, attachedModel: attachedModel, attachedID: attachedID);
     }
 }
