@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class ApiInterface{
+public class ApiInterface: Requester {
     /**
      Basic usage:
      
@@ -23,6 +23,9 @@ public class ApiInterface{
      
      If you need to wait for the operation to complete, completed will be set to
      true upon process completion.
+     
+     You can set onComplete or onCompleteWithReturns to call the function
+     when the request has been completed.
      
      Make sure that, when you are obtaining a returns, cast it to the right type.
      
@@ -41,21 +44,23 @@ public class ApiInterface{
      getPicture = PictureModel or NONE (See function comments)
     */
     //Properties
-    var returns: AnyObject?;                    //The return value of the function
-    var completed: Bool?;                       //Whether or not the function is completed
-    var requester: RequestMaker!;               //The requester for this interface
-    var onComplete: ((AnyObject) -> Void)?;     //The completion handler for returns, if need be
-    let auth = Authenticator.sharedInstance;    //The authenticator to authorize requests
+    var returns: AnyObject?;                                //The return value of the function
+    var onCompleteWithReturns: ((AnyObject) -> Void)?;      //The completion handler for returns, if need be
+    let auth = Authenticator.sharedInstance;                //The authenticator to authorize requests
     
     //Constructors
-    init(){
-        
+    override init(){
+        super.init();
     }
     
     //Functions
-    internal func setCompleted(){
-        if(onComplete != nil && returns != nil){
-            onComplete!(returns!);
+    override internal func setCompleted(){
+        //POST: sets complete to true and runs any completion handlers
+        if(onCompleteWithReturns != nil && returns != nil){
+            onCompleteWithReturns!(returns!);
+        }
+        if(onComplete != nil){
+            onComplete!();
         }
         completed = true;
     }

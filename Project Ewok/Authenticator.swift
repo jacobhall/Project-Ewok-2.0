@@ -11,7 +11,7 @@ import Foundation
 //Class-independent constants
 let TokenKey = "token";
 
-public class Authenticator{
+public class Authenticator: Requester {
     /**
      Basic usage:
      get the authenticator using the shared instance
@@ -52,6 +52,9 @@ public class Authenticator{
      Note that user may already be set! If you are using an Authenticator already
      instantiated from another place, it's quite possible that user is already calculated.
      Bear this in mind when using it.
+     
+     As with all requesters, this also have a onComplete, setCompleted, and completed variables
+     that allow you to asynchronously run functions.
     */
     
     //Shared static
@@ -59,14 +62,13 @@ public class Authenticator{
     
     //Properties
     var token: String?;             //The token
-    var completed: Bool?;           //A boolean to tell when the token has been set
-    var requester: RequestMaker!;   //The request
     var user: UserModel?;           //Holds user data when it is present
     var valid: Bool?                //Determines whether the token is valid
     
     //Constructors
     private init(_ token: String?){
         //POST: sets the token (probably shouldn't use) and ALSO refreshes the token
+        super.init();
         if(token != nil){
             self.token = token!;
             self.refreshAndGetUser();
@@ -74,11 +76,11 @@ public class Authenticator{
         else{
             self.token = nil;
             self.valid = false;
-            self.completed = true;
+            setCompleted();
         }
     }
     
-    private convenience init(){
+    private convenience override init(){
         //POST: Looks in the user's defaults to find a token. If none exists, token is null
         let defaults = NSUserDefaults.standardUserDefaults();
         let storedToken: String! = defaults.objectForKey(TokenKey) as! String!;
@@ -91,13 +93,6 @@ public class Authenticator{
     }
     
     //Mutators
-    internal func waitForCompletion(){
-        //Just waits until the authenticator completes its current task.
-        while(self.completed == false){
-            sleep(1);
-        }
-    }
-    
     internal func setToken(JSON: [String: AnyObject]) -> Void {
         //PRE: a JSON dictionary
         //POST: sets the token if one is found in the JSON
@@ -111,12 +106,7 @@ public class Authenticator{
         else{
             self.valid = false;
         }
-        self.completed = true;
-    }
-    
-    internal func setCompleted(){
-        //POST: Sets the completed variable to true upon completion
-        self.completed = true;
+        setCompleted();
     }
     
     //Functions
@@ -134,7 +124,7 @@ public class Authenticator{
         self.completed = false;
         let data = "email="+email+"&password="+password+"&password_confirmation="+confirmed+"&firstName="+firstName+"&lastName="+lastName;
         requester = RequestMaker(method: "POST", url: "register", data: data);
-        requester.run(setCompleted());
+        requester.run(setCompleted);
     }
     
     internal func registerAndAuthenticate(email: String, password: String, confirmed: String, firstName: String, lastName: String){
@@ -150,7 +140,7 @@ public class Authenticator{
         }
         if(requester.error == nil){
             self.authenticate(email, password);
-            self.completed = true;
+            setCompleted();
         }
     }
     
@@ -176,7 +166,7 @@ public class Authenticator{
         requester = RequestMaker(method: "POST", url: "destroyToken");
         if(self.token != nil){
             requester.authorize(self.token!);
-            requester.run(setCompleted());
+            requester.run(setCompleted);
         }
     }
     
@@ -192,7 +182,7 @@ public class Authenticator{
             requester.run(setUser);
         }
         else{
-            self.completed = true;
+            setCompleted();
         }
     }
     
@@ -240,7 +230,7 @@ public class Authenticator{
             self.user = nil;
             self.valid = false;
         }
-        self.completed = true;
+        setCompleted();
     }
     
     internal func refreshAndGetUser(){

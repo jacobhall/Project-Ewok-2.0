@@ -30,7 +30,7 @@ public class UserModel{
         //POST: pulls all the reviews that is associated with the user
         reviews = nil;
         let interface = ApiInterface();
-        interface.onComplete = setReviews;
+        interface.onCompleteWithReturns = setReviews;
         interface.getReviews(userID: userID);
     }
     

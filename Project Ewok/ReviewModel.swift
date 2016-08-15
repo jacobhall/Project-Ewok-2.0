@@ -32,7 +32,7 @@ public class ReviewModel{
         //POST: Gets the user of the review and stores it in the user variable
         user = nil;
         let interface = ApiInterface();
-        interface.onComplete = setUser;
+        interface.onCompleteWithReturns = setUser;
         interface.getUser(userID);
     }
     
@@ -47,7 +47,7 @@ public class ReviewModel{
     internal func getGeolocation(){
         //POST: Gets the geolocation and stores it in the geolocation variable
         let interface = ApiInterface();
-        interface.onComplete = setGeolocation;
+        interface.onCompleteWithReturns = setGeolocation;
         interface.getGeolocation(geolocationID);
     }
     

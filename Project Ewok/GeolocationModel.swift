@@ -37,7 +37,7 @@ public class GeolocationModel{
         //POST: sets the reviews to an array of corresponding review models
         reviews = nil;
         let interface = ApiInterface();
-        interface.onComplete = setReviews;
+        interface.onCompleteWithReturns = setReviews;
         interface.getReviews(geolocationID);
     }
     
@@ -52,7 +52,7 @@ public class GeolocationModel{
     internal func getPictures(){
         pictures = nil;
         let interface = ApiInterface();
-        interface.onComplete = setPictures;
+        interface.onCompleteWithReturns = setPictures;
         interface.getPictures(geolocationID, model: "geolocation");
     }
     
