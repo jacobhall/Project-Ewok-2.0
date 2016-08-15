@@ -39,7 +39,7 @@ public class ApiInterface{
      destroyReview = NONE
      getPictures = [PictureModel]
      getPicture = PictureModel or NONE (See function comments)
-     */
+    */
     //Properties
     var returns: AnyObject?;
     var completed: Bool?;
@@ -417,13 +417,18 @@ public class ApiInterface{
         }
     }
     
-    internal func getPicture(itemID itemID: Int, model: String, completion: ((NSData) -> Void)){
+    internal func getPicture(itemID itemID: Int, model: String, completion: ((NSData) -> Void)? = nil){
         returns = nil;
         completed = false;
         let dataString = "id=" + String(itemID) + "&model=" + model;
         requester = RequestMaker(method: "GET", url: "firstPicture", data: dataString);
-        requester.run(completion);
-        completed = true;
+        if(completion == nil){
+            requester.run(setCompleted);
+        }
+        else {
+            requester.run(completion!);
+            completed = true;
+        }
     }
     
     internal func setPicture(JSON: [String: AnyObject]){

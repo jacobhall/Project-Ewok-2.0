@@ -58,7 +58,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let getLocation = ApiInterface()
         
-        getLocation.getGeolocations(100, latitude: 1.0, longitude: 1.0)
+        getLocation.getGeolocations()
         
         while getLocation.completed == false {
             
@@ -184,6 +184,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        let api = ApiInterface();
+        
+        api.getPicture(itemID: geoLocations[indexPath.row].geolocationID, model: "geolocation");
+        
         let cell: TableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! TableViewCell
         
         cell.titleLabel.text = geoLocations[indexPath.row].name
@@ -192,7 +196,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         cell.ratingImage.image = imageHandle().getImageForRating(rating: 2.5)
         
-        //cell.coverImage.image =
+        while(api.completed == false){
+            
+        }
+        
+        cell.coverImage.image = UIImage(data: api.requester.rawData);
         
         return cell
     }

@@ -22,23 +22,16 @@ class ResultsViewController: UITableViewController{
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        
-        
-       //getImages()
-       
         
     }
     
     func getImages() {
 
-        
-        
+        api.getPictures(location!.geolocationID, model: "geolocation");
         
         while api.completed == false {
-            
-           sleep(1)
-            
             
         }
         
@@ -61,6 +54,8 @@ class ResultsViewController: UITableViewController{
         getLocationInfo()
         
         getReviews()
+        
+        getImages()
     }
     
     func getLocationInfo(){
@@ -72,8 +67,6 @@ class ResultsViewController: UITableViewController{
         while api.completed == false{
             
             print(api.completed)
-            
-            sleep(1)
             
         }
         
@@ -106,7 +99,6 @@ class ResultsViewController: UITableViewController{
             
             print("in loop")
             
-            sleep(1)
         }
         
         print("got done wait")
