@@ -64,6 +64,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             sleep(1)
             
+            print(getLocation.returns)
+            
         }
         
         if let results = getLocation.returns as? [GeolocationModel] {
