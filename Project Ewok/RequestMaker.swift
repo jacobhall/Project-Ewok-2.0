@@ -42,6 +42,7 @@ class RequestMaker{
     //Constants
     let Session = NSURLSession.sharedSession(); //The session
     let BaseURL = "http://chitna.asap.um.maine.edu/projectcrowdsource/public/api/"; //The base URL for the API
+//    let BaseURL = "http://localhost:8888/Project-Ewok/public/api/";
     
     //Constructor
     init(method: String, url: String, data: NSData?){
@@ -117,6 +118,9 @@ class RequestMaker{
                 self.decodeData();
                 if(self.decodedJSON != nil){
                     completion(self.decodedJSON!);
+                }
+                else{
+                    completion(Payload());
                 }
             }
             if let httpResponse = response as? NSHTTPURLResponse {
