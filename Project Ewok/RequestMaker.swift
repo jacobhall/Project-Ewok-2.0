@@ -90,14 +90,14 @@ class RequestMaker{
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
             
+            if let httpResponse = response as? NSHTTPURLResponse {
+                self.status = httpResponse.statusCode;
+            }
             if(data != nil){
                 self.rawData = data!;
                 self.decodeData();
             }
             completion(self.rawData);
-            if let httpResponse = response as? NSHTTPURLResponse {
-                self.status = httpResponse.statusCode;
-            }
             self.ready = true;
         });
         task.resume();
@@ -113,6 +113,9 @@ class RequestMaker{
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
             
+            if let httpResponse = response as? NSHTTPURLResponse {
+                self.status = httpResponse.statusCode;
+            }
             if(data != nil){
                 self.rawData = data!;
                 self.decodeData();
@@ -123,8 +126,8 @@ class RequestMaker{
                     completion(Payload());
                 }
             }
-            if let httpResponse = response as? NSHTTPURLResponse {
-                self.status = httpResponse.statusCode;
+            else{
+                completion(Payload());
             }
             self.ready = true;
         });
@@ -139,11 +142,10 @@ class RequestMaker{
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
             
-            self.rawData = data!;
-            
             if let httpResponse = response as? NSHTTPURLResponse {
                 self.status = httpResponse.statusCode;
             }
+            self.rawData = data!;
             self.decodeData();
             completion();
             self.ready = true;
@@ -159,11 +161,11 @@ class RequestMaker{
         let task = Session.dataTaskWithRequest(request, completionHandler:  {
             (data, response, error)->Void in
             
-            self.rawData = data!;
-            self.ready = true;
             if let httpResponse = response as? NSHTTPURLResponse {
                 self.status = httpResponse.statusCode;
             }
+            self.rawData = data!;
+            self.ready = true;
             self.decodeData();
         });
         task.resume();

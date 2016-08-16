@@ -50,5 +50,49 @@ extension UIView {
         // Add the animation to the View's layer
         self.layer.addAnimation(slideInFromLeftTransition, forKey: "slideInFromLeftTransition")
     }
+}
 
+extension UIViewController {
+    func showAlert(title title: String, message: String?, preferredStyle: UIAlertControllerStyle = UIAlertControllerStyle.Alert, actions: [UIAlertAction]? = nil){
+        //PRE: The title and message must be provided. An optional style can be modified as well. Actions MUST be UIALertActions and must be in array form, even if there is only one.
+        //POST: Displays a dismissable alert over the current view
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle);
+        if(actions != nil){
+            for action in actions! {
+                alertController.addAction(action);
+            }
+        }
+        let dismissButton = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel) {
+            (actionButton: UIAlertAction) in
+            
+        }
+        alertController.addAction(dismissButton);
+        dispatch_async(dispatch_get_main_queue()) {
+            self.presentViewController(alertController, animated: false, completion: nil);
+        }
+    }
+    
+    func showAlert(title title: String, requester: RequestMaker){
+        //PRE: a title and a request maker must be provided
+        //POST: Interprets the status code and prints an error based on it
+        //NOTE: DO NOT USE THIS FOR THE AUTHENTICATION - THIS ONLY APPLIES TO RESOURCES
+        if(requester.error != nil && requester.status != nil){
+            var message: String;
+            switch(requester.status!){
+            case 401:
+                message = "You need to log in";
+            case 403:
+                message = "You are not permitted to do that"
+            case 400:
+                message = "The request is incomplete or you are too far away";
+            case 410:
+                message = "What you are modifying doesn't exist";
+            case 409:
+                message = "What you are creating already exists";
+            default:
+                message = "An unknown error has occured";
+            }
+            showAlert(title: title, message: message);
+        }
+    }
 }

@@ -87,7 +87,7 @@ public class ApiInterface: Requester {
         setCompleted();
     }
     
-    ///GEOLOCATIONS
+    //////////GEOLOCATIONS//////////
     internal func getRawGeolocations(radius: Int? = nil, latitude: Double? = nil, longitude: Double? = nil, unit: String? = nil, locationType: String? = nil, name: String? = nil, operatingTime: String? = nil) {
         //PRE: Any of the options above are optional but, if radius is set, so must latitude and longitude
         //POST: sets returns to the raw GeoJSON. Useful when using a mapping application like Google Maps
@@ -236,8 +236,7 @@ public class ApiInterface: Requester {
             getGeolocation(geolocationID);
         }
         else{
-            //TO DO: ERROR PROMPTS
-            print(requester.error);
+            setCompleted();
         }
     }
     
@@ -270,7 +269,7 @@ public class ApiInterface: Requester {
         requester.run(setCompleted);
     }
     
-    ///REVIEWS
+    //////////REVIEWS//////////
     internal func getReviews(geolocationID: Int? = nil, userID: Int? = nil){
         //PRE: both geolocationID and userID can be used to narrow the search
         //POST: makes a request based on the above and sets reviews to an array of review models
@@ -359,8 +358,7 @@ public class ApiInterface: Requester {
             getReview(reviewID);
         }
         else{
-            //TO DO: ERROR PROMPTS
-            print(requester.error);
+            setCompleted();
         }
     }
     
@@ -392,7 +390,7 @@ public class ApiInterface: Requester {
         requester.run(setCompleted);
     }
     
-    ///PICTURES
+    //////////PICTURES//////////
     internal func getPictures(ID: Int? = nil, model: String? = nil){
         //PRE: ID and model can narrow your search
         //POST: creates a request and sets returns to an array of pictures using setPictures
@@ -486,6 +484,7 @@ public class ApiInterface: Requester {
             requester.authorize(auth.token!);
         }
         if let imageData = UIImagePNGRepresentation(image) {
+            print("HERE!");
             let boundary = "--BOUNDARY--BOUNDARY--BOUNDARY--";
             let body = NSMutableData();
             let fileName = "iOSPicture.png";
@@ -515,6 +514,7 @@ public class ApiInterface: Requester {
             //Adding it to the requester
             requester.request.setValue("multipart/form-data; boundary =\(boundary)", forHTTPHeaderField: "Content-Type");
             requester.request.HTTPBody = body;
+            print("REQUEST MADE");
         }
         if(getModel == false){
             requester.run(setCompleted);
@@ -531,8 +531,7 @@ public class ApiInterface: Requester {
             getPicture(pictureID);
         }
         else{
-            //TO DO: ERROR PROMPTS
-            print(requester.error);
+            setCompleted();
         }
     }
     

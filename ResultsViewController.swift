@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResultsViewController: UITableViewController{
+class ResultsViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     var LocationId = Int()
     
@@ -145,7 +145,6 @@ class ResultsViewController: UITableViewController{
     }
     
     // Adds a alert for camera and photo library
-    
     func addImageAction() {
         
         let actionSheetController: UIAlertController = UIAlertController(title: "Add Image to location", message: nil, preferredStyle: .ActionSheet)
@@ -159,32 +158,64 @@ class ResultsViewController: UITableViewController{
         
         let saveActionButton: UIAlertAction = UIAlertAction(title: "Take Image", style: .Default)
         { action -> Void in
-            
-            
-            
-            
             // Code for taking an image
             
-            
-            
+            //Checking the camera exists
+            if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+                //If it does, we allow them to take a picture
+                let picker = UIImagePickerController();
+                picker.delegate = self;
+                picker.allowsEditing = false;
+                picker.sourceType = UIImagePickerControllerSourceType.Camera;
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.presentViewController(picker, animated: true, completion: nil);
+                });
+            }
+            else{
+                //If not, we display an error
+                self.showAlert(title: "No camera available", message: nil);
+            }
         }
         actionSheetController.addAction(saveActionButton)
         
         let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .Default)
         { action -> Void in
-            
-            
-            
             // code for getting image from library
-            
-            
-            
+            let picker = UIImagePickerController();
+            picker.delegate = self;
+            picker.allowsEditing = false;
+            picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+            dispatch_async(dispatch_get_main_queue(), { 
+                self.presentViewController(picker, animated: true, completion: nil);
+            });
         }
         actionSheetController.addAction(deleteActionButton)
         
         self.presentViewController(actionSheetController, animated: true, completion: nil)
         
         
+    }
+    
+    //Called when a picture is taken and/or selected
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage!; //The UIImage taken
+        api.onComplete = errorPrompt;
+        api.createNewPicture(image: image, attachedModel: "geolocation", attachedID: LocationId);
+        picker.dismissViewControllerAnimated(true, completion: nil);
+    }
+    
+    func errorPrompt(){
+        if(api.requester.error != nil){
+            showAlert(title: "Could not create picture", requester: api.requester);
+        }
+        else{
+            showAlert(title: "Image created", message: nil);
+        }
+    }
+    
+    //Called when the user cancels image picking
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true, completion: nil);
     }
     
     // preform segue to reviewViewController
@@ -248,7 +279,7 @@ class ResultsViewController: UITableViewController{
             
             cell.addImageButton.addTarget(self, action: "addImageAction", forControlEvents: .TouchUpInside)
         
-            cell.createReviewButton.addTarget(self, action: "createReviewAction:", forControlEvents: .TouchUpInside)
+            cell.createReviewButton.addTarget(self, action: "createReviewAction", forControlEvents: .TouchUpInside)
             
             cell.UpdateInfoButton.addTarget(self, action: "UpdateInfoButton", forControlEvents: .TouchUpInside)
             

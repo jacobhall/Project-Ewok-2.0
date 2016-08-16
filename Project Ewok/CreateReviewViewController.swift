@@ -13,14 +13,15 @@ class CreateReviewViewController: UIViewController {
     // holds the id of the geolocation passed to it
     
     var recivedGeoID = Int()
-
+    
+    let interface = ApiInterface();
+    
     @IBOutlet var reviewTextView: UITextView!
     
     @IBOutlet var ratingSegControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
     }
 
@@ -37,9 +38,18 @@ class CreateReviewViewController: UIViewController {
         
         
         // API CODE
-        
-        // ran after succesful submission
-        
-        performSegueWithIdentifier("back", sender: self)
+        interface.onComplete = submitReview;
+        interface.createNewReview(geolocationID: recivedGeoID, rating: rating, comment: reviewText);
+    }
+    
+    
+    //Functional Code
+    func submitReview(){
+        if(interface.requester.error == nil){
+            performSegueWithIdentifier("back", sender: self);
+        }
+        else{
+            showAlert(title: "Could not create review", requester: interface.requester);
+        }
     }
 }
