@@ -21,4 +21,10 @@ class MainContentCell: UITableViewCell {
     @IBOutlet var distanceAwayLabel: UILabel!
     
     @IBOutlet var ratingImageView: UIImageView!
+    
+    @IBOutlet var addImageButton: UIButton!
+    
+    @IBOutlet var createReviewButton: UIButton!
+    
+    @IBOutlet var UpdateInfoButton: UIButton!
 }

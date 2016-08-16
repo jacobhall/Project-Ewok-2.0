@@ -20,8 +20,15 @@ class ResultsViewController: UITableViewController{
     
     var images = [PictureModel]()
     
+    var PageController = UIPageControl()
+    
+    var scrollView = UIScrollView()
+    
+    @IBAction func undwindToResults(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
+        
+        scrollView.delegate = self
         
         super.viewDidLoad()
         
@@ -42,8 +49,12 @@ class ResultsViewController: UITableViewController{
             
             self.images = images
             
-            
         }
+        
+        
+    }
+    
+    func addImages(){
         
         
     }
@@ -56,6 +67,10 @@ class ResultsViewController: UITableViewController{
         getReviews()
         
         getImages()
+        
+        PageController.currentPage = 3
+        
+        
     }
     
     func getLocationInfo(){
@@ -129,11 +144,146 @@ class ResultsViewController: UITableViewController{
         
     }
     
+    // Adds a alert for camera and photo library
+    
+    func addImageAction() {
+        
+        let actionSheetController: UIAlertController = UIAlertController(title: "Add Image to location", message: nil, preferredStyle: .ActionSheet)
+        
+        let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+            
+            
+            
+        }
+        actionSheetController.addAction(cancelActionButton)
+        
+        let saveActionButton: UIAlertAction = UIAlertAction(title: "Take Image", style: .Default)
+        { action -> Void in
+            
+            
+            
+            
+            // Code for taking an image
+            
+            
+            
+        }
+        actionSheetController.addAction(saveActionButton)
+        
+        let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .Default)
+        { action -> Void in
+            
+            
+            
+            // code for getting image from library
+            
+            
+            
+        }
+        actionSheetController.addAction(deleteActionButton)
+        
+        self.presentViewController(actionSheetController, animated: true, completion: nil)
+        
+        
+    }
+    
+    // preform segue to reviewViewController
+    
+    func createReviewAction() {
+        
+        performSegueWithIdentifier("review", sender: self)
+    
+    }
+    
+    func UpdateInfoButton() {
+        
+        // TODO: Perform segue to creating a location to reuse the view contoller
+        
+        self.performSegueWithIdentifier("updateSegue", sender: self)
+        
+        
+        
+        
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "review" {
+            
+            var dest = segue.destinationViewController as! CreateReviewViewController
+            
+            // passes locationId to CreateReviewViewController
+            
+            dest.recivedGeoID = self.LocationId
+            
+            
+        }else if segue.identifier == "updateSegue" {
+            
+            var dest = segue.destinationViewController as! submissionViewController
+            
+            dest.isBeingUpdated = true
+            
+            dest.geolocationId = self.LocationId
+        
+        }
+    }
+    
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
             
             var cell : MainContentCell = tableView.dequeueReusableCellWithIdentifier("mainCell") as! MainContentCell
+            
+            var xPosition:CGFloat = 0
+            
+            var height: CGFloat = 0
+            
+            scrollView = cell.imageScrollView
+            
+            cell.imagePageControl.numberOfPages = images.count
+            
+            // Buttons at the top of screen, Adding actions
+            
+            cell.addImageButton.addTarget(self, action: "addImageAction", forControlEvents: .TouchUpInside)
+        
+            cell.createReviewButton.addTarget(self, action: "createReviewAction:", forControlEvents: .TouchUpInside)
+            
+            cell.UpdateInfoButton.addTarget(self, action: "UpdateInfoButton", forControlEvents: .TouchUpInside)
+            
+            self.PageController = cell.imagePageControl
+            
+            for image in images {
+                
+                let imageView = UIImageView()
+                
+                imageView.setImageFromPictureModel(image)
+                
+                imageView.frame.size.width = scrollView.frame.size.width
+                
+                imageView.frame.size.height = scrollView.frame.size.height
+                
+                imageView.contentMode = UIViewContentMode.ScaleAspectFill
+                
+                imageView.frame.origin.x = xPosition
+                
+                imageView.backgroundColor = UIColor.blackColor()
+                
+                print(xPosition)
+                
+                xPosition += imageView.frame.width
+                
+                scrollView.addSubview(imageView)
+                
+                print("added")
+                
+            }
+            
+            scrollView.contentSize = CGSize(width: xPosition, height: height)
+
+            
+            cell.imageScrollView = scrollView
 
             cell.locationInfo.text = location?.description
             

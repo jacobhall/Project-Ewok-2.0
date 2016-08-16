@@ -18,6 +18,10 @@ class submissionViewController: UIViewController{
     
     var locationCoordinates = CLLocationCoordinate2D()
     
+    var isBeingUpdated = false
+    
+    var geolocationId = Int()
+    
     override func viewWillAppear(animated: Bool) {
         auth = Authenticator.sharedInstance;
     }

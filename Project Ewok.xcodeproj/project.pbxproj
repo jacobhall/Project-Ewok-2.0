@@ -30,6 +30,7 @@
 		16AA58601D5CFEAE0091CD7B /* ViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA585F1D5CFEAE0091CD7B /* ViewExtention.swift */; };
 		16AA58621D5D01600091CD7B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA58611D5D01600091CD7B /* TableViewCell.swift */; };
 		16AA58641D5D087A0091CD7B /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA58631D5D087A0091CD7B /* ResultsViewController.swift */; };
+		16F263361D62B4D800DADC74 /* CreateReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F263351D62B4D800DADC74 /* CreateReviewViewController.swift */; };
 		C50EFBE41D5C9D000069E49C /* GeolocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EFBE31D5C9D000069E49C /* GeolocationModel.swift */; };
 		C50EFBE61D5CAE410069E49C /* ApiInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EFBE51D5CAE410069E49C /* ApiInterface.swift */; };
 		C53041911D5E27B800146208 /* PictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53041901D5E27B800146208 /* PictureModel.swift */; };
@@ -88,6 +89,7 @@
 		16AA585F1D5CFEAE0091CD7B /* ViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewExtention.swift; path = ../ViewExtention.swift; sourceTree = "<group>"; };
 		16AA58611D5D01600091CD7B /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		16AA58631D5D087A0091CD7B /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultsViewController.swift; path = ../ResultsViewController.swift; sourceTree = "<group>"; };
+		16F263351D62B4D800DADC74 /* CreateReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateReviewViewController.swift; sourceTree = "<group>"; };
 		C50EFBE31D5C9D000069E49C /* GeolocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeolocationModel.swift; sourceTree = "<group>"; };
 		C50EFBE51D5CAE410069E49C /* ApiInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiInterface.swift; sourceTree = "<group>"; };
 		C53041901D5E27B800146208 /* PictureModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureModel.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		166F144D1D5A1C9400150A14 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				16F263351D62B4D800DADC74 /* CreateReviewViewController.swift */,
 				16AA58631D5D087A0091CD7B /* ResultsViewController.swift */,
 				166F144F1D5A454E00150A14 /* createLocation.swift */,
 				16AA585D1D5B6BC10091CD7B /* submissionViewController.swift */,
@@ -369,6 +372,7 @@
 				166F14481D5A1C3F00150A14 /* RegisterViewController.swift in Sources */,
 				166F144C1D5A1C8F00150A14 /* AccountViewController.swift in Sources */,
 				C53041911D5E27B800146208 /* PictureModel.swift in Sources */,
+				16F263361D62B4D800DADC74 /* CreateReviewViewController.swift in Sources */,
 				16AA58641D5D087A0091CD7B /* ResultsViewController.swift in Sources */,
 				166F14421D591ED800150A14 /* mapAnnotation.swift in Sources */,
 				16AA58621D5D01600091CD7B /* TableViewCell.swift in Sources */,
