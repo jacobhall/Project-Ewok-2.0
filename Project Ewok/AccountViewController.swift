@@ -25,8 +25,5 @@ class AccountViewController: UIViewController {
     
     @IBAction func logout(sender: UIButton) {
         auth!.destroyToken();
-        while(auth!.completed == false){
-            sleep(1);
-        }
     }
 }

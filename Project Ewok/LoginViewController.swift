@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    var auth: Authenticator?;
+    let auth = Authenticator.sharedInstance;
     
     // text feilds
     @IBOutlet weak var emailField: UITextField!
@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        auth = Authenticator.sharedInstance;
+        
     }
     
     // login button
@@ -30,15 +30,18 @@ class LoginViewController: UIViewController {
     
     // login in
     func login() {
-        auth!.authenticate(emailField.text!, passwordField.text!)
-        while(auth!.completed == false){
-            sleep(1);
-        }
-        if(auth!.valid == true){
-            self.performSegueWithIdentifier("loginSuccessful", sender: self);
+        auth.onComplete = reportErrors;
+        auth.authenticate(emailField.text!, passwordField.text!);
+    }
+    
+    func reportErrors(){
+        if(auth.valid == true){
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+                self.performSegueWithIdentifier("loginSuccessful", sender: self);
+            });
         }
         else{
-            //TO DO: ADD ERROR PROMPTS
+            showAlert(title: "Could not log in", message: auth.requester!.error);
         }
     }
 }

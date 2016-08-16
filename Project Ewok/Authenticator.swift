@@ -93,6 +93,15 @@ public class Authenticator: Requester {
     }
     
     //Mutators
+    override internal func setCompleted(){
+        //POST: Sets the complete variable and calls onComplete, then nils onComplete
+        if(onComplete != nil){
+            onComplete!();
+            onComplete = nil;
+        }
+        completed = true;
+    }
+    
     internal func setToken(JSON: [String: AnyObject]) -> Void {
         //PRE: a JSON dictionary
         //POST: sets the token if one is found in the JSON
@@ -140,6 +149,8 @@ public class Authenticator: Requester {
         }
         if(requester.error == nil){
             self.authenticate(email, password);
+        }
+        else{
             setCompleted();
         }
     }
