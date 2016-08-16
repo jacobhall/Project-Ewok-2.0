@@ -12,7 +12,9 @@ import CoreLocation
 
 class submissionViewController: UIViewController{
     
-    var auth: Authenticator!;
+    let auth = Authenticator.sharedInstance;
+    
+    let interface = ApiInterface();
     
     var userCoordinates = CLLocationCoordinate2D()
     
@@ -23,7 +25,8 @@ class submissionViewController: UIViewController{
     var geolocationId = Int()
     
     override func viewWillAppear(animated: Bool) {
-        auth = Authenticator.sharedInstance;
+        
+        
     }
     
     @IBOutlet var nameTextField: UITextField!
@@ -36,18 +39,20 @@ class submissionViewController: UIViewController{
         
         let description = self.descriptionTextView.text
         
-        let maker = RequestMaker(method: "POST", url: "geolocations", data: "latitude=\(locationCoordinates.latitude)&longitude=\(locationCoordinates.longitude)&submitterLongitude=\(userCoordinates.longitude)&submitterLatitude=\(userCoordinates.latitude)&name=\(name!)&description=\(description)")
+        interface.onComplete = reportErrors;
         
-        maker.authorize(auth.token!)
+        interface.createNewGeolocation(latitude: locationCoordinates.latitude, longitude: locationCoordinates.longitude, submitterLatitude: userCoordinates.latitude, submitterLongitude: userCoordinates.longitude, name: name!, description:  description!);
         
-        maker.run()
-        
-        while maker.ready! == false {
-            
-            sleep(1)
-            
+    }
+    
+    func reportErrors(){
+        if(interface.requester.error == nil){
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+                self.performSegueWithIdentifier("exitToHomeSegue", sender: self);
+            });
         }
-        
-        self.performSegueWithIdentifier("exitToHomeSegue", sender: self)
+        else{
+            showAlert(title: "Could not create review", requester: interface.requester);
+        }
     }
 }

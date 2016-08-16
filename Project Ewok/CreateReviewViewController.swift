@@ -38,15 +38,17 @@ class CreateReviewViewController: UIViewController {
         
         
         // API CODE
-        interface.onComplete = submitReview;
+        interface.onComplete = reportErrors;
         interface.createNewReview(geolocationID: recivedGeoID, rating: rating, comment: reviewText);
     }
     
     
     //Functional Code
-    func submitReview(){
+    func reportErrors(){
         if(interface.requester.error == nil){
-            performSegueWithIdentifier("back", sender: self);
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+                performSegueWithIdentifier("back", sender: self);
+            });
         }
         else{
             showAlert(title: "Could not create review", requester: interface.requester);
