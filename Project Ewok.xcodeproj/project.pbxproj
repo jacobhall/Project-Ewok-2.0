@@ -31,6 +31,7 @@
 		16AA58641D5D087A0091CD7B /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA58631D5D087A0091CD7B /* ResultsViewController.swift */; };
 		16F263361D62B4D800DADC74 /* CreateReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F263351D62B4D800DADC74 /* CreateReviewViewController.swift */; };
 		16F263381D64BC7C00DADC74 /* FilterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F263371D64BC7C00DADC74 /* FilterData.swift */; };
+		16F2633A1D64BE8600DADC74 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F263391D64BE8600DADC74 /* FilterViewController.swift */; };
 		C50EFBE41D5C9D000069E49C /* GeolocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EFBE31D5C9D000069E49C /* GeolocationModel.swift */; };
 		C50EFBE61D5CAE410069E49C /* ApiInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EFBE51D5CAE410069E49C /* ApiInterface.swift */; };
 		C53041911D5E27B800146208 /* PictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53041901D5E27B800146208 /* PictureModel.swift */; };
@@ -90,6 +91,7 @@
 		16AA58631D5D087A0091CD7B /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultsViewController.swift; path = ../ResultsViewController.swift; sourceTree = "<group>"; };
 		16F263351D62B4D800DADC74 /* CreateReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateReviewViewController.swift; sourceTree = "<group>"; };
 		16F263371D64BC7C00DADC74 /* FilterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterData.swift; sourceTree = "<group>"; };
+		16F263391D64BE8600DADC74 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		C50EFBE31D5C9D000069E49C /* GeolocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeolocationModel.swift; sourceTree = "<group>"; };
 		C50EFBE51D5CAE410069E49C /* ApiInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiInterface.swift; sourceTree = "<group>"; };
 		C53041901D5E27B800146208 /* PictureModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureModel.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				166F14471D5A1C3F00150A14 /* RegisterViewController.swift */,
 				166F14491D5A1C7500150A14 /* LoginViewController.swift */,
 				166F144B1D5A1C8F00150A14 /* AccountViewController.swift */,
+				16F263391D64BE8600DADC74 /* FilterViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				1687ED5E1D5E47840052200B /* imageHandle.swift in Sources */,
 				166F13D01D54D95A00150A14 /* ViewController.swift in Sources */,
 				16AA58601D5CFEAE0091CD7B /* ViewExtention.swift in Sources */,
+				16F2633A1D64BE8600DADC74 /* FilterViewController.swift in Sources */,
 				166F13D61D54D95A00150A14 /* Project_Ewok.xcdatamodeld in Sources */,
 				166F13FF1D54FD5200150A14 /* getData.swift in Sources */,
 				C53041931D5E29BF00146208 /* UIImageExtension.swift in Sources */,

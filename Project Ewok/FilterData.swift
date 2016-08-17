@@ -16,6 +16,4 @@ class FilterData {
     
     var distance : Int?
     
-    var
-    
 }
