@@ -227,9 +227,16 @@ public class Authenticator: Requester {
                     let longitude = (geolocationJSON["longitude"] as! NSString).doubleValue;
                     let name = geolocationJSON["name"] as! String;
                     let description = geolocationJSON["description"] as? String;
+                    var averageRating: Double;
+                    if let averageRatingString = geolocationJSON["averageRating"] as? NSString! {
+                        averageRating = averageRatingString.doubleValue;
+                    }
+                    else{
+                        averageRating = geolocationJSON["averageRating"] as! Double;
+                    }
                     let locationID = geolocationJSON["location_id"] as? Int;
                     let locationType = geolocationJSON["locationType"] as? String;
-                    let geolocation = GeolocationModel(geolocationID: geolocationID, latitude: latitude, longitude: longitude, name: name, description: description, locationID: locationID, locationType: locationType);
+                    let geolocation = GeolocationModel(geolocationID: geolocationID, latitude: latitude, longitude: longitude, name: name, description: description, averageRating: averageRating, locationID: locationID, locationType: locationType);
                     geolocations.append(geolocation);
                 }
                 self.user!.geolocations = geolocations;
