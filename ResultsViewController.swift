@@ -10,6 +10,8 @@ import UIKit
 
 class ResultsViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
+    let auth = Authenticator.sharedInstance;
+    
     var LocationId = Int()
     
     var reviews = [ReviewModel]()
@@ -146,54 +148,57 @@ class ResultsViewController: UITableViewController, UIImagePickerControllerDeleg
     
     // Adds a alert for camera and photo library
     func addImageAction() {
-        
-        let actionSheetController: UIAlertController = UIAlertController(title: "Add Image to location", message: nil, preferredStyle: .ActionSheet)
-        
-        let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+        //Checks if the user is authenticated and requires them to login if not
+        if(auth.valid == true){
+            let actionSheetController: UIAlertController = UIAlertController(title: "Add Image to location", message: nil, preferredStyle: .ActionSheet)
             
+            let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+                
+                
+                
+            }
+            actionSheetController.addAction(cancelActionButton)
             
+            let saveActionButton: UIAlertAction = UIAlertAction(title: "Take Image", style: .Default)
+            { action -> Void in
+                // Code for taking an image
+                
+                //Checking the camera exists
+                if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+                    //If it does, we allow them to take a picture
+                    let picker = UIImagePickerController();
+                    picker.delegate = self;
+                    picker.allowsEditing = false;
+                    picker.sourceType = UIImagePickerControllerSourceType.Camera;
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.presentViewController(picker, animated: true, completion: nil);
+                    });
+                }
+                else{
+                    //If not, we display an error
+                    self.showAlert(title: "No camera available", message: nil);
+                }
+            }
+            actionSheetController.addAction(saveActionButton)
             
-        }
-        actionSheetController.addAction(cancelActionButton)
-        
-        let saveActionButton: UIAlertAction = UIAlertAction(title: "Take Image", style: .Default)
-        { action -> Void in
-            // Code for taking an image
-            
-            //Checking the camera exists
-            if(UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
-                //If it does, we allow them to take a picture
+            let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .Default)
+            { action -> Void in
+                // code for getting image from library
                 let picker = UIImagePickerController();
                 picker.delegate = self;
                 picker.allowsEditing = false;
-                picker.sourceType = UIImagePickerControllerSourceType.Camera;
+                picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
                 dispatch_async(dispatch_get_main_queue(), {
                     self.presentViewController(picker, animated: true, completion: nil);
                 });
             }
-            else{
-                //If not, we display an error
-                self.showAlert(title: "No camera available", message: nil);
-            }
+            actionSheetController.addAction(deleteActionButton)
+            
+            self.presentViewController(actionSheetController, animated: true, completion: nil)
         }
-        actionSheetController.addAction(saveActionButton)
-        
-        let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .Default)
-        { action -> Void in
-            // code for getting image from library
-            let picker = UIImagePickerController();
-            picker.delegate = self;
-            picker.allowsEditing = false;
-            picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
-            dispatch_async(dispatch_get_main_queue(), { 
-                self.presentViewController(picker, animated: true, completion: nil);
-            });
+        else{
+            showAlert(title: "Not logged in", message: "Please log in to continue", actions: [loginButton()]);
         }
-        actionSheetController.addAction(deleteActionButton)
-        
-        self.presentViewController(actionSheetController, animated: true, completion: nil)
-        
-        
     }
     
     //Called when a picture is taken and/or selected
@@ -220,22 +225,33 @@ class ResultsViewController: UITableViewController, UIImagePickerControllerDeleg
     
     // preform segue to reviewViewController
     
-    func createReviewAction() {
-        
-        performSegueWithIdentifier("review", sender: self)
+    //Create a log in action for the alert
+    func loginButton() -> UIAlertAction {
+        return UIAlertAction(title: "Log in", style: UIAlertActionStyle.Default, handler: {
+            (alert) in
+            let destinationVC = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController;
+            self.navigationController!.pushViewController(destinationVC, animated: true);
+        });
+    }
     
+    func createReviewAction() {
+        if(auth.valid == true){
+            performSegueWithIdentifier("review", sender: self);
+        }
+        else{
+            showAlert(title: "Not logged in", message: "Please log in to continue", actions: [loginButton()]);
+        }
     }
     
     func UpdateInfoButton() {
         
         // TODO: Perform segue to creating a location to reuse the view contoller
-        
-        self.performSegueWithIdentifier("updateSegue", sender: self)
-        
-        
-        
-        
-        
+        if(auth.valid == true){
+            self.performSegueWithIdentifier("updateSegue", sender: self)
+        }
+        else{
+            showAlert(title: "Not logged in", message: "Please log in to continue", actions: [loginButton()]);
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -299,7 +315,7 @@ class ResultsViewController: UITableViewController, UIImagePickerControllerDeleg
                 
                 imageView.frame.origin.x = xPosition
                 
-                imageView.backgroundColor = UIColor.blackColor()
+//                imageView.backgroundColor = UIColor.blackColor()
                 
                 print(xPosition)
                 

@@ -66,6 +66,6 @@ public class GeolocationModel{
     
     internal func createAnnotation() -> mapAnnotation {
         //POST: Takes the data of the geolocation and creates an annotation from it
-        return mapAnnotation(name: name, title: name, latitude: latitude, longitude: longitude)
+        return mapAnnotation(name: name, title: name, geolocationID: geolocationID, latitude: latitude, longitude: longitude);
     }
 }

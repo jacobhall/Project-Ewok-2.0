@@ -49,6 +49,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         self.mapView.showsUserLocation = true
 
+        self.mapView.delegate = self;
         
         getGeoLocations()
     
@@ -136,18 +137,55 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         for location in geoLocations {
             
-            let dropPin = MKPointAnnotation()
+            let dropPin = location.createAnnotation();
             
-            dropPin.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-            
-            dropPin.title = location.name
-            
-            mapView.addAnnotation(dropPin)
+            mapView.addAnnotation(dropPin);
             
         }
-        
     }
     
+    //Performs a segue when the new button is tapped
+    func toDetails(sender: UIButton){
+        
+        self.selectedLocationId = sender.tag;
+        
+        performSegueWithIdentifier("locationSelected", sender: self);
+    }
+    
+    //Called each time a pin is added to the map
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        //PRE: annotation must be of a geolocation and mapView must be already in the view
+        //POST: Creates an annotation view for the geolocation
+        let identifier = "geolocation";
+        
+        if(!(annotation is MKUserLocation)){
+            //Getting an annotation view, if it exists
+            let geoAnnotation = annotation as! mapAnnotation;
+            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier);
+            
+            if(annotationView == nil){
+                //Creating the view
+                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier);
+                let button = UIButton(type: UIButtonType.DetailDisclosure);
+                button.addTarget(self, action: #selector(ViewController.toDetails), forControlEvents: UIControlEvents.TouchUpInside);
+                annotationView!.rightCalloutAccessoryView = button;
+                annotationView!.canShowCallout = true;
+            }
+            else{
+                //Obtaining the view
+                annotationView!.annotation = annotation;
+            }
+            //Updating the view for this annotation
+            let button = annotationView!.rightCalloutAccessoryView as! UIButton;
+            button.tag = geoAnnotation.geolocationID;
+            
+            //Returning the view
+            return annotationView;
+        }
+        else{
+            return nil;
+        }
+    }
     
     @IBAction func ListViewButton(sender: AnyObject) {
         

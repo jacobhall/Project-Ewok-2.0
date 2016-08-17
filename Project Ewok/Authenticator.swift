@@ -43,15 +43,14 @@ public class Authenticator: Requester {
      You can always call refreshAndGetUser to avoid this.
      
      Valid, in most other cases, can tell you when the token is good, BUT! cannot always be
-     garunteed to be set unless you call get user. For this reason, always check if valid
-     is or is not true, instead of checking if it is or is not false.
+     garunteed to be set unless you call get user or authenticate. For this reason, 
+     always check if valid is or is not true, instead of checking if it is or is not false.
      
      valid == false BAD
      valid != true GOOD
      
-     Note that user may already be set! If you are using an Authenticator already
-     instantiated from another place, it's quite possible that user is already calculated.
-     Bear this in mind when using it.
+     Note that user may already be set! The authenticator automatically gets the user when it
+     is initialized. Be sure to check if the user is there before calling getUser needlessly
      
      As with all requesters, this also have a onComplete, setCompleted, and completed variables
      that allow you to asynchronously run functions.

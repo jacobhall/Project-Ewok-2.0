@@ -47,7 +47,7 @@ class CreateReviewViewController: UIViewController {
     func reportErrors(){
         if(interface.requester.error == nil){
             NSOperationQueue.mainQueue().addOperationWithBlock({
-                performSegueWithIdentifier("back", sender: self);
+                self.performSegueWithIdentifier("back", sender: self);
             });
         }
         else{

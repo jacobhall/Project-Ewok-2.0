@@ -288,7 +288,7 @@
         <!--Sign In-->
         <scene sceneID="e35-bT-XDs">
             <objects>
-                <viewController id="1Gs-Ed-E6W" customClass="LoginViewController" customModule="Project_Ewok" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="1Gs-Ed-E6W" customClass="LoginViewController" customModule="Project_Ewok" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zd5-ER-E0u"/>
                         <viewControllerLayoutGuide type="bottom" id="LU5-r4-KNY"/>

@@ -25,7 +25,7 @@ public class ApiInterface: Requester {
      true upon process completion.
      
      You can set onComplete or onCompleteWithReturns to call the function
-     when the request has been completed.
+     when the request has been completed. See below for explicit documentation.
      
      Make sure that, when you are obtaining a returns, cast it to the right type.
      
