@@ -30,6 +30,7 @@
 		16AA58621D5D01600091CD7B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA58611D5D01600091CD7B /* TableViewCell.swift */; };
 		16AA58641D5D087A0091CD7B /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA58631D5D087A0091CD7B /* ResultsViewController.swift */; };
 		16F263361D62B4D800DADC74 /* CreateReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F263351D62B4D800DADC74 /* CreateReviewViewController.swift */; };
+		16F263381D64BC7C00DADC74 /* FilterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F263371D64BC7C00DADC74 /* FilterData.swift */; };
 		C50EFBE41D5C9D000069E49C /* GeolocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EFBE31D5C9D000069E49C /* GeolocationModel.swift */; };
 		C50EFBE61D5CAE410069E49C /* ApiInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50EFBE51D5CAE410069E49C /* ApiInterface.swift */; };
 		C53041911D5E27B800146208 /* PictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53041901D5E27B800146208 /* PictureModel.swift */; };
@@ -88,6 +89,7 @@
 		16AA58611D5D01600091CD7B /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		16AA58631D5D087A0091CD7B /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultsViewController.swift; path = ../ResultsViewController.swift; sourceTree = "<group>"; };
 		16F263351D62B4D800DADC74 /* CreateReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateReviewViewController.swift; sourceTree = "<group>"; };
+		16F263371D64BC7C00DADC74 /* FilterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterData.swift; sourceTree = "<group>"; };
 		C50EFBE31D5C9D000069E49C /* GeolocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeolocationModel.swift; sourceTree = "<group>"; };
 		C50EFBE51D5CAE410069E49C /* ApiInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiInterface.swift; sourceTree = "<group>"; };
 		C53041901D5E27B800146208 /* PictureModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureModel.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				1687ED581D5E45DA0052200B /* tableViewCells */,
 				166F144E1D5A1CC600150A14 /* Models */,
 				166F144D1D5A1C9400150A14 /* ViewControllers */,
+				16F263371D64BC7C00DADC74 /* FilterData.swift */,
 				166F13CD1D54D95A00150A14 /* AppDelegate.swift */,
 				166F14411D591ED800150A14 /* mapAnnotation.swift */,
 				166F13FE1D54FD5200150A14 /* getData.swift */,
@@ -310,6 +313,7 @@
 				TargetAttributes = {
 					166F13C91D54D95A00150A14 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = PFV47EH5F8;
 					};
 					166F13E01D54D95A00150A14 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -400,6 +404,7 @@
 				16AA585E1D5B6BC10091CD7B /* submissionViewController.swift in Sources */,
 				1687ED5A1D5E46D00052200B /* ReviewTableViewCell.swift in Sources */,
 				166F144A1D5A1C7500150A14 /* LoginViewController.swift in Sources */,
+				16F263381D64BC7C00DADC74 /* FilterData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,10 +548,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Project Ewok/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.maine.um.asap.Project-Ewok";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -554,10 +562,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Project Ewok/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.maine.um.asap.Project-Ewok";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
