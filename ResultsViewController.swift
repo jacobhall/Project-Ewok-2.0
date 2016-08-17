@@ -63,7 +63,7 @@ class ResultsViewController: UITableViewController, UIImagePickerControllerDeleg
     
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         getLocationInfo()
         
         getReviews()
@@ -311,26 +311,22 @@ class ResultsViewController: UITableViewController, UIImagePickerControllerDeleg
                 
                 imageView.frame.size.height = scrollView.frame.size.height
                 
-                imageView.contentMode = UIViewContentMode.ScaleAspectFill
+                imageView.contentMode = UIViewContentMode.ScaleAspectFit
                 
                 imageView.frame.origin.x = xPosition
-                
-//                imageView.backgroundColor = UIColor.blackColor()
-                
-                print(xPosition)
                 
                 xPosition += imageView.frame.width
                 
                 scrollView.addSubview(imageView)
                 
-                print("added")
-                
+                print(2)
             }
             
             scrollView.contentSize = CGSize(width: xPosition, height: height)
-
             
             cell.imageScrollView = scrollView
+            
+            
 
             cell.locationInfo.text = location?.description
             
