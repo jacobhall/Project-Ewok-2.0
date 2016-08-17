@@ -500,7 +500,6 @@ public class ApiInterface: Requester {
             requester.authorize(auth.token!);
         }
         if let imageData = UIImageJPEGRepresentation(image, 0.5) {
-            print("HERE!");
             let boundary = "--BOUNDARY--BOUNDARY--BOUNDARY--";
             let body = NSMutableData();
             let fileName = "iOSPicture.jpg";
@@ -560,8 +559,8 @@ public class ApiInterface: Requester {
         if let imageData = UIImagePNGRepresentation(image) {
             let boundary = "--BOUNDARY--BOUNDARY--BOUNDARY--";
             let body = NSMutableData();
-            let fileName = "iOSPicture.png";
-            let mimetype = "image/png";
+            let fileName = "iOSPicture.jpg";
+            let mimetype = "image/jpeg";
             
             //Image body
             body.appendData("--\(boundary)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
