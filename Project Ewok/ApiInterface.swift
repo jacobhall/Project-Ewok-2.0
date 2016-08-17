@@ -491,18 +491,20 @@ public class ApiInterface: Requester {
     }
     
     internal func createNewPicture(image image: UIImage, attachedModel: String, attachedID: Int, getModel: Bool = false){
+        //PRE: An image, attached model, attached ID must ALL BE PROVIDED. getModel will return the picture model at the end, if desired.
+        //POST: puts the picture in PNG format into the database.
         returns = nil;
         completed = false;
         requester = RequestMaker(method: "POST", url: "pictures");
         if(auth.token != nil){
             requester.authorize(auth.token!);
         }
-        if let imageData = UIImagePNGRepresentation(image) {
+        if let imageData = UIImageJPEGRepresentation(image, 0.5) {
             print("HERE!");
             let boundary = "--BOUNDARY--BOUNDARY--BOUNDARY--";
             let body = NSMutableData();
-            let fileName = "iOSPicture.png";
-            let mimetype = "image/png";
+            let fileName = "iOSPicture.jpg";
+            let mimetype = "image/jpeg";
             
             //Creating body of request
             //Image body

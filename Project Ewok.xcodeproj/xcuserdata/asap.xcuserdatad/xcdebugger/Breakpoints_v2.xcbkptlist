@@ -632,13 +632,106 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ResultsViewController.swift"
-            timestampString = "493138542.027334"
+            timestampString = "493144059.954431"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "264"
             endingLineNumber = "264"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project Ewok/UserModel.swift"
+            timestampString = "493142368.273349"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "init(userID:firstName:lastName:email:reviews:geolocations:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_Ewok.UserModel.init (userID : Swift.Int, firstName : Swift.Optional&lt;Swift.String&gt;, lastName : Swift.Optional&lt;Swift.String&gt;, email : Swift.String, reviews : Swift.Optional&lt;Swift.Array&lt;Project_Ewok.ReviewModel&gt;&gt;, geolocations : Swift.Optional&lt;Swift.Array&lt;Project_Ewok.GeolocationModel&gt;&gt;) -&gt; Project_Ewok.UserModel"
+                  moduleName = "Project Ewok"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/asap/Project-Ewok-iOS/Project%20Ewok/UserModel.swift"
+                  timestampString = "493142368.277198"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "256">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_Ewok.UserModel.(init (userID : Swift.Int, firstName : Swift.Optional&lt;Swift.String&gt;, lastName : Swift.Optional&lt;Swift.String&gt;, email : Swift.String, reviews : Swift.Optional&lt;Swift.Array&lt;Project_Ewok.ReviewModel&gt;&gt;, geolocations : Swift.Optional&lt;Swift.Array&lt;Project_Ewok.GeolocationModel&gt;&gt;) -&gt; Project_Ewok.UserModel).(default argument 1)"
+                  moduleName = "Project Ewok"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/asap/Project-Ewok-iOS/Project%20Ewok/UserModel.swift"
+                  timestampString = "493142368.277333"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "7">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_Ewok.UserModel.(init (userID : Swift.Int, firstName : Swift.Optional&lt;Swift.String&gt;, lastName : Swift.Optional&lt;Swift.String&gt;, email : Swift.String, reviews : Swift.Optional&lt;Swift.Array&lt;Project_Ewok.ReviewModel&gt;&gt;, geolocations : Swift.Optional&lt;Swift.Array&lt;Project_Ewok.GeolocationModel&gt;&gt;) -&gt; Project_Ewok.UserModel).(default argument 2)"
+                  moduleName = "Project Ewok"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/asap/Project-Ewok-iOS/Project%20Ewok/UserModel.swift"
+                  timestampString = "493142368.277445"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "7">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_Ewok.UserModel.(init (userID : Swift.Int, firstName : Swift.Optional&lt;Swift.String&gt;, lastName : Swift.Optional&lt;Swift.String&gt;, email : Swift.String, reviews : Swift.Optional&lt;Swift.Array&lt;Project_Ewok.ReviewModel&gt;&gt;, geolocations : Swift.Optional&lt;Swift.Array&lt;Project_Ewok.GeolocationModel&gt;&gt;) -&gt; Project_Ewok.UserModel).(default argument 4)"
+                  moduleName = "Project Ewok"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/asap/Project-Ewok-iOS/Project%20Ewok/UserModel.swift"
+                  timestampString = "493142368.277553"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_Ewok.UserModel.(init (userID : Swift.Int, firstName : Swift.Optional&lt;Swift.String&gt;, lastName : Swift.Optional&lt;Swift.String&gt;, email : Swift.String, reviews : Swift.Optional&lt;Swift.Array&lt;Project_Ewok.ReviewModel&gt;&gt;, geolocations : Swift.Optional&lt;Swift.Array&lt;Project_Ewok.GeolocationModel&gt;&gt;) -&gt; Project_Ewok.UserModel).(default argument 5)"
+                  moduleName = "Project Ewok"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/asap/Project-Ewok-iOS/Project%20Ewok/UserModel.swift"
+                  timestampString = "493142368.27766"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
