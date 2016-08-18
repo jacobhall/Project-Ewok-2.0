@@ -206,7 +206,7 @@ public class Authenticator: Requester {
             let lastName = userJSON["lastName"] as? String;
             let userID = userJSON["userID"] as! Int;
             self.user = UserModel(userID: userID, firstName: firstName, lastName: lastName, email: email);
-            if let reviewsJSON = JSON["reviews"] as! NSArray! {
+            if let reviewsJSON = userJSON["reviews"] as! NSArray! {
                 var reviews = [ReviewModel]();
                 for reviewJSON in reviewsJSON{
                     let reviewID = reviewJSON["reviewID"] as! Int;
@@ -219,7 +219,7 @@ public class Authenticator: Requester {
                 }
                 self.user!.reviews = reviews;
             }
-            if let geolocationsJSON = JSON["geolocations"] as! NSArray! {
+            if let geolocationsJSON = userJSON["geolocations"] as! NSArray! {
                 var geolocations = [GeolocationModel]();
                 for geolocationJSON in geolocationsJSON {
                     let geolocationID = geolocationJSON["geolocationID"] as! Int;
