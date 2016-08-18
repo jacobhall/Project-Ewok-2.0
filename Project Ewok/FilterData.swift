@@ -12,8 +12,13 @@ class FilterData {
     
     static let sharedFilterData = FilterData()
     
-    var rating : Double?
+    var rating : Int?
     
     var distance : Int?
+    
+    var operatingTime : String?
+    
+    var wasFiltered = Bool()
+
     
 }

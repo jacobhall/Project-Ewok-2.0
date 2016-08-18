@@ -8,8 +8,11 @@
 
 import UIKit
 
-class AccountViewController: UIViewController {
+class AccountViewController: UITableViewController {
     var auth: Authenticator!;
+    
+    var index = Int()
+    
     
     override func viewDidLoad(){
         super.viewDidLoad();
@@ -23,7 +26,23 @@ class AccountViewController: UIViewController {
         print(auth.user);
     }
     
-    @IBAction func logout(sender: UIButton) {
+    @IBAction func logout(sender: UIBarButtonItem) {
         auth!.destroyToken();
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        index = indexPath.row
+        
+        performSegueWithIdentifier("accountInfo", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "accountInfo" {
+            
+            let dest = segue.destinationViewController as! UserInfoViewController
+            
+            dest.index = index
+            
+        }
     }
 }

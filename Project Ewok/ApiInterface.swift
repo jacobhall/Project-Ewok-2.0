@@ -145,6 +145,8 @@ public class ApiInterface: Requester {
         returns = nil;
         completed = false;
         var dataString = "";
+        
+        
         if(radius != nil){
             dataString += "&radius=" + String(radius!);
             dataString += "&latitude=" + String(latitude!);

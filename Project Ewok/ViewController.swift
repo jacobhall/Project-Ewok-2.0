@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource{
+class ViewController:  UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource{
     
     var auth: Authenticator!;
     
@@ -55,11 +55,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     }
     
+    
     func getGeoLocations() {
         
         let getLocation = ApiInterface()
         
-        getLocation.getGeolocations()
+        print(FilterData.sharedFilterData.distance)
+        
+        let radius: Int? = 150;
+        
+        print("self created = \(radius)")
+        
+        print("single = \(FilterData.sharedFilterData.distance)")
+        
+        getLocation.getGeolocations(FilterData.sharedFilterData.distance, latitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude, operatingTime: FilterData.sharedFilterData.operatingTime)
         
         while getLocation.completed == false {
             
@@ -83,6 +92,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        mapView.removeAnnotations(mapView.annotations)
+        
+        if FilterData.sharedFilterData.wasFiltered == false{
+            
+            FilterData.sharedFilterData.wasFiltered = true
+            
+            getGeoLocations()
+            
+            print("")
+            
+        }
         
         auth = Authenticator.sharedInstance;
     }

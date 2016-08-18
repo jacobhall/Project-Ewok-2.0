@@ -14,6 +14,8 @@ class ReviewTableViewCell: UITableViewCell {
     
     @IBOutlet var ratingImage: UIImageView!
     
+    @IBOutlet var deleteButton: UIButton!
+    
     @IBOutlet var reviewTextView: UITextView!
 }
 
