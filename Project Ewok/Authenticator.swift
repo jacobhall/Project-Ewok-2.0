@@ -16,9 +16,6 @@ public class Authenticator: Requester {
      Basic usage:
      get the authenticator using the shared instance
      
-     check if the token is set from the user defaults. If not,
-     act accordingly (ask the user to log in, maybe)
-     
      When logging in, use an authenticate method and
      check the requester for when it finishes. The 
      requester contains an "error" property that will be set

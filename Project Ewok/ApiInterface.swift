@@ -571,7 +571,7 @@ public class ApiInterface: Requester {
         }
     }
     
-    internal func updatePictre(picture: PictureModel, image: UIImage){
+    internal func updatePicture(picture: PictureModel, image: UIImage){
         //PRE: A pictureModel obtained from the DB and an image
         //POST: updates the picture model in the DB with the new image. DOES NOT CHANGE ANYTHING ELSE.
         returns = nil;
